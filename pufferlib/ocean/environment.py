@@ -181,6 +181,9 @@ def make_multiagent(buf=None, **kwargs):
 
 MAKE_FUNCTIONS = {
     "drive": "Drive",
+    "drive_adversarial": lazy_import(
+        "pufferlib.adversarial.env", "AdversarialMixDrive"
+    ),
     "spaces": make_spaces,
     "multiagent": make_multiagent,
 }
