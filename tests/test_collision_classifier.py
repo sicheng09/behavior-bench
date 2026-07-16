@@ -356,8 +356,8 @@ class TestFiveCollisionTypes:
                 "ACTIVE_REAR\nOther rear-ends ego (in lane)",
                 lanes=lanes)
 
-    def test_active_rear_at_fault_lane_change(self):
-        """Ego cuts off other by changing lanes -> ACTIVE_REAR, AT FAULT."""
+    def test_active_rear_not_at_fault_lane_change(self):
+        """ACTIVE_REAR is not at fault, even while ego changes lanes."""
         # Ego heading misaligned (0.25 rad), other directly behind
         ego = make_entity(0, 1.75, 0.25, 5, 2)
         other = make_entity(-6, 1.75, 0, 12, 0)  # directly behind ego
@@ -366,9 +366,9 @@ class TestFiveCollisionTypes:
         ctype = classify_collision(ego, other)
         assert ctype == CollisionType.ACTIVE_REAR_COLLISION
         fault = is_at_fault(ctype, ego, other, entities=entities)
-        assert fault is True
+        assert fault is False
         _record(ego, other, ctype, fault,
-                "ACTIVE_REAR\nEgo cuts off other (lane change)",
+                "ACTIVE_REAR\nNot at fault during lane change",
                 lanes=lanes)
 
     # --- ACTIVE_LATERAL_COLLISION ---
@@ -493,12 +493,20 @@ class TestIsAtFault:
         entities = [ego, lane1, lane2]
         assert is_at_fault(CollisionType.ACTIVE_REAR_COLLISION, ego, entities=entities) is False
 
-    def test_active_rear_misaligned_is_fault(self):
+    def test_active_rear_misaligned_not_fault(self):
+        """ACTIVE_REAR is not at fault despite ego heading misalignment."""
         ego = make_entity(10, 0.5, 0.3, 5, 2)
         lane1 = make_lane([0, 50], [0, 0])
         lane2 = make_lane([0, 50], [3.5, 3.5])
         entities = [ego, lane1, lane2]
-        assert is_at_fault(CollisionType.ACTIVE_REAR_COLLISION, ego, entities=entities) is True
+        assert is_at_fault(CollisionType.ACTIVE_REAR_COLLISION, ego, entities=entities) is False
+
+    def test_active_rear_vru_is_fault(self):
+        """VRU collisions remain at fault as an explicit safety exception."""
+        ego = make_entity(0, 0, 0, 5, 0)
+        vru = make_entity(-5, 0, 0, 8, 0)
+        vru["type"] = 2
+        assert is_at_fault(CollisionType.ACTIVE_REAR_COLLISION, ego, vru) is True
 
     def test_lateral_in_multiple_lanes_is_fault(self):
         ego = make_entity(0, 1.5, 0, 5, -2, width=2.0)
@@ -518,12 +526,27 @@ class TestIsAtFault:
         ego = make_entity(0, 0, 0, 5, 0)
         assert is_at_fault(CollisionType.ACTIVE_LATERAL_COLLISION, ego) is False
 
-    def test_lateral_heading_misaligned_is_fault(self):
+    def test_lateral_heading_misaligned_single_lane_not_fault(self):
+        """Heading misalignment alone does not make a lateral collision at fault."""
         ego = make_entity(10, 0.5, 0.3, 5, 2, width=2.0)
         lane1 = make_lane([0, 50], [0, 0])
         lane2 = make_lane([0, 50], [3.5, 3.5])
         entities = [ego, lane1, lane2]
-        assert is_at_fault(CollisionType.ACTIVE_LATERAL_COLLISION, ego, entities=entities) is True
+        assert is_at_fault(CollisionType.ACTIVE_LATERAL_COLLISION, ego, entities=entities) is False
+
+    def test_lateral_historical_multiple_lanes_current_single_lane_not_fault(self):
+        """Only ego's collision-time position determines multiple-lane overlap."""
+        ego = make_entity(10, 0, 0, 5, 0, width=2.0)
+        lane1 = make_lane([0, 50], [0, 0])
+        lane2 = make_lane([0, 50], [3.5, 3.5])
+        entities = [ego, lane1, lane2]
+        history = [(0, 1.75), (ego["x"], ego["y"])]
+        assert is_at_fault(
+            CollisionType.ACTIVE_LATERAL_COLLISION,
+            ego,
+            entities=entities,
+            ego_position_history=history,
+        ) is False
 
     def test_unknown_type_not_fault(self):
         assert is_at_fault("something_unknown") is False
@@ -847,7 +870,7 @@ class TestFullPipeline:
 # ===================================================================
 
 def test_generate_overview_plot():
-    """Generate the 5x2 grid: at-fault + not-at-fault for each CollisionType."""
+    """Generate a 5x2 grid of representative cases for each CollisionType."""
     SCENARIOS.clear()
 
     lanes = [make_lane([-20, 50], [0, 0]), make_lane([-20, 50], [3.5, 3.5])]
@@ -892,7 +915,7 @@ def test_generate_overview_plot():
     _record(ego2, other2, ctype2, is_at_fault(ctype2, ego2, other2),
             "ACTIVE_FRONT\nHead-on collision")
 
-    # Row 4: ACTIVE_REAR (not at fault) | (at fault — ego lane change)
+    # Row 4: ACTIVE_REAR (not at fault) | (still not at fault during lane change)
     ego = make_entity(0, 0, 0, 5, 0)
     other = make_entity(-5, 0, 0, 12, 0)
     ctype = classify_collision(ego, other)
@@ -906,7 +929,7 @@ def test_generate_overview_plot():
     ctype2 = classify_collision(ego2, other2)
     _record(ego2, other2, ctype2,
             is_at_fault(ctype2, ego2, other2, entities=[ego2, other2] + lanes),
-            "ACTIVE_REAR\nEgo cuts off other (lane change)",
+            "ACTIVE_REAR\nNot at fault during lane change",
             lanes=lanes)
 
     # Row 5: ACTIVE_LATERAL (not at fault) | (at fault — ego lane change)

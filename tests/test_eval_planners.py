@@ -197,6 +197,69 @@ class TestEvalConfig(unittest.TestCase):
         self.assertEqual(config["traffic"]["type"], "constant_velocity")
         self.assertEqual(config["planner"]["pdm"]["horizon"], 20)
 
+    def test_ppo_config_accepts_policy_class_overrides(self):
+        """Test PPO eval config can select non-Drive policy classes."""
+        from pufferlib.planning.registry import _build_ppo_config
+
+        cfg = _build_ppo_config({
+            "weights_path": "model.pt",
+            "device": "cpu",
+            "policy_class_name": "DriveMoE",
+            "input_size": 64,
+            "hidden_size": 256,
+            "rnn_name": "None",
+            "rnn_input_size": 224,
+            "rnn_hidden_size": 224,
+            "reward_conditioning": False,
+        })
+
+        self.assertEqual(cfg.weights_path, "model.pt")
+        self.assertEqual(cfg.device, "cpu")
+        self.assertEqual(cfg.policy_class_name, "DriveMoE")
+        self.assertEqual(cfg.input_size, 64)
+        self.assertEqual(cfg.hidden_size, 256)
+        self.assertEqual(cfg.rnn_name, "None")
+        self.assertEqual(cfg.rnn_input_size, 224)
+        self.assertEqual(cfg.rnn_hidden_size, 224)
+        self.assertFalse(cfg.reward_conditioning)
+
+    def test_behavior_aware_config_builder(self):
+        from pufferlib.planning.registry import _build_behavior_aware_config
+
+        cfg = _build_behavior_aware_config({
+            "weights_path": "behavior.pt",
+            "device": "cpu",
+            "input_size": 32,
+            "hidden_size": 64,
+            "behavior_latent_dim": 16,
+            "prediction_loss_coef": 0.05,
+            "fuse_behavior_latent": "false",
+            "policy_action_type": "discrete",
+        })
+
+        self.assertEqual(cfg.weights_path, "behavior.pt")
+        self.assertEqual(cfg.device, "cpu")
+        self.assertEqual(cfg.input_size, 32)
+        self.assertEqual(cfg.hidden_size, 64)
+        self.assertEqual(cfg.behavior_latent_dim, 16)
+        self.assertEqual(cfg.prediction_loss_coef, 0.05)
+        self.assertFalse(cfg.fuse_behavior_latent)
+
+    def test_load_eval_config_has_behavior_aware_sections(self):
+        from pufferlib.planning.registry import load_eval_config
+
+        config = load_eval_config(argv=[
+            "--planner.type", "behavior_aware",
+            "--planner.behavior-aware.device", "cpu",
+            "--traffic.type", "behavior_aware",
+            "--traffic.behavior-aware.device", "cpu",
+        ])
+
+        self.assertEqual(config["planner"]["type"], "behavior_aware")
+        self.assertEqual(config["planner"]["behavior_aware"]["device"], "cpu")
+        self.assertEqual(config["traffic"]["type"], "behavior_aware")
+        self.assertEqual(config["traffic"]["behavior_aware"]["device"], "cpu")
+
     def test_evaluator_config_viz_compat(self):
         """Test that render/save_iteration_gifs backwards compat works."""
         # Old-style: render=True should set viz=True

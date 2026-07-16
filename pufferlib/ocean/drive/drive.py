@@ -87,6 +87,8 @@ class Drive(pufferlib.PufferEnv):
         expert_fraction=0.0,    # Fraction of agents following expert replay
         idm_target_velocity=15.0,  # Default IDM target velocity [m/s]
         idm_random_velocity=False,  # If True, sample IDM velocity from {10,15,20,30} per agent
+        policy_log_ids=None,    # Optional per-active-agent policy ids for mix_ppo logging
+        policy_log_count=0,
         creward_deterministic=False,  # Eval-only: use fixed ego/traffic creward profiles
         emit_jerk_ego_obs=False,  # Force 10-dim jerk ego obs layout even in classic dynamics
         ego_entity_idx=-1,   # Eval-only: entity index of the ego for creward_ego dispatch.
@@ -146,6 +148,8 @@ class Drive(pufferlib.PufferEnv):
         self.ppo_fraction = float(ppo_fraction)
         self.idm_fraction = float(idm_fraction)
         self.expert_fraction = float(expert_fraction)
+        self.policy_log_ids = self._normalize_policy_log_ids(policy_log_ids)
+        self.policy_log_count = int(policy_log_count or 0)
 
         # Deterministic creward (eval): when enabled, C copies creward_ego into the
         # ego agent and cycles through creward_traffic[] by entity index for
@@ -378,11 +382,32 @@ class Drive(pufferlib.PufferEnv):
             env_ids.append(env_id)
 
         self.c_envs = binding.vectorize(*env_ids)
+        self._set_policy_log_ids()
 
     def reset(self, seed=0):
         binding.vec_reset(self.c_envs, seed)
         self.tick = 0
         return self.observations, []
+
+    @staticmethod
+    def _normalize_policy_log_ids(policy_log_ids):
+        if policy_log_ids is None or policy_log_ids == "":
+            return None
+        if isinstance(policy_log_ids, str):
+            return [int(v.strip()) for v in policy_log_ids.split(",") if v.strip()]
+        return [int(v) for v in policy_log_ids]
+
+    def _set_policy_log_ids(self):
+        if not self.policy_log_ids or self.policy_log_count <= 0:
+            return
+        if not hasattr(binding, "vec_set_policy_log_ids"):
+            return
+
+        ids = list(self.policy_log_ids)
+        if len(ids) != self.num_agents:
+            repeats = (self.num_agents + len(ids) - 1) // len(ids)
+            ids = (ids * repeats)[:self.num_agents]
+        binding.vec_set_policy_log_ids(self.c_envs, ids, self.policy_log_count)
 
     def resample_maps(self):
         """Resample environment maps. Closes current envs and creates new ones."""
@@ -467,6 +492,7 @@ class Drive(pufferlib.PufferEnv):
             )
             env_ids.append(env_id)
         self.c_envs = binding.vectorize(*env_ids)
+        self._set_policy_log_ids()
         binding.vec_reset(self.c_envs, seed)
         self.terminals[:] = 1
 
@@ -487,6 +513,14 @@ class Drive(pufferlib.PufferEnv):
             if self.tick % self.report_interval == 0:
                 log = binding.vec_log(self.c_envs, self.num_agents)
                 if log:
+                    if (self.policy_log_ids and self.policy_log_count > 0
+                            and hasattr(binding, "vec_get_policy_logs")):
+                        policy_logs = binding.vec_get_policy_logs(self.c_envs, self.policy_log_count)
+                        log["mix_ppo"] = {
+                            f"policy_{i}": policy_log
+                            for i, policy_log in enumerate(policy_logs)
+                            if policy_log
+                        }
                     info.append(log)
                     # print(log)
             if self.tick > 0 and self.resample_frequency > 0 and self.tick % self.resample_frequency == 0: # self.tick just got increased!

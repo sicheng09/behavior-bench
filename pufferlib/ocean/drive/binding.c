@@ -22,6 +22,8 @@ static PyObject* vec_clone_from_env(PyObject* self, PyObject* args);
 static PyObject* vec_free_snapshot(PyObject* self, PyObject* args);
 static PyObject* vec_get_ego_positions(PyObject* self, PyObject* args);
 static PyObject* vec_get_agent_log(PyObject* self, PyObject* args);
+static PyObject* vec_set_policy_log_ids(PyObject* self, PyObject* args);
+static PyObject* vec_get_policy_logs(PyObject* self, PyObject* args);
 static PyObject* vec_set_movement_mode(PyObject* self, PyObject* args);
 static PyObject* vec_set_idm_proposals(PyObject* self, PyObject* args);
 static PyObject* vec_set_idm_target_velocity(PyObject* self, PyObject* args);
@@ -42,6 +44,8 @@ static PyObject* compute_obs_external(PyObject* self, PyObject* args);
     {"vec_free_snapshot", vec_free_snapshot, METH_VARARGS, "Free a list of snapshots"}, \
     {"vec_get_ego_positions", vec_get_ego_positions, METH_VARARGS, "Get ego agent positions for all environments"}, \
     {"vec_get_agent_log", vec_get_agent_log, METH_VARARGS, "Get per-agent logs for a specific agent"}, \
+    {"vec_set_policy_log_ids", vec_set_policy_log_ids, METH_VARARGS, "Set policy ids used for per-policy training logs"}, \
+    {"vec_get_policy_logs", vec_get_policy_logs, METH_VARARGS, "Get and reset per-policy training logs"}, \
     {"vec_set_movement_mode", vec_set_movement_mode, METH_VARARGS, "Set movement mode for agents (0=dynamics, 1=IDM)"}, \
     {"vec_set_idm_proposals", vec_set_idm_proposals, METH_VARARGS, "Set IDM mode with per-env velocity and lateral offset"}, \
     {"vec_set_idm_target_velocity", vec_set_idm_target_velocity, METH_VARARGS, "Set IDM target velocity for given agents"}, \
@@ -1751,6 +1755,148 @@ static PyObject* vec_get_agent_log(PyObject* self, PyObject* args) {
     assign_to_dict(dict, "removed", (float)entity->removed);
 
     return dict;
+}
+
+static PyObject* vec_set_policy_log_ids(PyObject* self, PyObject* args) {
+    if (PyTuple_Size(args) != 3) {
+        PyErr_SetString(PyExc_TypeError, "vec_set_policy_log_ids requires 3 arguments: vec_handle, policy_ids, policy_count");
+        return NULL;
+    }
+
+    VecEnv* vec = unpack_vecenv(args);
+    if (!vec) {
+        return NULL;
+    }
+
+    PyObject* ids_obj = PyTuple_GetItem(args, 1);
+    PyObject* ids = PySequence_Fast(ids_obj, "policy_ids must be a sequence");
+    if (!ids) {
+        return NULL;
+    }
+
+    PyObject* count_obj = PyTuple_GetItem(args, 2);
+    if (!PyLong_Check(count_obj)) {
+        Py_DECREF(ids);
+        PyErr_SetString(PyExc_TypeError, "policy_count must be an integer");
+        return NULL;
+    }
+    int policy_count = (int)PyLong_AsLong(count_obj);
+    if (policy_count <= 0) {
+        Py_DECREF(ids);
+        PyErr_SetString(PyExc_ValueError, "policy_count must be positive");
+        return NULL;
+    }
+
+    Py_ssize_t num_ids = PySequence_Fast_GET_SIZE(ids);
+    Py_ssize_t offset = 0;
+    for (int env_i = 0; env_i < vec->num_envs; env_i++) {
+        Drive* env = vec->envs[env_i];
+        if (!env) {
+            continue;
+        }
+        if (offset + env->active_agent_count > num_ids) {
+            Py_DECREF(ids);
+            PyErr_SetString(PyExc_ValueError, "policy_ids length is smaller than active agent count");
+            return NULL;
+        }
+
+        free(env->policy_log_ids);
+        free(env->policy_logs);
+        env->policy_log_ids = (int*)calloc(env->active_agent_count, sizeof(int));
+        env->policy_logs = (Log*)calloc(policy_count, sizeof(Log));
+        if (!env->policy_log_ids || !env->policy_logs) {
+            Py_DECREF(ids);
+            PyErr_SetString(PyExc_MemoryError, "Failed to allocate policy log buffers");
+            return NULL;
+        }
+        env->policy_log_count = policy_count;
+
+        for (int agent_i = 0; agent_i < env->active_agent_count; agent_i++) {
+            PyObject* item = PySequence_Fast_GET_ITEM(ids, offset + agent_i);
+            int policy_id = (int)PyLong_AsLong(item);
+            if (policy_id < 0 || policy_id >= policy_count) {
+                Py_DECREF(ids);
+                PyErr_SetString(PyExc_ValueError, "policy id out of range");
+                return NULL;
+            }
+            env->policy_log_ids[agent_i] = policy_id;
+        }
+        offset += env->active_agent_count;
+    }
+
+    Py_DECREF(ids);
+    Py_RETURN_NONE;
+}
+
+static PyObject* vec_get_policy_logs(PyObject* self, PyObject* args) {
+    if (PyTuple_Size(args) != 2) {
+        PyErr_SetString(PyExc_TypeError, "vec_get_policy_logs requires 2 arguments: vec_handle, policy_count");
+        return NULL;
+    }
+
+    VecEnv* vec = unpack_vecenv(args);
+    if (!vec) {
+        return NULL;
+    }
+
+    PyObject* count_obj = PyTuple_GetItem(args, 1);
+    if (!PyLong_Check(count_obj)) {
+        PyErr_SetString(PyExc_TypeError, "policy_count must be an integer");
+        return NULL;
+    }
+    int policy_count = (int)PyLong_AsLong(count_obj);
+    if (policy_count <= 0) {
+        PyErr_SetString(PyExc_ValueError, "policy_count must be positive");
+        return NULL;
+    }
+
+    PyObject* out = PyList_New(policy_count);
+    if (!out) {
+        return NULL;
+    }
+
+    int num_keys = sizeof(Log) / sizeof(float);
+    for (int policy_i = 0; policy_i < policy_count; policy_i++) {
+        Log aggregate = {0};
+        for (int env_i = 0; env_i < vec->num_envs; env_i++) {
+            Drive* env = vec->envs[env_i];
+            if (!env || !env->policy_logs || policy_i >= env->policy_log_count) {
+                continue;
+            }
+            for (int key_i = 0; key_i < num_keys; key_i++) {
+                ((float*)&aggregate)[key_i] += ((float*)&env->policy_logs[policy_i])[key_i];
+            }
+        }
+
+        PyObject* dict = PyDict_New();
+        if (!dict) {
+            Py_DECREF(out);
+            return NULL;
+        }
+
+        float n = aggregate.n;
+        if (n > 0.0f) {
+            for (int key_i = 0; key_i < num_keys; key_i++) {
+                ((float*)&aggregate)[key_i] /= n;
+            }
+            aggregate.completion_rate = aggregate.goals_reached_this_episode / aggregate.goals_sampled_this_episode;
+            my_log(dict, &aggregate);
+            assign_to_dict(dict, "n", n);
+        }
+        PyList_SetItem(out, policy_i, dict);
+    }
+
+    for (int env_i = 0; env_i < vec->num_envs; env_i++) {
+        Drive* env = vec->envs[env_i];
+        if (!env || !env->policy_logs) {
+            continue;
+        }
+        for (int policy_i = 0; policy_i < env->policy_log_count; policy_i++) {
+            env->policy_logs[policy_i] = (Log){0};
+        }
+    }
+
+    return out;
 }
 
 // Set movement mode for specific agents in all environments

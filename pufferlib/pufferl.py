@@ -45,6 +45,13 @@ import pufferlib.sweep
 import pufferlib.vector
 import pufferlib.pytorch
 import pufferlib.utils
+from pufferlib.policy_mix import (
+    LOSS_DISPLAY_NAMES,
+    POLICY_STAT_KEYS,
+    assign_policy_ids,
+    group_policy_losses,
+    parse_policy_mix,
+)
 
 try:
     from pufferlib import _C
@@ -67,6 +74,71 @@ signal.signal(signal.SIGINT, lambda sig, frame: os._exit(0))
 
 # Assume advantage kernel has been built if CUDA compiler is available
 ADVANTAGE_CUDA = shutil.which("nvcc") is not None
+
+
+def _as_bool(value):
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, str):
+        return value.lower() in ("true", "1", "yes")
+    return bool(value)
+
+
+def _split_csv(value):
+    if value is None or value == "":
+        return []
+    if isinstance(value, (list, tuple)):
+        return list(value)
+    return [v.strip() for v in str(value).split(",")]
+
+
+def _split_bools(value, n, default=True):
+    values = _split_csv(value)
+    if not values:
+        return [default] * n
+    out = [_as_bool(v) for v in values]
+    if len(out) != n:
+        raise pufferlib.APIUsageError("mix_ppo_policy_trainable must match number of PPO policies")
+    return out
+
+
+def _make_optimizer(config, parameters):
+    if config["optimizer"] == "adam":
+        return torch.optim.Adam(
+            parameters,
+            lr=config["learning_rate"],
+            betas=(config["adam_beta1"], config["adam_beta2"]),
+            eps=config["adam_eps"],
+        )
+    elif config["optimizer"] == "muon":
+        from heavyball import ForeachMuon
+
+        warnings.filterwarnings(action="ignore", category=UserWarning, module=r"heavyball.*")
+        import heavyball.utils
+
+        heavyball.utils.compile_mode = config["compile_mode"] if config["compile"] else None
+        return ForeachMuon(
+            parameters,
+            lr=config["learning_rate"],
+            betas=(config["adam_beta1"], config["adam_beta2"]),
+            eps=config["adam_eps"],
+        )
+    else:
+        raise ValueError(f"Unknown optimizer: {config['optimizer']}")
+
+
+def _wrap_policy_ddp(policy, local_rank):
+    policy = policy.to(local_rank)
+    model = torch.nn.parallel.DistributedDataParallel(
+        policy,
+        device_ids=[local_rank],
+        output_device=local_rank,
+    )
+    for attr in ("hidden_size", "is_continuous", "atn_dim"):
+        if hasattr(policy, attr):
+            setattr(model, attr, getattr(policy, attr))
+    model.forward_eval = policy.forward_eval
+    return model.to(local_rank)
 
 
 class PuffeRL:
@@ -144,6 +216,7 @@ class PuffeRL:
         self.importance = torch.ones(segments, horizon, device=device)
         self.ep_lengths = torch.zeros(total_agents, device=device, dtype=torch.int32)
         self.ep_indices = torch.arange(total_agents, device=device, dtype=torch.int32)
+        self.bootstrap_indices = torch.full((total_agents,), -1, device=device, dtype=torch.int32)
         self.free_idx = total_agents
         self.render = config["render"]
         self.render_interval = config["render_interval"]
@@ -151,12 +224,50 @@ class PuffeRL:
         if self.render:
             ensure_drive_binary()
 
+        # Policy set. The default path remains a single trainable policy.
+        self.mix_ppo = _as_bool(config.get("mix_ppo", False))
+        if self.mix_ppo:
+            if isinstance(policy, torch.nn.ModuleList):
+                self.policies = policy
+            elif isinstance(policy, (list, tuple)):
+                self.policies = torch.nn.ModuleList(policy)
+            else:
+                self.policies = torch.nn.ModuleList([policy])
+            if len(self.policies) < 2:
+                raise pufferlib.APIUsageError("mix_ppo=True requires at least two PPO policies")
+        else:
+            self.policies = torch.nn.ModuleList([policy])
+
+        self.policy = self.policies[0]
+        self.uncompiled_policies = [
+            p.module if isinstance(p, torch.nn.parallel.DistributedDataParallel) else p
+            for p in self.policies
+        ]
+        self.uncompiled_policy = self.uncompiled_policies[0]
+        self.policy_uses_rnn = [
+            hasattr(p, "lstm") or hasattr(p, "cell")
+            for p in self.uncompiled_policies
+        ]
+        self.policy_trainable = _split_bools(
+            config.get("mix_ppo_policy_trainable", None),
+            len(self.policies),
+            default=True,
+        )
+
         # LSTM
         if config["use_rnn"]:
             n = vecenv.agents_per_batch
-            h = policy.hidden_size
-            self.lstm_h = {i * n: torch.zeros(n, h, device=device) for i in range(total_agents // n)}
-            self.lstm_c = {i * n: torch.zeros(n, h, device=device) for i in range(total_agents // n)}
+            if self.mix_ppo:
+                self.lstm_h = []
+                self.lstm_c = []
+                for p in self.policies:
+                    h = p.hidden_size
+                    self.lstm_h.append({i * n: torch.zeros(n, h, device=device) for i in range(total_agents // n)})
+                    self.lstm_c.append({i * n: torch.zeros(n, h, device=device) for i in range(total_agents // n)})
+            else:
+                h = self.policy.hidden_size
+                self.lstm_h = {i * n: torch.zeros(n, h, device=device) for i in range(total_agents // n)}
+                self.lstm_c = {i * n: torch.zeros(n, h, device=device) for i in range(total_agents // n)}
 
         # Minibatching & gradient accumulation
         minibatch_size = config["minibatch_size"]
@@ -182,10 +293,9 @@ class PuffeRL:
         self.extra_loss_fn = None
 
         # Torch compile
-        # Unwrap DDP so .lstm etc. stay accessible as on bare policy
-        self.uncompiled_policy = policy.module if isinstance(policy, torch.nn.parallel.DistributedDataParallel) else policy
-        self.policy = policy
         if config["compile"]:
+            if self.mix_ppo:
+                raise pufferlib.APIUsageError("mix_ppo does not currently support torch.compile")
             self.policy = torch.compile(policy, mode=config["compile_mode"])
             self.policy.forward_eval = torch.compile(policy, mode=config["compile_mode"])
             pufferlib.pytorch.sample_logits = torch.compile(
@@ -193,30 +303,17 @@ class PuffeRL:
             )
 
         # Optimizer
-        if config["optimizer"] == "adam":
-            optimizer = torch.optim.Adam(
-                self.policy.parameters(),
-                lr=config["learning_rate"],
-                betas=(config["adam_beta1"], config["adam_beta2"]),
-                eps=config["adam_eps"],
-            )
-        elif config["optimizer"] == "muon":
-            from heavyball import ForeachMuon
-
-            warnings.filterwarnings(action="ignore", category=UserWarning, module=r"heavyball.*")
-            import heavyball.utils
-
-            heavyball.utils.compile_mode = config["compile_mode"] if config["compile"] else None
-            optimizer = ForeachMuon(
-                self.policy.parameters(),
-                lr=config["learning_rate"],
-                betas=(config["adam_beta1"], config["adam_beta2"]),
-                eps=config["adam_eps"],
-            )
-        else:
-            raise ValueError(f"Unknown optimizer: {config['optimizer']}")
-
-        self.optimizer = optimizer
+        self.optimizers = []
+        for p, trainable in zip(self.policies, self.policy_trainable):
+            if trainable:
+                self.optimizers.append(_make_optimizer(config, p.parameters()))
+            else:
+                for param in p.parameters():
+                    param.requires_grad_(False)
+                self.optimizers.append(None)
+        self.optimizer = next((opt for opt in self.optimizers if opt is not None), None)
+        if self.optimizer is None:
+            raise pufferlib.APIUsageError("At least one PPO policy must be trainable")
 
         # Logging
         self.logger = logger
@@ -225,7 +322,11 @@ class PuffeRL:
 
         # Learning rate scheduler
         epochs = config["total_timesteps"] // config["batch_size"]
-        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
+        self.schedulers = [
+            torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=epochs) if opt is not None else None
+            for opt in self.optimizers
+        ]
+        self.scheduler = next((scheduler for scheduler in self.schedulers if scheduler is not None), None)
         self.total_epochs = epochs
 
         # Automatic mixed precision
@@ -250,12 +351,27 @@ class PuffeRL:
         self.last_stats = defaultdict(list)
         self.losses = {}
 
+        if self.mix_ppo:
+            _, fractions = parse_policy_mix(config.get("mix_ppo_policy_mix", None))
+            if len(fractions) != len(self.policies):
+                raise pufferlib.APIUsageError("mix_ppo_policy_mix must match number of PPO policies")
+            local_policy_ids = config.get("mix_ppo_local_policy_ids", None)
+            if local_policy_ids:
+                repeats = (total_agents + len(local_policy_ids) - 1) // len(local_policy_ids)
+                policy_ids = (list(local_policy_ids) * repeats)[:total_agents]
+                self.agent_policy_ids = torch.tensor(policy_ids, dtype=torch.long, device=device)
+            else:
+                self.agent_policy_ids = assign_policy_ids(total_agents, fractions, device=device)
+            self.segment_policy_ids = torch.zeros(segments, dtype=torch.long, device=device)
+
         # Dashboard
-        self.model_size = sum(p.numel() for p in policy.parameters() if p.requires_grad)
+        self.model_size = sum(p.numel() for p in self.policies.parameters() if p.requires_grad)
         self.print_dashboard(clear=True)
 
         # Opponent pool: historical policy snapshots for diverse training
         self.opponent_pool = config.get("opponent_pool", False)
+        if self.mix_ppo and self.opponent_pool:
+            raise pufferlib.APIUsageError("mix_ppo cannot be combined with opponent_pool")
         if self.opponent_pool:
             import copy
             self.opponent_pool_fraction = config.get("opponent_pool_fraction", 0.25)
@@ -297,6 +413,84 @@ class PuffeRL:
 
     _VIDEO_NUM_SCENARIOS = 5  # number of scenarios rolled out per video capture
 
+    def _reset_lstm_states(self, device):
+        if self.mix_ppo:
+            for policy_idx in range(len(self.policies)):
+                for k in self.lstm_h[policy_idx]:
+                    self.lstm_h[policy_idx][k] = torch.zeros(self.lstm_h[policy_idx][k].shape, device=device)
+                    self.lstm_c[policy_idx][k] = torch.zeros(self.lstm_c[policy_idx][k].shape, device=device)
+        else:
+            for k in self.lstm_h:
+                self.lstm_h[k] = torch.zeros(self.lstm_h[k].shape, device=device)
+                self.lstm_c[k] = torch.zeros(self.lstm_c[k].shape, device=device)
+
+    def _mix_ppo_forward_eval(self, o_device, r, d, t, env_id, mask):
+        device = self.config["device"]
+        actions = torch.zeros(
+            o_device.shape[0],
+            *self.actions.shape[2:],
+            dtype=self.actions.dtype,
+            device=device,
+        )
+        logprobs = torch.zeros(o_device.shape[0], device=device)
+        values = torch.zeros(o_device.shape[0], device=device)
+        local_policy_ids = self.agent_policy_ids[env_id]
+
+        for policy_idx, policy in enumerate(self.policies):
+            policy_mask = local_policy_ids == policy_idx
+            if not policy_mask.any():
+                continue
+
+            state = dict(
+                reward=r[policy_mask],
+                done=d[policy_mask],
+                env_id=env_id,
+                mask=mask[policy_mask.cpu().numpy()],
+            )
+            if self.policy_uses_rnn[policy_idx]:
+                state["lstm_h"] = self.lstm_h[policy_idx][env_id.start][policy_mask]
+                state["lstm_c"] = self.lstm_c[policy_idx][env_id.start][policy_mask]
+
+            logits, value = policy.forward_eval(o_device[policy_mask], state)
+            action, logprob, _ = pufferlib.pytorch.sample_logits(logits)
+            actions[policy_mask] = action.to(actions.dtype)
+            logprobs[policy_mask] = logprob
+            values[policy_mask] = value.flatten()
+
+            if self.policy_uses_rnn[policy_idx]:
+                truncated = t[policy_mask].bool()
+                state["lstm_h"][truncated, :] = 0.0
+                state["lstm_c"][truncated, :] = 0.0
+                self.lstm_h[policy_idx][env_id.start][policy_mask] = state["lstm_h"]
+                self.lstm_c[policy_idx][env_id.start][policy_mask] = state["lstm_c"]
+
+        return actions, logprobs, values
+
+    def _mix_ppo_forward_values(self, o_device, r, d, agent_slice, mask):
+        device = self.config["device"]
+        values = torch.zeros(o_device.shape[0], device=device)
+        local_policy_ids = self.agent_policy_ids[agent_slice]
+
+        for policy_idx, policy in enumerate(self.policies):
+            policy_mask = local_policy_ids == policy_idx
+            if not policy_mask.any():
+                continue
+
+            state = dict(
+                reward=r[policy_mask],
+                done=d[policy_mask],
+                env_id=agent_slice,
+                mask=mask[policy_mask.cpu().numpy()],
+            )
+            if self.policy_uses_rnn[policy_idx]:
+                state["lstm_h"] = self.lstm_h[policy_idx][agent_slice.start][policy_mask]
+                state["lstm_c"] = self.lstm_c[policy_idx][agent_slice.start][policy_mask]
+
+            _, value = policy.forward_eval(o_device[policy_mask], state)
+            values[policy_mask] = value.flatten()
+
+        return values
+
     def evaluate(self):
         # Decide whether to capture training scene video this epoch. Under DDP
         # every rank must enter the same code path (same NCCL collective order),
@@ -321,9 +515,7 @@ class PuffeRL:
         device = config["device"]
 
         if config["use_rnn"]:
-            for k in self.lstm_h:
-                self.lstm_h[k] = torch.zeros(self.lstm_h[k].shape, device=device)
-                self.lstm_c[k] = torch.zeros(self.lstm_c[k].shape, device=device)
+            self._reset_lstm_states(device)
 
         # Opponent pool: setup for this epoch
         _opp_pool_active = False
@@ -363,12 +555,16 @@ class PuffeRL:
                     mask=mask,
                 )
 
-                if config["use_rnn"]:
+                if config["use_rnn"] and not self.mix_ppo:
                     state["lstm_h"] = self.lstm_h[env_id.start]
                     state["lstm_c"] = self.lstm_c[env_id.start]
 
-                logits, value = self.policy.forward_eval(o_device, state) # actions are ignored, if state is truncated!
-                action, logprob, _ = pufferlib.pytorch.sample_logits(logits)
+                if self.mix_ppo:
+                    action, logprob, value = self._mix_ppo_forward_eval(o_device, r, d, t, env_id, mask)
+                    logits = None
+                else:
+                    logits, value = self.policy.forward_eval(o_device, state) # actions are ignored, if state is truncated!
+                    action, logprob, _ = pufferlib.pytorch.sample_logits(logits)
                 r = torch.clamp(r, -1, 1)
 
                 # Opponent pool: override actions for opponent agents
@@ -388,7 +584,7 @@ class PuffeRL:
 
             profile("eval_copy", epoch)
             with torch.no_grad():
-                if config["use_rnn"]:
+                if config["use_rnn"] and not self.mix_ppo:
                     state["lstm_h"][t, :] = 0.0 # state got truncated -> set it to 0!
                     state["lstm_c"][t, :] = 0.0
                     self.lstm_h[env_id.start] = state["lstm_h"]
@@ -400,6 +596,18 @@ class PuffeRL:
                 # Fast path for fully vectorized envs
                 l = self.ep_lengths[env_id.start].item()
                 batch_rows = slice(self.ep_indices[env_id.start].item(), 1 + self.ep_indices[env_id.stop - 1].item())
+                pending_rows = self.bootstrap_indices[env_id].long()
+                pending_mask = pending_rows >= 0
+                if pending_mask.any():
+                    rows = pending_rows[pending_mask]
+                    if config["cpu_offload"]:
+                        self.observations[rows.cpu(), config["bptt_horizon"]] = o[pending_mask.cpu()]
+                    else:
+                        self.observations[rows, config["bptt_horizon"]] = o_device[pending_mask]
+                    self.rewards[rows, config["bptt_horizon"]] = r[pending_mask]
+                    self.values[rows, config["bptt_horizon"]] = value.flatten()[pending_mask]
+                    pending_rows[pending_mask] = -1
+                    self.bootstrap_indices[env_id] = pending_rows.int()
 
                 if config["cpu_offload"]:
                     self.observations[batch_rows, l] = o
@@ -413,6 +621,9 @@ class PuffeRL:
                 self.values[batch_rows, l] = value.flatten()
                 self.truncations[batch_rows, l] = t.float()
 
+                if self.mix_ppo:
+                    self.segment_policy_ids[batch_rows] = self.agent_policy_ids[env_id]
+
                 # Mark opponent segments for advantage masking
                 if _opp_pool_active:
                     self.opponent_segments[batch_rows] = self._opp_mask[env_id]
@@ -421,13 +632,19 @@ class PuffeRL:
                 self.ep_lengths[env_id] += 1
                 if l + 1 >= config["bptt_horizon"]:
                     num_full = env_id.stop - env_id.start
+                    self.bootstrap_indices[env_id] = torch.arange(
+                        batch_rows.start,
+                        batch_rows.stop,
+                        device=config["device"],
+                        dtype=torch.int32,
+                    )
                     self.ep_indices[env_id] = self.free_idx + torch.arange(num_full, device=config["device"]).int()
                     self.ep_lengths[env_id] = 0
                     self.free_idx += num_full
                     self.full_rows += num_full
 
                 action = action.cpu().numpy()
-                if isinstance(logits, torch.distributions.Normal):
+                if logits is not None and isinstance(logits, torch.distributions.Normal):
                     action = np.clip(action, self.vecenv.action_space.low, self.vecenv.action_space.high)
 
             profile("eval_misc", epoch)
@@ -455,14 +672,17 @@ class PuffeRL:
             r = torch.as_tensor(r).to(device)  # , non_blocking=True)
             d = torch.as_tensor(d).to(device)  # , non_blocking=True)
             truncations = torch.as_tensor(truncations).to(device)
-            batch_rows = slice(self.ep_indices[agent_slice.start].item(), 1 + self.ep_indices[agent_slice.stop - 1].item())
+            pending_rows = self.bootstrap_indices[agent_slice].long()
+            pending_mask = pending_rows >= 0
+            if not pending_mask.any():
+                continue
             with torch.no_grad():
                 r = torch.clamp(r, -1, 1)
                 if config["cpu_offload"]:
-                    self.observations[agent_slice, l+1] = o
+                    self.observations[pending_rows[pending_mask].cpu(), config["bptt_horizon"]] = o[pending_mask.cpu()]
                 else:
-                    self.observations[agent_slice, l+1] = o_device
-                self.rewards[agent_slice, l+1] = r
+                    self.observations[pending_rows[pending_mask], config["bptt_horizon"]] = o_device[pending_mask]
+                self.rewards[pending_rows[pending_mask], config["bptt_horizon"]] = r[pending_mask]
 
             with torch.no_grad(), self.amp_context:
                 state = dict(
@@ -472,11 +692,17 @@ class PuffeRL:
                     mask=mask,
                 )
 
-                if config["use_rnn"]:
+                if config["use_rnn"] and not self.mix_ppo:
                     state["lstm_h"] = self.lstm_h[agent_slice.start]
                     state["lstm_c"] = self.lstm_c[agent_slice.start]
-                _, value = self.policy.forward_eval(o_device, state)
-                self.values[agent_slice, l+1] = value.flatten()
+                if self.mix_ppo:
+                    value = self._mix_ppo_forward_values(o_device, r, d, agent_slice, mask)
+                else:
+                    _, value = self.policy.forward_eval(o_device, state)
+                    value = value.flatten()
+                self.values[pending_rows[pending_mask], config["bptt_horizon"]] = value[pending_mask]
+                pending_rows[pending_mask] = -1
+                self.bootstrap_indices[agent_slice] = pending_rows.int()
 
 
             # if self.full_rows >= self.segments:
@@ -584,9 +810,141 @@ class PuffeRL:
 
         self.free_idx = self.total_agents
         self.ep_indices = torch.arange(self.total_agents, device=device, dtype=torch.int32)
+        self.bootstrap_indices.fill_(-1)
         self.ep_lengths.zero_()
         profile.end()
         return self.stats
+
+    def _compute_ppo_minibatch_loss(
+        self,
+        policy,
+        uncompiled_policy,
+        mb_obs,
+        mb_actions,
+        mb_logprobs,
+        mb_rewards,
+        mb_terminals,
+        mb_truncations,
+        mb_ratio,
+        mb_values,
+        mb_returns,
+        mb_advantages,
+        mb_prio,
+        mb_filter_mask,
+        policy_uses_rnn=None,
+    ):
+        config = self.config
+        device = config["device"]
+        clip_coef = config["clip_coef"]
+        vf_clip = config["vf_clip_coef"]
+
+        state = dict(
+            action=mb_actions,
+            lstm_h=None,
+            lstm_c=None,
+        )
+        trunc_or_term_before = torch.zeros(mb_truncations.shape, device=mb_truncations.device)
+        trunc_or_term_before[:, 1:] = mb_truncations[:, :-1].bool() | mb_terminals[:, :-1].bool()
+        uses_rnn = config["use_rnn"] if policy_uses_rnn is None else policy_uses_rnn
+        if uses_rnn:
+            policy_obs = mb_obs[:, :-1]
+        else:
+            policy_obs = mb_obs[:, :-1].reshape(-1, *self.vecenv.single_observation_space.shape)
+
+        if uses_rnn:
+            result = policy(policy_obs, state, trunc_or_term_before)
+        else:
+            result = policy(policy_obs, state)
+        logits, newvalue = result[0], result[1]
+        _, newlogprob, entropy = pufferlib.pytorch.sample_logits(logits, action=mb_actions)
+
+        newlogprob = newlogprob.reshape(mb_logprobs.shape)
+        logratio = newlogprob - mb_logprobs
+        ratio = logratio.exp()
+
+        with torch.no_grad():
+            old_approx_kl = (-logratio).mean()
+            approx_kl = ((ratio - 1) - logratio).mean()
+            clipfrac = ((ratio - 1.0).abs() > config["clip_coef"]).float().mean()
+
+        adv = mb_advantages
+        terminals_extended = torch.cat((mb_terminals, mb_terminals[:, -1:]), dim=1)
+        adv = compute_puff_advantage(
+            mb_values,
+            mb_rewards,
+            terminals_extended,
+            mb_truncations,
+            ratio,
+            adv,
+            config["gamma"],
+            config["gae_lambda"],
+            config["vtrace_rho_clip"],
+            config["vtrace_c_clip"],
+        )
+
+        terminals = mb_terminals.bool()
+        truncations = mb_truncations.bool()
+        terminals_shifted = torch.cat([torch.zeros_like(terminals[:, :1]), terminals[:, :-1]], dim=1)
+        invalid_mb_mask = terminals & terminals_shifted
+        invalid_mb_mask = invalid_mb_mask | truncations
+        invalid_mb_obs = (mb_obs[:, -1, 0] == -1000)
+        invalid_mb_mask[:, -1] = invalid_mb_mask[:, -1] | invalid_mb_obs
+
+        adv = mb_advantages
+        mb_prio = mb_prio / (mb_prio.max() + 1e-8)
+
+        pg_loss1 = -adv * ratio
+        pg_loss2 = -adv * torch.clamp(ratio, 1 - clip_coef, 1 + clip_coef)
+        pg_loss_individual = torch.max(pg_loss1, pg_loss2)
+        if mb_filter_mask is not None:
+            loss_mask = (~invalid_mb_mask) & mb_filter_mask
+        else:
+            loss_mask = (~invalid_mb_mask)
+        loss_mask_f = loss_mask.float()
+
+        pg_denom = (loss_mask_f * mb_prio).sum().clamp(min=1e-8)
+        pg_loss = (pg_loss_individual * loss_mask_f * mb_prio).sum() / pg_denom
+
+        newvalue = newvalue.view(mb_returns.shape)
+        v_clipped = mb_values[:, :-1] + torch.clamp(newvalue - mb_values[:, :-1], -vf_clip, vf_clip)
+        v_loss_unclipped = (newvalue - mb_returns) ** 2
+        v_loss_clipped = (v_clipped - mb_returns) ** 2
+        v_loss_individual = torch.max(v_loss_unclipped, v_loss_clipped)
+        v_loss = ((0.5 * (v_loss_individual * loss_mask_f)) * mb_prio).sum() / pg_denom
+
+        entropy = entropy.reshape(mb_terminals.shape)
+        ent_denom = loss_mask_f.sum().clamp(min=1e-8)
+        entropy_loss = (entropy * loss_mask_f).sum() / ent_denom
+
+        loss = pg_loss + config["vf_coef"] * v_loss - config["ent_coef"] * entropy_loss
+        extra_logs = {}
+        if uncompiled_policy is self.uncompiled_policy and self.extra_loss_fn is not None:
+            extra_loss, extra_logs = self.extra_loss_fn(logits, mb_obs[:, :-1], loss_mask)
+            loss = loss + extra_loss
+        if hasattr(uncompiled_policy, 'compute_auxiliary_loss'):
+            aux_loss, aux_logs = uncompiled_policy.compute_auxiliary_loss()
+            loss = loss + aux_loss
+            extra_logs.update(aux_logs)
+
+        if uses_rnn:
+            bootstrap_obs = mb_obs[:, -1:]
+            result = policy(bootstrap_obs, state, mb_truncations[:, -1:], episode_ended=True)
+        else:
+            bootstrap_obs = mb_obs[:, -1:].reshape(-1, *self.vecenv.single_observation_space.shape)
+            result = policy(bootstrap_obs, state)
+        last_newvalue = result[1]
+
+        logs = {
+            "policy_loss": pg_loss,
+            "value_loss": v_loss,
+            "entropy": entropy_loss,
+            "old_approx_kl": old_approx_kl,
+            "approx_kl": approx_kl,
+            "clipfrac": clipfrac,
+            "importance": ratio.mean(),
+        }
+        logs.update(extra_logs)
+        return loss, logs, newvalue, last_newvalue, ratio
 
     @record
     def train(self):
@@ -694,6 +1052,74 @@ class PuffeRL:
             mb_returns = advantages[idx] + mb_values[:, :-1]
             mb_advantages = advantages[idx]
 
+            if self.mix_ppo:
+                mb_policy_ids = self.segment_policy_ids[idx]
+                ddp_policy_counts = None
+                if torch.distributed.is_initialized():
+                    local_counts = torch.stack([
+                        (mb_policy_ids == policy_idx).any().to(dtype=torch.int32)
+                        for policy_idx in range(len(self.policies))
+                    ])
+                    ddp_policy_counts = local_counts.clone()
+                    torch.distributed.all_reduce(ddp_policy_counts, op=torch.distributed.ReduceOp.SUM)
+                    world_size = torch.distributed.get_world_size()
+                    inconsistent = (ddp_policy_counts > 0) & (ddp_policy_counts < world_size)
+                    if inconsistent.any():
+                        missing = torch.nonzero(inconsistent, as_tuple=False).flatten().tolist()
+                        raise pufferlib.APIUsageError(
+                            "mix_ppo DDP requires every rank to sample each active policy in every minibatch; "
+                            f"policies {missing} were present on only some ranks. Increase minibatch_size or policy fractions."
+                        )
+                active_policy_count = 0
+                for policy_idx, policy in enumerate(self.policies):
+                    if not self.policy_trainable[policy_idx]:
+                        continue
+                    if ddp_policy_counts is not None and ddp_policy_counts[policy_idx].item() == 0:
+                        continue
+                    policy_mask = mb_policy_ids == policy_idx
+                    if not policy_mask.any():
+                        continue
+
+                    active_policy_count += 1
+                    selected_idx = idx[policy_mask]
+                    policy_filter_mask = mb_filter_mask[policy_mask] if mb_filter_mask is not None else None
+                    loss, policy_logs, newvalue, last_newvalue, ratio = self._compute_ppo_minibatch_loss(
+                        policy,
+                        self.uncompiled_policies[policy_idx],
+                        mb_obs[policy_mask],
+                        mb_actions[policy_mask],
+                        mb_logprobs[policy_mask],
+                        mb_rewards[policy_mask],
+                        mb_terminals[policy_mask],
+                        mb_truncations[policy_mask],
+                        mb_ratio[policy_mask],
+                        mb_values[policy_mask],
+                        mb_returns[policy_mask],
+                        mb_advantages[policy_mask],
+                        mb_prio[policy_mask],
+                        policy_filter_mask,
+                        self.policy_uses_rnn[policy_idx],
+                    )
+
+                    self.ratio[selected_idx] = ratio.detach()
+                    self.values[selected_idx, :-1] = newvalue.detach().float()
+                    self.values[selected_idx, -1:] = last_newvalue.detach().float()
+
+                    loss.backward()
+                    for k, v in policy_logs.items():
+                        value = v.item() if hasattr(v, "item") else float(v)
+                        losses[f"policy_{policy_idx}/{k}"] += value / self.total_minibatches
+
+                if active_policy_count > 0:
+                    for policy_idx, opt in enumerate(self.optimizers):
+                        if opt is None:
+                            continue
+                        if (mb + 1) % self.accumulate_minibatches == 0:
+                            torch.nn.utils.clip_grad_norm_(self.policies[policy_idx].parameters(), config["max_grad_norm"])
+                            opt.step()
+                            opt.zero_grad()
+                continue
+
             profile("train_forward", epoch)
             state = dict(
                 action=mb_actions,
@@ -707,7 +1133,10 @@ class PuffeRL:
             else:
                 # Feedforward policy: flatten (S, T, D) -> (S*T, D) after dropping the last timestep.
                 policy_obs = mb_obs[:, :-1].reshape(-1, *self.vecenv.single_observation_space.shape)
-            result = self.policy(policy_obs, state, trunc_or_term_before)
+            if config["use_rnn"]:
+                result = self.policy(policy_obs, state, trunc_or_term_before)
+            else:
+                result = self.policy(policy_obs, state)
             logits, newvalue = result[0], result[1]
             actions, newlogprob, entropy = pufferlib.pytorch.sample_logits(logits, action=mb_actions)
 
@@ -825,7 +1254,10 @@ class PuffeRL:
             else:
                 # Feedforward: flatten (S, 1, D) -> (S, D).
                 bootstrap_obs = mb_obs[:, -1:].reshape(-1, *self.vecenv.single_observation_space.shape)
-            result = self.policy(bootstrap_obs, state, mb_truncations[:, -1:], episode_ended=True)
+            if config["use_rnn"]:
+                result = self.policy(bootstrap_obs, state, mb_truncations[:, -1:], episode_ended=True)
+            else:
+                result = self.policy(bootstrap_obs, state)
             last_newvalue = result[1]
             self.values[idx, -1:] = last_newvalue.detach().float()
 
@@ -850,7 +1282,9 @@ class PuffeRL:
         # Reprioritize experience
         profile("train_misc", epoch)
         if config["anneal_lr"]:
-            self.scheduler.step()
+            for scheduler in self.schedulers:
+                if scheduler is not None:
+                    scheduler.step()
 
         y_pred = self.values[:, :-1].flatten()
         y_true = advantages.flatten() + self.values[:, :-1].flatten()
@@ -989,13 +1423,39 @@ class PuffeRL:
             return model_path
 
         torch.save(self.uncompiled_policy.state_dict(), model_path)
+        mix_model_name = None
+        mix_policy_model_names = None
+        if self.mix_ppo:
+            mix_policy_model_names = []
+            for policy_idx, policy in enumerate(self.uncompiled_policies):
+                policy_model_name = f"model_policy_{policy_idx}_{self.config['env']}_{self.epoch:06d}.pt"
+                policy_model_path = os.path.join(path, policy_model_name)
+                torch.save(policy.state_dict(), policy_model_path)
+                mix_policy_model_names.append(policy_model_name)
+
+            mix_model_name = f"mix_model_{self.config['env']}_{self.epoch:06d}.pt"
+            mix_model_path = os.path.join(path, mix_model_name)
+            torch.save(
+                {
+                    "policy_state_dicts": [p.state_dict() for p in self.uncompiled_policies],
+                    "policy_trainable": self.policy_trainable,
+                    "agent_policy_ids": self.agent_policy_ids.cpu(),
+                },
+                mix_model_path,
+            )
 
         state = {
             "optimizer_state_dict": self.optimizer.state_dict(),
+            "optimizer_state_dicts": [
+                opt.state_dict() if opt is not None else None
+                for opt in self.optimizers
+            ],
             "global_step": self.global_step,
             "agent_step": self.global_step,
             "update": self.epoch,
             "model_name": model_name,
+            "mix_model_name": mix_model_name,
+            "mix_policy_model_names": mix_policy_model_names,
             "run_id": run_id,
         }
         state_path = os.path.join(path, "trainer_state.pt")
@@ -1012,16 +1472,27 @@ class PuffeRL:
                 return
 
         profile = self.profile
-        console = Console()
-        dashboard = Table(box=rich.box.ROUNDED, expand=True, show_header=False, border_style="bright_cyan")
+        # Keep mix_ppo's wide dashboard intact in tee'd logs without writing ANSI color codes.
+        console = Console(width=180, force_terminal=False) if self.mix_ppo else Console()
+        if self.mix_ppo:
+            dashboard = Table(box=rich.box.ROUNDED, width=180, show_header=False, border_style="bright_cyan")
+        else:
+            dashboard = Table(box=rich.box.ROUNDED, expand=True, show_header=False, border_style="bright_cyan")
         table = Table(box=None, expand=True, show_header=False)
         dashboard.add_row(table)
 
-        table.add_column(justify="left", width=30)
-        table.add_column(justify="center", width=12)
-        table.add_column(justify="center", width=12)
-        table.add_column(justify="center", width=13)
-        table.add_column(justify="right", width=13)
+        if self.mix_ppo:
+            table.add_column(justify="left", width=70)
+            table.add_column(justify="center", width=25)
+            table.add_column(justify="center", width=25)
+            table.add_column(justify="center", width=25)
+            table.add_column(justify="right", width=25)
+        else:
+            table.add_column(justify="left", width=30)
+            table.add_column(justify="center", width=12)
+            table.add_column(justify="center", width=12)
+            table.add_column(justify="center", width=13)
+            table.add_column(justify="right", width=13)
 
         table.add_row(
             f"{b1}PufferLib {b2}3.0 {idx[0] * ' '}:blowfish:",
@@ -1034,8 +1505,11 @@ class PuffeRL:
 
         s = Table(box=None, expand=True)
         remaining = "A hair past a freckle"
+        display_total_timesteps = config["total_timesteps"]
+        if torch.distributed.is_initialized():
+            display_total_timesteps *= torch.distributed.get_world_size()
         if sps != 0:
-            remaining = duration((config["total_timesteps"] - agent_steps) / sps, b2, c2)
+            remaining = duration((display_total_timesteps - agent_steps) / sps, b2, c2)
 
         s.add_column(f"{c1}Summary", justify="left", vertical="top", width=10)
         s.add_column(f"{c1}Value", justify="right", vertical="top", width=14)
@@ -1063,44 +1537,80 @@ class PuffeRL:
         p.add_row(*fmt_perf("  Copy", c2, delta, profile.train_copy, b2, c2))
         p.add_row(*fmt_perf("  Misc", c2, delta, profile.train_misc, b2, c2))
 
-        l = Table(
-            box=None,
-            expand=True,
-        )
-        l.add_column(f"{c1}Losses", justify="left", width=16)
-        l.add_column(f"{c1}Value", justify="right", width=8)
-        for metric, value in self.losses.items():
-            l.add_row(f"{c2}{metric}", f"{b2}{value:.3f}")
-
         monitor = Table(box=None, expand=True, pad_edge=False)
-        monitor.add_row(s, p, l)
+        if self.mix_ppo:
+            loss_tables = []
+            grouped_losses = group_policy_losses(self.losses)
+            for policy_idx in range(len(self.policies)):
+                l = Table(box=None, expand=True)
+                l.add_column(f"{c1}p{policy_idx}.Losses", justify="left", width=12, no_wrap=True)
+                l.add_column(f"{c1}Value", justify="right", width=8, no_wrap=True)
+                for metric, value in grouped_losses.get(policy_idx, {}).items():
+                    display_metric = LOSS_DISPLAY_NAMES.get(metric, metric)
+                    l.add_row(f"{c2}{display_metric}", f"{b2}{value:.3f}")
+                loss_tables.append(l)
+            monitor.add_row(s, p, *loss_tables)
+        else:
+            l = Table(
+                box=None,
+                expand=True,
+            )
+            l.add_column(f"{c1}Losses", justify="left", width=16)
+            l.add_column(f"{c1}Value", justify="right", width=8)
+            for metric, value in self.losses.items():
+                l.add_row(f"{c2}{metric}", f"{b2}{value:.3f}")
+            monitor.add_row(s, p, l)
         dashboard.add_row(monitor)
 
         table = Table(box=None, expand=True, pad_edge=False)
         dashboard.add_row(table)
-        left = Table(box=None, expand=True)
-        right = Table(box=None, expand=True)
-        table.add_row(left, right)
-        left.add_column(f"{c1}User Stats", justify="left", width=20)
-        left.add_column(f"{c1}Value", justify="right", width=10)
-        right.add_column(f"{c1}User Stats", justify="left", width=20)
-        right.add_column(f"{c1}Value", justify="right", width=10)
-        i = 0
 
         if self.stats:
             self.last_stats = self.stats
 
-        for metric, value in (self.stats or self.last_stats).items():
-            try:  # Discard non-numeric values
-                int(value)
-            except:
-                continue
+        stats = self.stats or self.last_stats
+        if self.mix_ppo:
+            stat_tables = []
+            global_stats = Table(box=None, expand=True)
+            global_stats.add_column(f"{c1}User Stats", justify="left", width=20)
+            global_stats.add_column(f"{c1}Value", justify="right", width=10)
+            for metric in POLICY_STAT_KEYS:
+                value = stats.get(metric)
+                if value is not None:
+                    global_stats.add_row(f"{c2}{metric}", f"{b2}{value:.3f}")
+            stat_tables.append(global_stats)
 
-            u = left if i % 2 == 0 else right
-            u.add_row(f"{c2}{metric}", f"{b2}{value:.3f}")
-            i += 1
-            if i == 30:
-                break
+            for policy_idx in range(len(self.policies)):
+                policy_stats = Table(box=None, expand=True)
+                policy_stats.add_column(f"{c1}p{policy_idx} Stats", justify="left", width=20)
+                policy_stats.add_column(f"{c1}Value", justify="right", width=10)
+                prefix = f"mix_ppo/policy_{policy_idx}/"
+                for metric in POLICY_STAT_KEYS:
+                    value = stats.get(prefix + metric)
+                    if value is not None:
+                        policy_stats.add_row(f"{c2}{metric}", f"{b2}{value:.3f}")
+                stat_tables.append(policy_stats)
+            table.add_row(*stat_tables)
+        else:
+            left = Table(box=None, expand=True)
+            right = Table(box=None, expand=True)
+            table.add_row(left, right)
+            left.add_column(f"{c1}User Stats", justify="left", width=20)
+            left.add_column(f"{c1}Value", justify="right", width=10)
+            right.add_column(f"{c1}User Stats", justify="left", width=20)
+            right.add_column(f"{c1}Value", justify="right", width=10)
+            i = 0
+            for metric, value in stats.items():
+                try:  # Discard non-numeric values
+                    int(value)
+                except:
+                    continue
+
+                u = left if i % 2 == 0 else right
+                u.add_row(f"{c2}{metric}", f"{b2}{value:.3f}")
+                i += 1
+                if i == 30:
+                    break
 
         if clear:
             console.clear()
@@ -1379,18 +1889,22 @@ def train(env_name, args=None, vecenv=None, policy=None, logger=None):
 
     vecenv = vecenv or load_env(env_name, args)
     policy = policy or load_policy(args, vecenv, env_name)
+    if _as_bool(args["train"].get("mix_ppo", False)):
+        if isinstance(policy, (list, tuple, torch.nn.ModuleList)):
+            policy = torch.nn.ModuleList(policy)
+        else:
+            policy = load_mixed_policies(args, vecenv, env_name, policy)
 
     if "LOCAL_RANK" in os.environ:
         args["train"]["device"] = torch.cuda.current_device()
         torch.distributed.init_process_group(backend="nccl", world_size=world_size)
-        policy = policy.to(local_rank)
-        model = torch.nn.parallel.DistributedDataParallel(policy, device_ids=[local_rank], output_device=local_rank)
-        if hasattr(policy, "lstm"):
-            # model.lstm = policy.lstm
-            model.hidden_size = policy.hidden_size
-
-        model.forward_eval = policy.forward_eval
-        policy = model.to(local_rank)
+        if _as_bool(args["train"].get("mix_ppo", False)):
+            policy = torch.nn.ModuleList([
+                _wrap_policy_ddp(p, local_rank)
+                for p in policy
+            ])
+        else:
+            policy = _wrap_policy_ddp(policy, local_rank)
 
     # Use train.name as wandb run name if not explicitly set
     if not args.get("wandb_name") and args.get("train", {}).get("name"):
@@ -1829,7 +2343,19 @@ def load_env(env_name, args):
     module_name = "pufferlib.ocean" if package == "ocean" else f"pufferlib.environments.{package}"
     env_module = importlib.import_module(module_name)
     make_env = env_module.env_creator(env_name)
-    return pufferlib.vector.make(make_env, env_kwargs=args["env"], **args["vec"])
+    env_kwargs = dict(args["env"])
+    if _as_bool(args.get("train", {}).get("mix_ppo", False)):
+        _, fractions = parse_policy_mix(args["train"].get("mix_ppo_policy_mix", None))
+        ppo_agents = int(env_kwargs.get("num_agents", 1))
+        mix_traffic = _as_bool(env_kwargs.get("mix_traffic", False))
+        ppo_fraction = float(env_kwargs.get("ppo_fraction", 1.0))
+        if mix_traffic and ppo_fraction < 1.0:
+            ppo_agents = max(1, int(ppo_agents * ppo_fraction))
+        local_policy_ids = assign_policy_ids(ppo_agents, fractions, device="cpu").tolist()
+        env_kwargs["policy_log_ids"] = local_policy_ids
+        env_kwargs["policy_log_count"] = len(fractions)
+        args["train"]["mix_ppo_local_policy_ids"] = local_policy_ids
+    return pufferlib.vector.make(make_env, env_kwargs=env_kwargs, **args["vec"])
 
 
 def load_policy(args, vecenv, env_name=""):
@@ -1875,6 +2401,72 @@ def load_policy(args, vecenv, env_name=""):
         # pufferl.optimizer.load_state_dict(optim_state)
 
     return policy
+
+
+def load_mixed_policies(args, vecenv, env_name="", base_policy=None):
+    train_config = args["train"]
+    if not _as_bool(train_config.get("mix_ppo", False)):
+        return base_policy
+
+    mix_names, _ = parse_policy_mix(train_config.get("mix_ppo_policy_mix", None))
+    policy_names = _split_csv(train_config.get("mix_ppo_policy_names", ""))
+    if not policy_names:
+        policy_names = [args["policy_name"]] * len(mix_names)
+    if len(policy_names) != len(mix_names):
+        raise pufferlib.APIUsageError("mix_ppo_policy_names must match mix_ppo_policy_mix")
+
+    paths = _split_csv(train_config.get("mix_ppo_policy_paths", ""))
+    if not paths:
+        paths = [""] * len(policy_names)
+    if len(paths) != len(policy_names):
+        raise pufferlib.APIUsageError("mix_ppo_policy_paths must match mix_ppo_policy_mix")
+
+    rnn_names = _split_csv(train_config.get("mix_ppo_rnn_names", ""))
+    if not rnn_names:
+        rnn_names = [args["rnn_name"]] * len(policy_names)
+    if len(rnn_names) != len(policy_names):
+        raise pufferlib.APIUsageError("mix_ppo_rnn_names must match mix_ppo_policy_mix")
+    rnn_input_sizes = _split_csv(train_config.get("mix_ppo_rnn_input_sizes", ""))
+    rnn_hidden_sizes = _split_csv(train_config.get("mix_ppo_rnn_hidden_sizes", ""))
+    if rnn_input_sizes and len(rnn_input_sizes) != len(policy_names):
+        raise pufferlib.APIUsageError("mix_ppo_rnn_input_sizes must match mix_ppo_policy_mix")
+    if rnn_hidden_sizes and len(rnn_hidden_sizes) != len(policy_names):
+        raise pufferlib.APIUsageError("mix_ppo_rnn_hidden_sizes must match mix_ppo_policy_mix")
+
+    package = args["package"]
+    module_name = "pufferlib.ocean" if package == "ocean" else f"pufferlib.environments.{package}"
+    env_module = importlib.import_module(module_name)
+    device = train_config["device"]
+    policies = []
+
+    for i, policy_name in enumerate(policy_names):
+        path = paths[i]
+        if i == 0 and base_policy is not None and path == "" and policy_name == args["policy_name"]:
+            policy = base_policy
+        else:
+            policy_cls = getattr(env_module.torch, policy_name)
+            policy = policy_cls(vecenv.driver_env, **args["policy"])
+            rnn_name = rnn_names[i]
+            if isinstance(rnn_name, str) and rnn_name.lower() in ("none", "null", ""):
+                rnn_name = None
+            if rnn_name is not None:
+                rnn_cls = getattr(env_module.torch, rnn_name)
+                rnn_kwargs = dict(args["rnn"])
+                if rnn_input_sizes:
+                    rnn_kwargs["input_size"] = int(rnn_input_sizes[i])
+                if rnn_hidden_sizes:
+                    rnn_kwargs["hidden_size"] = int(rnn_hidden_sizes[i])
+                policy = rnn_cls(vecenv.driver_env, policy, **rnn_kwargs)
+            policy = policy.to(device)
+
+        if path:
+            state_dict = torch.load(path, map_location="cpu")
+            state_dict = {k.replace("module.", ""): v for k, v in state_dict.items()}
+            policy.load_state_dict(state_dict)
+
+        policies.append(policy)
+
+    return torch.nn.ModuleList(policies)
 
 
 def load_config(env_name, config_dir=None):
@@ -1923,7 +2515,7 @@ def load_config(env_name, config_dir=None):
         p.read(puffer_default_config)
     else:
         puffer_config_dir = os.path.join(puffer_dir, "config/**/*.ini")
-        for path in glob.glob(puffer_config_dir, recursive=True):
+        for path in sorted(glob.glob(puffer_config_dir, recursive=True)):
             p = configparser.ConfigParser()
             p.read([puffer_default_config, path])
             if env_name in p["base"]["env_name"].split():

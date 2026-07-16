@@ -401,6 +401,9 @@ struct Drive {
     unsigned char *truncations;
     Log log;
     Log *logs;
+    Log *policy_logs;
+    int *policy_log_ids;
+    int policy_log_count;
     int num_agents;
     int active_agent_count;
     int *active_agent_indices;
@@ -501,59 +504,69 @@ struct Drive {
 // Forward declarations for functions defined later
 void build_lane_routes(Drive* env);
 
+void add_agent_log(Drive *env, Log *dst, int i) {
+    Entity *e = &env->entities[env->active_agent_indices[i]];
+
+    dst->goals_reached_this_episode += e->goals_reached_this_episode;
+    dst->goals_sampled_this_episode += e->goals_sampled_this_episode;
+
+    int offroad = env->logs[i].offroad_rate;
+    dst->offroad_rate += offroad;
+    int collided = env->logs[i].collision_rate;
+    dst->collision_rate += collided;
+    float offroad_per_agent = env->logs[i].offroad_per_agent;
+    dst->offroad_per_agent += offroad_per_agent;
+    float collisions_per_agent = env->logs[i].collisions_per_agent;
+    dst->collisions_per_agent += collisions_per_agent;
+
+    float frac_goal_reached = e->goals_reached_this_episode / e->goals_sampled_this_episode;
+
+    // Update score, which is an aggregate measure whether the agent fully solved its task
+    // Note: When resampling goals, performance is relative to the number of goals sampled
+    float threshold = 0.99f; // Default threshold for 1 goal
+    if (e->goals_sampled_this_episode == 2.0f) {
+        threshold = 0.5f; // Require >=50% completion for 2 goals
+    } else if (e->goals_sampled_this_episode < 5.0f) {
+        threshold = 0.8f; // Require >=80% completion for 3-4 goals
+    } else {
+        threshold = 0.9f; // Require >=90% completion for 5+ goals
+    }
+
+    int collision_occurred =
+        (env->goal_behavior == GOAL_RESPAWN) ? e->collided_before_goal : env->logs[i].collision_rate;
+    if (frac_goal_reached > threshold && !collision_occurred) {
+        dst->score += 1.0f;
+    }
+    if (!offroad && !collided && frac_goal_reached < 1.0f) {
+        dst->dnf_rate += 1.0f;
+    }
+    int lane_aligned = env->logs[i].lane_alignment_rate;
+    dst->lane_alignment_rate += lane_aligned;
+    dst->lane_aligned_steps += env->logs[i].lane_aligned_steps;
+    dst->speed_limit_rate += env->logs[i].speed_limit_rate;
+    dst->lane_distance_avg += env->logs[i].lane_distance_avg;
+    dst->lane_distance_count += env->logs[i].lane_distance_count;
+    dst->velocity_reward_total += env->logs[i].velocity_reward_total;
+    dst->comfort_violations += env->logs[i].comfort_violations;
+    dst->speed_at_goal += env->logs[i].speed_at_goal;
+    dst->episode_length += env->logs[i].episode_length;
+    dst->episode_return += env->logs[i].episode_return;
+    // Log composition counts per agent so vec_log averaging recovers the per-env value
+    dst->active_agent_count += env->active_agent_count;
+    dst->expert_static_agent_count += env->expert_static_agent_count;
+    dst->static_agent_count += env->static_agent_count;
+    dst->n += 1;
+}
+
 void add_log(Drive *env) {
     for (int i = 0; i < env->active_agent_count; i++) {
-        Entity *e = &env->entities[env->active_agent_indices[i]];
-
-        env->log.goals_reached_this_episode += e->goals_reached_this_episode;
-        env->log.goals_sampled_this_episode += e->goals_sampled_this_episode;
-
-        int offroad = env->logs[i].offroad_rate;
-        env->log.offroad_rate += offroad;
-        int collided = env->logs[i].collision_rate;
-        env->log.collision_rate += collided;
-        float offroad_per_agent = env->logs[i].offroad_per_agent;
-        env->log.offroad_per_agent += offroad_per_agent;
-        float collisions_per_agent = env->logs[i].collisions_per_agent;
-        env->log.collisions_per_agent += collisions_per_agent;
-
-        float frac_goal_reached = e->goals_reached_this_episode / e->goals_sampled_this_episode;
-
-        // Update score, which is an aggregate measure whether the agent fully solved its task
-        // Note: When resampling goals, performance is relative to the number of goals sampled
-        float threshold = 0.99f; // Default threshold for 1 goal
-        if (e->goals_sampled_this_episode == 2.0f) {
-            threshold = 0.5f; // Require ≥50% completion for 2 goals
-        } else if (e->goals_sampled_this_episode < 5.0f) {
-            threshold = 0.8f; // Require ≥80% completion for 3-4 goals
-        } else {
-            threshold = 0.9f; // Require ≥90% completion for 5+ goals
+        add_agent_log(env, &env->log, i);
+        if (env->policy_logs && env->policy_log_ids && i < env->num_agents) {
+            int policy_id = env->policy_log_ids[i];
+            if (policy_id >= 0 && policy_id < env->policy_log_count) {
+                add_agent_log(env, &env->policy_logs[policy_id], i);
+            }
         }
-
-        int collision_occurred =
-            (env->goal_behavior == GOAL_RESPAWN) ? e->collided_before_goal : env->logs[i].collision_rate;
-        if (frac_goal_reached > threshold && !collision_occurred) {
-            env->log.score += 1.0f;
-        }
-        if (!offroad && !collided && frac_goal_reached < 1.0f) {
-            env->log.dnf_rate += 1.0f;
-        }
-        int lane_aligned = env->logs[i].lane_alignment_rate;
-        env->log.lane_alignment_rate += lane_aligned;
-        env->log.lane_aligned_steps += env->logs[i].lane_aligned_steps;
-        env->log.speed_limit_rate += env->logs[i].speed_limit_rate;
-        env->log.lane_distance_avg += env->logs[i].lane_distance_avg;
-        env->log.lane_distance_count += env->logs[i].lane_distance_count;
-        env->log.velocity_reward_total += env->logs[i].velocity_reward_total;
-        env->log.comfort_violations += env->logs[i].comfort_violations;
-        env->log.speed_at_goal += env->logs[i].speed_at_goal;
-        env->log.episode_length += env->logs[i].episode_length;
-        env->log.episode_return += env->logs[i].episode_return;
-        // Log composition counts per agent so vec_log averaging recovers the per-env value
-        env->log.active_agent_count += env->active_agent_count;
-        env->log.expert_static_agent_count += env->expert_static_agent_count;
-        env->log.static_agent_count += env->static_agent_count;
-        env->log.n += 1;
     }
 }
 
@@ -1857,6 +1870,8 @@ void c_close(Drive *env) {
     free(env->entities);
     free(env->active_agent_indices);
     free(env->logs);
+    free(env->policy_logs);
+    free(env->policy_log_ids);
     // GridMap cleanup
     int grid_cell_count = env->grid_map->grid_cols * env->grid_map->grid_rows;
     for (int grid_index = 0; grid_index < grid_cell_count; grid_index++) {

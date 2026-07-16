@@ -33,7 +33,9 @@ _CONDITIONED_VARIANTS = {
 
 # Classic-trained neural planners that need the jerk-obs-view adapter when
 # the env emits the 10-dim jerk ego layout (emit_jerk_ego_obs=True).
-_CLASSIC_NEURAL_PLANNERS = {"ppo", "smart", "world_model", "hybrid"} | _CONDITIONED_VARIANTS
+_CLASSIC_NEURAL_PLANNERS = {
+    "ppo", "smart", "world_model", "hybrid", "behavior_aware"
+} | _CONDITIONED_VARIANTS
 
 
 def _maybe_wrap_for_jerk_obs(planner: BasePlanner, planner_type: str, env) -> BasePlanner:
@@ -170,6 +172,9 @@ def _get_planner_class(planner_type: str):
     elif planner_type == "world_model":
         from pufferlib.planning.policy import WorldModelPlanner, WorldModelConfig
         return WorldModelPlanner, WorldModelConfig
+    elif planner_type == "behavior_aware":
+        from pufferlib.planning.policy import BehaviorAwarePlanner, BehaviorAwareConfig
+        return BehaviorAwarePlanner, BehaviorAwareConfig
     elif planner_type == "conditioned_paper":
         from pufferlib.planning.conditioned_paper import (
             ConditionedPaperPlanner, ConditionedPaperConfig,
@@ -210,6 +215,16 @@ def _build_ppo_config(cfg: dict):
     return PPOConfig(
         weights_path=str(cfg.get("weights_path", "")),
         device=str(cfg.get("device", "cuda")),
+        input_size=int(cfg.get("input_size", 64)),
+        hidden_size=int(cfg.get("hidden_size", 256)),
+        policy_action_type=str(cfg.get("policy_action_type", "discrete")),
+        stochastic=str(cfg.get("stochastic", "false")).lower() in ("true", "1", "yes"),
+        temperature=float(cfg.get("temperature", 1.0)),
+        policy_class_name=str(cfg.get("policy_class_name", "Drive")),
+        rnn_name=str(cfg.get("rnn_name", "Recurrent")),
+        rnn_input_size=int(cfg.get("rnn_input_size", cfg.get("hidden_size", 256))),
+        rnn_hidden_size=int(cfg.get("rnn_hidden_size", cfg.get("hidden_size", 256))),
+        reward_conditioning=str(cfg.get("reward_conditioning", "false")).lower() in ("true", "1", "yes"),
     )
 
 
@@ -261,6 +276,23 @@ def _build_world_model_config(cfg: dict):
     return WorldModelConfig(
         weights_path=str(cfg.get("weights_path", "")),
         device=str(cfg.get("device", "cuda")),
+    )
+
+
+def _build_behavior_aware_config(cfg: dict):
+    from pufferlib.planning.policy import BehaviorAwareConfig
+    return BehaviorAwareConfig(
+        weights_path=str(cfg.get("weights_path", "")),
+        device=str(cfg.get("device", "cuda")),
+        input_size=int(cfg.get("input_size", 64)),
+        hidden_size=int(cfg.get("hidden_size", 256)),
+        behavior_latent_dim=int(cfg.get("behavior_latent_dim", 64)),
+        prediction_loss_coef=float(cfg.get("prediction_loss_coef", 0.1)),
+        fuse_behavior_latent=str(cfg.get("fuse_behavior_latent", "true")).lower()
+        in ("true", "1", "yes"),
+        policy_action_type=str(cfg.get("policy_action_type", "discrete")),
+        stochastic=str(cfg.get("stochastic", "false")).lower() in ("true", "1", "yes"),
+        temperature=float(cfg.get("temperature", 1.0)),
     )
 
 
@@ -359,6 +391,10 @@ def create_ego_planner(
         wm_cfg = _build_world_model_config(type_cfg)
         planner = cls(env=env, agent_idx=ego_agent_idx, action_lb=ac_lb, action_ub=ac_ub,
                       config=wm_cfg)
+    elif planner_type == "behavior_aware":
+        ba_cfg = _build_behavior_aware_config(type_cfg)
+        planner = cls(env=env, agent_idx=ego_agent_idx, action_lb=ac_lb, action_ub=ac_ub,
+                      config=ba_cfg)
     elif planner_type == "hybrid":
         hybrid_cfg = _build_hybrid_config(type_cfg, episode_length)
         planner = cls(env=env, agent_idx=ego_agent_idx, action_lb=ac_lb, action_ub=ac_ub,
@@ -442,6 +478,10 @@ def create_traffic_controller(
         wm_cfg = _build_world_model_config(type_cfg)
         planner = cls(env=env, agent_idx=ego_agent_idx, action_lb=ac_lb, action_ub=ac_ub,
                       config=wm_cfg)
+    elif traffic_type == "behavior_aware":
+        ba_cfg = _build_behavior_aware_config(type_cfg)
+        planner = cls(env=env, agent_idx=ego_agent_idx, action_lb=ac_lb, action_ub=ac_ub,
+                      config=ba_cfg)
     elif traffic_type == "expert":
         planner = cls(env=env, agent_idx=ego_agent_idx, action_lb=ac_lb, action_ub=ac_ub)
     elif traffic_type == "conditioned_paper":

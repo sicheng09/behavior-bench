@@ -34,6 +34,10 @@ class PPOConfig:
     steer_values: np.ndarray = None
     # Policy class in pufferlib.ocean.torch (e.g. "Drive" or "DriveConditioned").
     policy_class_name: str = "Drive"
+    # Recurrent wrapper name in pufferlib.ocean.torch. Use "None" for feedforward checkpoints.
+    rnn_name: str = "Recurrent"
+    rnn_input_size: int = 256
+    rnn_hidden_size: int = 256
     # Whether the policy was trained with reward_conditioning (appends 9-dim
     # creward block to obs). Must match the training config of the checkpoint.
     reward_conditioning: bool = False
@@ -77,7 +81,6 @@ class PPOPlanner(BasePlanner):
         # Import and create policy with matching architecture
         from pufferlib.ocean import torch as pt
         from pufferlib.ocean.drive.drive import Drive
-        from pufferlib.models import LSTMWrapper
 
         policy_cls = getattr(pt, config.policy_class_name)
 
@@ -96,12 +99,20 @@ class PPOPlanner(BasePlanner):
             hidden_size=config.hidden_size,
         )
 
-        # Wrap with LSTM (matching training architecture)
-        self.policy = LSTMWrapper(
-            policy_env, base_policy,
-            input_size=config.hidden_size,
-            hidden_size=config.hidden_size,
-        ).to(self.device)
+        rnn_name = config.rnn_name
+        if isinstance(rnn_name, str) and rnn_name.lower() in ("none", "null", ""):
+            rnn_name = None
+        if rnn_name is None:
+            self.policy = base_policy.to(self.device)
+            self._policy_uses_rnn = False
+        else:
+            rnn_cls = getattr(pt, rnn_name)
+            self.policy = rnn_cls(
+                policy_env, base_policy,
+                input_size=config.rnn_input_size,
+                hidden_size=config.rnn_hidden_size,
+            ).to(self.device)
+            self._policy_uses_rnn = True
         self.policy.eval()
 
         # Close the temporary env
@@ -207,9 +218,11 @@ class PPOPlanner(BasePlanner):
         self._obs_buffer.copy_(torch.as_tensor(obs, dtype=torch.float32))
 
         # LSTM state: persistent for both single and batch modes
-        if self.lstm_h is None or self.lstm_h.shape[0] != batch_size:
-            self.lstm_h = torch.zeros(batch_size, self.config.hidden_size, device=self.device)
-            self.lstm_c = torch.zeros(batch_size, self.config.hidden_size, device=self.device)
+        if self._policy_uses_rnn and (
+            self.lstm_h is None or self.lstm_h.shape[0] != batch_size
+        ):
+            self.lstm_h = torch.zeros(batch_size, self.config.rnn_hidden_size, device=self.device)
+            self.lstm_c = torch.zeros(batch_size, self.config.rnn_hidden_size, device=self.device)
         state = {"lstm_h": self.lstm_h, "lstm_c": self.lstm_c}
 
         with torch.inference_mode():
@@ -220,8 +233,9 @@ class PPOPlanner(BasePlanner):
         self._last_value_tensor = value
 
         # Persist LSTM state
-        self.lstm_h = state["lstm_h"]
-        self.lstm_c = state["lstm_c"]
+        if self._policy_uses_rnn:
+            self.lstm_h = state["lstm_h"]
+            self.lstm_c = state["lstm_c"]
 
         # Decode actions entirely on GPU — single CPU transfer at the end
         if isinstance(action_logits, (list, tuple)):
@@ -318,6 +332,32 @@ class WorldModelConfig:
     input_size: int = 64
     hidden_size: int = 256
     transition_loss_coef: float = 1.0
+    policy_action_type: str = "discrete"
+    stochastic: bool = False
+    temperature: float = 1.0
+    accel_values: np.ndarray = None
+    steer_values: np.ndarray = None
+
+    def __post_init__(self):
+        if self.accel_values is None:
+            self.accel_values = np.array(
+                [-4.0, -2.67, -1.33, 0.0, 1.33, 2.67, 4.0], dtype=np.float32
+            )
+        if self.steer_values is None:
+            self.steer_values = np.linspace(-1.0, 1.0, 13, dtype=np.float32)
+
+
+@dataclass
+class BehaviorAwareConfig:
+    """Configuration for behavior-aware policy planner."""
+
+    weights_path: str = ""
+    device: str = "cuda" if torch.cuda.is_available() else "cpu"
+    input_size: int = 64
+    hidden_size: int = 256
+    behavior_latent_dim: int = 64
+    prediction_loss_coef: float = 0.1
+    fuse_behavior_latent: bool = True
     policy_action_type: str = "discrete"
     stochastic: bool = False
     temperature: float = 1.0
@@ -533,5 +573,68 @@ class WorldModelPlanner(BasePlanner):
     def reset(self):
         self.lstm_h = None
         self.lstm_c = None
+
+
+class BehaviorAwarePlanner(WorldModelPlanner):
+    """Planner using DriveBehaviorAware with BehaviorAwareRecurrent."""
+
+    def __init__(
+        self,
+        env,
+        agent_idx: int,
+        action_lb: np.ndarray,
+        action_ub: np.ndarray,
+        config: BehaviorAwareConfig,
+    ):
+        BasePlanner.__init__(
+            self,
+            horizon=1,
+            action_dim=len(action_lb),
+            action_lb=action_lb,
+            action_ub=action_ub,
+        )
+        self.env = env
+        self.agent_idx = agent_idx
+        self.config = config
+        self.device = torch.device(config.device)
+
+        from pufferlib.ocean.torch import DriveBehaviorAware, BehaviorAwareRecurrent
+        from pufferlib.ocean.drive.drive import Drive
+
+        policy_env = Drive(
+            episode_length=env.episode_length,
+            action_type=config.policy_action_type,
+            max_controlled_agents=1,
+            split=env.split,
+        )
+        base_policy = DriveBehaviorAware(
+            policy_env,
+            input_size=config.input_size,
+            hidden_size=config.hidden_size,
+            behavior_latent_dim=config.behavior_latent_dim,
+            prediction_loss_coef=config.prediction_loss_coef,
+            fuse_behavior_latent=config.fuse_behavior_latent,
+        )
+        self.policy = BehaviorAwareRecurrent(
+            policy_env,
+            base_policy,
+            input_size=config.hidden_size,
+            hidden_size=config.hidden_size,
+        ).to(self.device)
+        self.policy.eval()
+        policy_env.close()
+
+        self.lstm_h = None
+        self.lstm_c = None
+        self._obs_buffer = None
+
+        accel_norm = config.accel_values / np.max(np.abs(config.accel_values))
+        steer_norm = config.steer_values / np.max(np.abs(config.steer_values))
+        self._accel_lut = torch.from_numpy(accel_norm).float().to(self.device)
+        self._steer_lut = torch.from_numpy(steer_norm).float().to(self.device)
+        self._num_steer = len(config.steer_values)
+
+        if config.weights_path:
+            self._load_weights(config.weights_path)
 
 

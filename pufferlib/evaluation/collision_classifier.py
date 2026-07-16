@@ -9,6 +9,7 @@ Classifies collisions between ego and other agents into types:
 - ACTIVE_FRONT_COLLISION: Ego front bumper hits other -> at fault
 - ACTIVE_REAR_COLLISION: Other is behind ego -> not at fault
 - ACTIVE_LATERAL_COLLISION: Side collision -> at fault only if ego is in multiple lanes
+- VRU collisions: always at fault as an explicit safety exception
 
 Reference:
   https://github.com/autonomousvision/tuplan_garage/blob/main/
@@ -346,10 +347,11 @@ def is_at_fault(
     """Determine if collision is ego's fault (PDM scorer logic).
 
     Matching ``_calculate_no_at_fault_collision`` from tuplan_garage:
+    - Collision with a VRU -> always at fault (explicit safety exception)
     - ACTIVE_FRONT_COLLISION or STOPPED_TRACK_COLLISION -> always at fault
     - ACTIVE_LATERAL_COLLISION + ego in multiple lanes -> at fault
     - STOPPED_EGO_COLLISION -> not at fault
-    - ACTIVE_REAR_COLLISION -> not at fault (unless ego changed lanes)
+    - ACTIVE_REAR_COLLISION -> not at fault
     - ACTIVE_LATERAL_COLLISION in own lane -> not at fault
 
     Args:
@@ -357,7 +359,8 @@ def is_at_fault(
         ego: ego entity dict
         other: other entity dict
         entities: all entities (needed for lane check)
-        ego_position_history: recent (x,y) positions
+        ego_position_history: retained for backward compatibility; strict PDM
+            attribution uses only ego's collision-time position
 
     Returns:
         True if collision is ego's fault
@@ -382,21 +385,14 @@ def is_at_fault(
     if collision_type == CollisionType.STOPPED_EGO_COLLISION:
         return False
 
-    # Conditional: lateral or rear — at fault only if ego is in multiple lanes
-    if collision_type in (CollisionType.ACTIVE_LATERAL_COLLISION, CollisionType.ACTIVE_REAR_COLLISION):
+    # Conditional: lateral — at fault only if ego is in multiple lanes
+    if collision_type == CollisionType.ACTIVE_LATERAL_COLLISION:
         if ego is None:
             return False
-        positions = ego_position_history or [(ego["x"], ego["y"])]
         if entities is not None:
-            if not ego_crossed_lane_divider(positions, ego.get("width", 2.0), entities):
-                return False
-            # Ego overlaps multiple lanes — additionally require actual lateral
-            # drift to distinguish real lane changes from simply being near a
-            # lane boundary (common in curves or narrow roads).
-            ego_heading = ego.get("heading", 0.0)
-            if not ego_has_lateral_drift(positions, ego_heading, threshold=0.3):
-                return False
-            return True
+            return ego_crossed_lane_divider(
+                [(ego["x"], ego["y"])], ego.get("width", 2.0), entities
+            )
 
     return False
 
