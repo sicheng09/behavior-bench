@@ -152,6 +152,16 @@ def _validate_config(config: AdversarialConfig) -> None:
             if name != "fault_lookback_steps"
         },
     )
+    for name, value in vars(weights).items():
+        if value < 0:
+            raise ValueError(f"reward.weights.{name} must be non-negative")
+    for name, value in vars(config.reward.thresholds).items():
+        if name != "fault_lookback_steps" and value <= 0:
+            raise ValueError(f"reward.thresholds.{name} must be positive")
+    if config.reward.limits.positive_reward_cap < 0:
+        raise ValueError("positive_reward_cap must be non-negative")
+    if config.reward.limits.kinematics_penalty_cap < 0:
+        raise ValueError("kinematics_penalty_cap must be non-negative")
     if weights.fault < 4.0 * weights.ego_cost:
         raise ValueError("fault weight must be at least 4 times ego_cost")
     if config.reward.limits.positive_reward_cap > 0.25:

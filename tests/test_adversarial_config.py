@@ -115,6 +115,28 @@ def test_loader_rejects_unknown_strategy(tmp_path):
         load_adversarial_config(path)
 
 
+def test_config_rejects_non_positive_physical_threshold(tmp_path):
+    path = _write_config(
+        tmp_path,
+        lambda data: data["reward"]["thresholds"].update(
+            {"normal_speed_mps": 0.0}
+        ),
+    )
+    with pytest.raises(ValueError, match="normal_speed_mps.*positive"):
+        load_adversarial_config(path)
+
+
+def test_config_rejects_negative_reward_weight(tmp_path):
+    path = _write_config(
+        tmp_path,
+        lambda data: data["reward"]["weights"].update(
+            {"normality": -0.1}
+        ),
+    )
+    with pytest.raises(ValueError, match="normality.*non-negative"):
+        load_adversarial_config(path)
+
+
 def test_registry_resolves_only_implemented_v1_strategies():
     ego = DEFAULT_STRATEGY_REGISTRY.resolve("ego_drive_recurrent")
     opponent = DEFAULT_STRATEGY_REGISTRY.resolve(
