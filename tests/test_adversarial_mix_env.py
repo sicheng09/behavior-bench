@@ -1,7 +1,18 @@
+import os
+from unittest.mock import patch
+
 import numpy as np
+import torch
 
 from pufferlib.adversarial.env import AdversarialMixDrive
 from pufferlib.adversarial.reward import RewardEvaluation, StateFrame
+from pufferlib.pufferl import (
+    PuffeRL,
+    load_config,
+    load_env,
+    load_mixed_policies,
+    load_policy,
+)
 
 
 class FakeEvaluator:
@@ -66,3 +77,96 @@ def test_route_rewards_preserves_ego_and_replaces_opponent():
         np.float32(0.3),
         np.float32(0.2),
     ]
+
+
+@patch("sys.argv", ["pufferl.py"])
+def test_adversarial_mix_runs_one_joint_update():
+    args = load_config("puffer_drive_adversarial")
+    args["train"].update({
+        "device": "cpu",
+        "optimizer": "adam",
+        "compile": False,
+        "total_timesteps": 16,
+        "batch_size": 16,
+        "bptt_horizon": 4,
+        "minibatch_size": 16,
+        "max_minibatch_size": 16,
+        "update_epochs": 1,
+        "render": False,
+        "checkpoint_interval": 999999,
+    })
+    args["vec"].update({
+        "num_workers": 1,
+        "num_envs": 1,
+        "batch_size": 1,
+    })
+    args["env"].update({
+        "num_agents": 4,
+        "action_type": "discrete",
+        "num_maps": 1,
+        "init_mode": "create_all_valid",
+        "control_mode": "control_agents",
+        "episode_length": 2,
+        "resample_frequency": 1000,
+        "report_interval": 1,
+    })
+    args["policy"].update({"input_size": 32, "hidden_size": 32})
+    args["rnn"].update({"input_size": 32, "hidden_size": 32})
+    args["eval"] = {
+        "wosac_realism_eval": False,
+        "human_replay_eval": False,
+    }
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    old_root = os.environ.get("DRIVE_BINARIES_DATA_ROOT")
+    os.environ["DRIVE_BINARIES_DATA_ROOT"] = os.path.join(
+        root, "resources", "drive", "binaries"
+    )
+    os.environ["PUFFER_DISABLE_VIDEO"] = "1"
+    vecenv = trainer = None
+    try:
+        vecenv = load_env("puffer_drive_adversarial", args)
+        base_policy = load_policy(
+            args, vecenv, "puffer_drive_adversarial"
+        )
+        policies = load_mixed_policies(
+            args,
+            vecenv,
+            "puffer_drive_adversarial",
+            base_policy,
+        )
+        before = [
+            {
+                name: value.detach().clone()
+                for name, value in policy.state_dict().items()
+            }
+            for policy in policies
+        ]
+        train_config = dict(
+            **args["train"],
+            env="puffer_drive_adversarial",
+            eval=args["eval"],
+        )
+        trainer = PuffeRL(train_config, vecenv, policies, logger=None)
+        trainer.evaluate()
+        assert "adversarial/assignment/mixed_scene_rate" in trainer.stats
+        assert "adversarial/adv/reward_total" in trainer.stats
+        trainer.train()
+
+        for policy_idx, policy in enumerate(trainer.uncompiled_policies):
+            assert any(
+                not torch.equal(before[policy_idx][name], value)
+                for name, value in policy.state_dict().items()
+            )
+        assert trainer.mix_ppo is True
+        assert len(trainer.policies) == 2
+    finally:
+        if trainer is not None:
+            trainer.utilization.stop()
+        if vecenv is not None:
+            vecenv.close()
+        if old_root is None:
+            os.environ.pop("DRIVE_BINARIES_DATA_ROOT", None)
+        else:
+            os.environ["DRIVE_BINARIES_DATA_ROOT"] = old_root
+
