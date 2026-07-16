@@ -1,10 +1,12 @@
 from pathlib import Path
+from unittest.mock import patch
 
 import pytest
 import yaml
 
 from pufferlib.adversarial.config import load_adversarial_config
 from pufferlib.adversarial.registry import DEFAULT_STRATEGY_REGISTRY
+from pufferlib.pufferl import load_config
 
 
 def _write_config(tmp_path: Path, overrides=None) -> Path:
@@ -148,3 +150,20 @@ def test_registry_resolves_only_implemented_v1_strategies():
     assert opponent.reward_mode == "adversarial"
     with pytest.raises(ValueError, match="Unknown or unimplemented"):
         DEFAULT_STRATEGY_REGISTRY.resolve("idm")
+
+
+@patch("sys.argv", ["pufferl.py"])
+def test_load_drive_adversarial_profile():
+    args = load_config("puffer_drive_adversarial")
+    assert args["env_name"] == "puffer_drive_adversarial"
+    assert args["policy_name"] == "Drive"
+    assert args["rnn_name"] == "Recurrent"
+    assert args["train"]["mix_ppo"] is True
+    assert args["train"]["mix_ppo_policy_mix"] == (
+        "ego:0.5, primary_opponent:0.5"
+    )
+    assert args["train"]["mix_ppo_policy_names"] == "Drive,Drive"
+    assert args["train"]["mix_ppo_rnn_names"] == "Recurrent,Recurrent"
+    assert args["env"]["adversarial_config_path"].endswith(
+        "opponent_mix.yaml"
+    )
