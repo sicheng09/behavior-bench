@@ -27,9 +27,12 @@
 - IDM、Expert、PDM 或冻结 PPO 接管 Primary Opponent 槽位；
 - C 侧对抗奖励或新增 C telemetry；
 - 单场景内复杂的多对多因果图学习；
-- 修改原 `Drive`、原 `mix_traffic` 或原 `mix_ppo` 的默认语义。
+- 修改原 `Drive`、原 `mix_traffic` 或原 `mix_ppo` 的默认语义；
+- 为训练 Adversary 而改动现有验证指标定义（含 `.logs/val` / `collision_classifier` 的严格 PDM at-fault 语义）。
 
 上述能力仅通过接口预留，待第一版验证核心假设后再扩展。
+
+**硬约束：** Adversary 训练期的保守归责只存在于 `pufferlib/adversarial/reward.py`；评测与验证继续使用既有严格 PDM 定义，二者不得合流或互相改写。
 
 ## 3. 已验证的现有约束
 
@@ -535,10 +538,10 @@ pufferlib/ocean/drive/binding.c
 6. 移除 TTC 势能；
 7. 只做多 policy 同奖励的控制组，用于区分“网络分离”和“非对称奖励”的贡献。
 
-评测保持现有 `.logs/val` 协议，至少报告：
+评测保持现有 `.logs/val` 协议与既有指标定义（严格 PDM），至少报告：
 
 - IDM traffic collision rate；
-- at-fault collision rate；
+- at-fault collision rate（定义不变，不因 Adversary 训练调整）；
 - goal/completion；
 - Ego self-play 训练性能是否退化；
 - 不同 seed 的 paired bootstrap confidence interval。
