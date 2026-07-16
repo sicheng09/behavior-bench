@@ -185,6 +185,19 @@ pufferlib/resources/drive/output_agent.gif pufferlib/resources/drive/output.gif 
 
 # Local artifacts and outputs
 artifacts/
+# Local experiment logs, generated evaluations, and data mounts
+/.logs/
+/data
+/20??????_??????_*/
+
+# New model weights and binary datasets. Existing tracked fixtures and
+# published reference weights remain tracked.
+/weights/
+*.pt
+*.pth
+*.ckpt
+*.bin
+
 # Local drive renders
 pufferlib/resources/drive/output*.gif
 emsdk/
