@@ -185,6 +185,7 @@ pufferlib/resources/drive/output_agent.gif pufferlib/resources/drive/output.gif 
 
 # Local artifacts and outputs
 artifacts/
+.worktrees/
 # Local experiment logs, generated evaluations, and data mounts
 /.logs/
 /data
