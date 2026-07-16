@@ -39,22 +39,38 @@ def test_route_rewards_preserves_ego_and_replaces_opponent():
     env.observations = np.zeros((4, 10), dtype=np.float32)
     env._pre_observations = np.zeros((4, 10), dtype=np.float32)
     env.reward_components_raw = np.zeros((4, 11), dtype=np.float32)
+    zeros = np.zeros(4, dtype=np.float32)
+    ones = np.ones(4, dtype=np.float32)
+    valid = np.ones(4, dtype=bool)
     env._pre_state = StateFrame(
-        x=np.zeros(4),
-        y=np.zeros(4),
-        heading=np.zeros(4),
-        length=np.ones(4),
-        width=np.ones(4),
-        valid=np.ones(4, dtype=bool),
+        x=zeros.copy(),
+        y=zeros.copy(),
+        heading=zeros.copy(),
+        length=ones.copy(),
+        width=ones.copy(),
+        valid=valid.copy(),
+    )
+    env._state_x = zeros.copy()
+    env._state_y = zeros.copy()
+    env._state_heading = zeros.copy()
+    env._state_length = ones.copy()
+    env._state_width = ones.copy()
+    env._state_valid = valid.copy()
+    env._pre_x = zeros.copy()
+    env._pre_y = zeros.copy()
+    env._pre_heading = zeros.copy()
+    env._pre_length = ones.copy()
+    env._pre_width = ones.copy()
+    env._pre_valid = valid.copy()
+    env._capture_post_state_frame = lambda: StateFrame(
+        x=env._state_x,
+        y=env._state_y,
+        heading=env._state_heading,
+        length=env._state_length,
+        width=env._state_width,
+        valid=env._state_valid,
     )
     env.rewards = np.asarray([0.1, -0.1, 0.3, -0.3], dtype=np.float32)
-    env.get_global_agent_state = lambda: {
-        "x": np.zeros(4),
-        "y": np.zeros(4),
-        "heading": np.zeros(4),
-        "length": np.ones(4),
-        "width": np.ones(4),
-    }
     env._pending_adversarial_metrics = {}
     env._invalid_reward_events = 0
 
@@ -69,7 +85,9 @@ def test_route_rewards_preserves_ego_and_replaces_opponent():
 
     env.adversarial_config = _Cfg()
 
-    env._apply_adversarial_rewards(np.zeros((4, 2), dtype=np.float32))
+    env._apply_adversarial_rewards(
+        np.zeros((4, 2), dtype=np.float32), collect_metrics=True
+    )
 
     assert env.rewards.tolist() == [
         np.float32(0.1),

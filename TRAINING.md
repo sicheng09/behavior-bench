@@ -226,6 +226,18 @@ The original command remains unchanged:
 puffer train puffer_drive
 ```
 
+### Wrapper SPS note (v1)
+
+Measured with `scripts/bench_adversarial_sps.py` (64 agents, 1k warm + 10k steps, identical discrete settings):
+
+```text
+baseline_sps ≈ 9.8e5
+adversarial_sps ≈ 1.7e5
+overhead ≈ 0.82
+```
+
+The Python asymmetric reward path currently exceeds the 10% overhead target. Profiling shows the dominant cost is scene-local opponent/ego pair evaluation in `pufferlib/adversarial/reward.py`, not `Drive` C step. V1 keeps the non-invasive Python wrapper; further gains need Numba/C telemetry, not changes to validation PDM metrics.
+
 ---
 
 ## Tips and Common Workflows

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import math
 from typing import Dict
 
 import numpy as np
@@ -49,6 +50,10 @@ class RewardEvaluation:
 
 
 class AsymmetricRewardEvaluator:
+    _DISCRETE_STEER = np.linspace(-1.0, 1.0, 13, dtype=np.float32)
+    # Skip far pair evaluations inside a scene; keeps local TTC semantics.
+    _MAX_PAIR_DISTANCE_M = 40.0
+
     def __init__(self, config: RewardConfig, dt: float):
         if dt <= 0:
             raise ValueError("dt must be positive")
@@ -57,11 +62,13 @@ class AsymmetricRewardEvaluator:
         self._previous_accel = None
         self._previous_steer = None
         self._has_history = False
+        self._shapes_validated = False
 
     def reset(self, num_agents: int) -> None:
         self._previous_accel = np.zeros(num_agents, dtype=np.float32)
         self._previous_steer = np.zeros(num_agents, dtype=np.float32)
         self._has_history = False
+        self._shapes_validated = False
 
     def evaluate(
         self,
@@ -76,6 +83,7 @@ class AsymmetricRewardEvaluator:
         agent_offsets,
         role_ids,
         action_type,
+        collect_metrics: bool = True,
     ) -> RewardEvaluation:
         base_rewards = np.asarray(base_rewards, dtype=np.float32)
         rewards = base_rewards.copy()
@@ -83,16 +91,27 @@ class AsymmetricRewardEvaluator:
         raw_components = np.asarray(raw_components, dtype=np.float32)
         agent_offsets = np.asarray(agent_offsets, dtype=np.int64)
         n = len(base_rewards)
-        self._validate_shapes(
-            n,
-            pre_state,
-            post_state,
-            raw_components,
-            agent_offsets,
-            role_ids,
-        )
+        if not self._shapes_validated:
+            self._validate_shapes(
+                n,
+                pre_state,
+                post_state,
+                raw_components,
+                agent_offsets,
+                role_ids,
+            )
+            self._shapes_validated = True
         if self._previous_accel is None or len(self._previous_accel) != n:
             self.reset(n)
+            self._validate_shapes(
+                n,
+                pre_state,
+                post_state,
+                raw_components,
+                agent_offsets,
+                role_ids,
+            )
+            self._shapes_validated = True
 
         pre_speed = self._observation_speed(pre_observations, n)
         post_speed = self._observation_speed(post_observations, n)
@@ -113,55 +132,29 @@ class AsymmetricRewardEvaluator:
         hard_brake_events = np.zeros(n, dtype=np.float32)
         ambiguous_collision_events = np.zeros(n, dtype=np.float32)
 
-        for start, stop in zip(agent_offsets[:-1], agent_offsets[1:]):
-            scene_roles = role_ids[start:stop]
-            ego_indices = start + np.flatnonzero(scene_roles == 0)
-            opponent_indices = start + np.flatnonzero(scene_roles == 1)
-            for opponent_idx in opponent_indices:
-                (
-                    ego_cost[opponent_idx],
-                    min_ttc[opponent_idx],
-                    hard_brake_events[opponent_idx],
-                ) = self._max_causal_ego_cost(
-                    opponent_idx,
-                    ego_indices,
-                    pre_state,
-                    post_state,
-                    pre_speed,
-                    post_speed,
-                    accel,
-                )
-                (
-                    fault_penalty[opponent_idx],
-                    ambiguous_collision_events[opponent_idx],
-                ) = self._fault_penalty(
-                    opponent_idx,
-                    ego_indices,
-                    pre_state,
-                    pre_speed,
-                    accel,
-                    steer,
-                    raw_components,
-                )
-                kinematics_cost[opponent_idx] = self._kinematics_cost(
-                    opponent_idx,
-                    pre_state,
-                    post_state,
-                    post_speed,
-                    accel,
-                    jerk,
-                    steer,
-                    steer_rate,
-                    raw_components,
-                )
-                normality[opponent_idx] = np.clip(
-                    post_speed[opponent_idx]
-                    / self.config.thresholds.normal_speed_mps,
-                    0.0,
-                    1.0,
-                )
-
         opponent_mask = role_ids == 1
+        if np.any(opponent_mask):
+            self._fill_opponent_rewards(
+                agent_offsets,
+                role_ids,
+                pre_state,
+                post_state,
+                pre_speed,
+                post_speed,
+                accel,
+                jerk,
+                steer,
+                steer_rate,
+                raw_components,
+                ego_cost,
+                fault_penalty,
+                kinematics_cost,
+                normality,
+                min_ttc,
+                hard_brake_events,
+                ambiguous_collision_events,
+            )
+
         weights = self.config.weights
         raw_adversarial = (
             weights.ego_cost * ego_cost
@@ -183,8 +176,8 @@ class AsymmetricRewardEvaluator:
 
         invalid_reward_mask = ~np.isfinite(base_rewards) | ~np.isfinite(rewards)
         rewards[invalid_reward_mask] = -1.0
-        self._previous_accel = accel.astype(np.float32, copy=True)
-        self._previous_steer = steer.astype(np.float32, copy=True)
+        np.copyto(self._previous_accel, accel)
+        np.copyto(self._previous_steer, steer)
         self._has_history = True
 
         components = {
@@ -194,17 +187,257 @@ class AsymmetricRewardEvaluator:
             "normality": normality,
             "min_ttc": min_ttc,
         }
-        metrics = self._aggregate_metrics(
-            components,
-            rewards,
-            opponent_mask,
-            hard_brake_events,
-            ambiguous_collision_events,
-        )
-        metrics["adv/invalid_reward_events"] = float(
-            invalid_reward_mask.sum()
-        )
+        if collect_metrics:
+            metrics = self._aggregate_metrics(
+                components,
+                rewards,
+                opponent_mask,
+                hard_brake_events,
+                ambiguous_collision_events,
+            )
+            metrics["adv/invalid_reward_events"] = float(
+                invalid_reward_mask.sum()
+            )
+        else:
+            metrics = {
+                "adv/invalid_reward_events": float(invalid_reward_mask.sum()),
+            }
         return RewardEvaluation(rewards, components, metrics)
+
+    def _fill_opponent_rewards(
+        self,
+        agent_offsets,
+        role_ids,
+        pre_state,
+        post_state,
+        pre_speed,
+        post_speed,
+        accel,
+        jerk,
+        steer,
+        steer_rate,
+        raw_components,
+        ego_cost,
+        fault_penalty,
+        kinematics_cost,
+        normality,
+        min_ttc,
+        hard_brake_events,
+        ambiguous_collision_events,
+    ):
+        thresholds = self.config.thresholds
+        dt = self.dt
+        kin_cap = (
+            self.config.limits.kinematics_penalty_cap
+            / max(self.config.weights.kinematics, 1e-6)
+        )
+        normal_speed = thresholds.normal_speed_mps
+        ttc_threshold = thresholds.ttc_seconds
+        safe_distance = thresholds.safe_distance_m
+        hard_brake = thresholds.hard_brake_mps2
+        hard_steer = thresholds.hard_steer_rad
+
+        # Local references avoid repeated attribute lookups in hot loops.
+        pre_x = pre_state.x
+        pre_y = pre_state.y
+        pre_h = pre_state.heading
+        pre_len = pre_state.length
+        pre_wid = pre_state.width
+        pre_valid = pre_state.valid
+        post_x = post_state.x
+        post_y = post_state.y
+        post_h = post_state.heading
+        post_len = post_state.length
+        post_valid = post_state.valid
+
+        for start, stop in zip(agent_offsets[:-1], agent_offsets[1:]):
+            ego_indices = []
+            opponent_indices = []
+            for idx in range(int(start), int(stop)):
+                if role_ids[idx] == 0:
+                    ego_indices.append(idx)
+                elif role_ids[idx] == 1:
+                    opponent_indices.append(idx)
+            if not opponent_indices:
+                continue
+
+            for opponent_idx in opponent_indices:
+                # Kinematics + normality (scalar, no numpy).
+                heading_delta = self._wrap_angle(
+                    post_h[opponent_idx] - pre_h[opponent_idx]
+                )
+                lateral_accel = post_speed[opponent_idx] * heading_delta / dt
+                violations = (
+                    self._hinge(abs(accel[opponent_idx]), thresholds.max_accel_mps2)
+                    + self._hinge(
+                        abs(lateral_accel), thresholds.max_lateral_accel_mps2
+                    )
+                    + self._hinge(abs(jerk[opponent_idx]), thresholds.max_jerk_mps3)
+                    + self._hinge(
+                        abs(steer_rate[opponent_idx]),
+                        thresholds.max_steer_rate_radps,
+                    )
+                    + max(0.0, float(raw_components[opponent_idx, OFFROAD_COMPONENT]))
+                    + max(0.0, float(raw_components[opponent_idx, REVERSE_COMPONENT]))
+                    + max(
+                        0.0,
+                        float(raw_components[opponent_idx, SPEED_LIMIT_COMPONENT]),
+                    )
+                )
+                kinematics_cost[opponent_idx] = min(max(violations, 0.0), kin_cap)
+                normality[opponent_idx] = min(
+                    max(post_speed[opponent_idx] / normal_speed, 0.0),
+                    1.0,
+                )
+
+                best_cost = 0.0
+                best_ttc = math.inf
+                hard_brake_event = 0.0
+                ox = float(pre_x[opponent_idx])
+                oy = float(pre_y[opponent_idx])
+                o_valid = bool(pre_valid[opponent_idx])
+                o_len = float(pre_len[opponent_idx])
+                o_wid = float(pre_wid[opponent_idx])
+                o_speed = float(pre_speed[opponent_idx])
+                o_post_x = float(post_x[opponent_idx])
+                o_post_y = float(post_y[opponent_idx])
+                o_post_valid = bool(post_valid[opponent_idx])
+                o_post_speed = float(post_speed[opponent_idx])
+                o_post_len = float(post_len[opponent_idx])
+                o_h = float(pre_h[opponent_idx])
+                o_cos = math.cos(o_h)
+                o_sin = math.sin(o_h)
+                o_vx = o_speed * o_cos
+                o_vy = o_speed * o_sin
+                o_post_h = float(post_h[opponent_idx])
+                o_post_vx = o_post_speed * math.cos(o_post_h)
+                o_post_vy = o_post_speed * math.sin(o_post_h)
+
+                for ego_idx in ego_indices:
+                    if not o_valid or not bool(pre_valid[ego_idx]):
+                        continue
+                    ex = float(pre_x[ego_idx])
+                    ey = float(pre_y[ego_idx])
+                    dx = ox - ex
+                    dy = oy - ey
+                    distance = math.hypot(dx, dy)
+                    if distance <= 1e-6 or distance > self._MAX_PAIR_DISTANCE_M:
+                        continue
+                    e_h = float(pre_h[ego_idx])
+                    e_cos = math.cos(e_h)
+                    e_sin = math.sin(e_h)
+                    longitudinal = dx * e_cos + dy * e_sin
+                    lateral = e_cos * dy - e_sin * dx
+                    lateral_limit = max(float(pre_wid[ego_idx]), o_wid)
+                    if longitudinal <= 0.0 or abs(lateral) > lateral_limit:
+                        continue
+                    e_speed = float(pre_speed[ego_idx])
+                    e_vx = e_speed * e_cos
+                    e_vy = e_speed * e_sin
+                    closing = ((e_vx - o_vx) * dx + (e_vy - o_vy) * dy) / distance
+                    bumper = max(
+                        distance - 0.5 * (float(pre_len[ego_idx]) + o_len),
+                        0.0,
+                    )
+                    if closing <= 1e-6:
+                        pre_ttc = math.inf
+                    else:
+                        pre_ttc = max(bumper - safe_distance, 0.0) / closing
+                    if math.isfinite(pre_ttc):
+                        best_ttc = min(best_ttc, pre_ttc)
+
+                    if o_post_valid and bool(post_valid[ego_idx]):
+                        pdx = o_post_x - float(post_x[ego_idx])
+                        pdy = o_post_y - float(post_y[ego_idx])
+                        pdist = math.hypot(pdx, pdy)
+                        if pdist <= 1e-6:
+                            post_ttc = 0.0
+                        else:
+                            pe_h = float(post_h[ego_idx])
+                            pe_speed = float(post_speed[ego_idx])
+                            pe_vx = pe_speed * math.cos(pe_h)
+                            pe_vy = pe_speed * math.sin(pe_h)
+                            pclosing = (
+                                (pe_vx - o_post_vx) * pdx
+                                + (pe_vy - o_post_vy) * pdy
+                            ) / pdist
+                            pbumper = max(
+                                pdist
+                                - 0.5
+                                * (float(post_len[ego_idx]) + o_post_len),
+                                0.0,
+                            )
+                            if pclosing <= 1e-6:
+                                post_ttc = math.inf
+                            else:
+                                post_ttc = (
+                                    max(pbumper - safe_distance, 0.0) / pclosing
+                                )
+                    else:
+                        post_ttc = pre_ttc
+
+                    pre_risk = self._ttc_risk(pre_ttc, ttc_threshold)
+                    post_risk = self._ttc_risk(post_ttc, ttc_threshold)
+                    risk_increase = max(0.0, post_risk - pre_risk)
+                    brake = max(
+                        0.0,
+                        -float(accel[ego_idx]) - hard_brake,
+                    ) / hard_brake
+                    is_near = min(pre_ttc, post_ttc) <= ttc_threshold
+                    if is_near and brake > 0.0:
+                        hard_brake_event = 1.0
+                    if not is_near:
+                        brake = 0.0
+                    cost = risk_increase + min(brake, 1.0)
+                    best_cost = max(best_cost, min(cost, 1.0))
+
+                ego_cost[opponent_idx] = best_cost
+                min_ttc[opponent_idx] = best_ttc
+                hard_brake_events[opponent_idx] = hard_brake_event
+
+                if raw_components[opponent_idx, COLLISION_COMPONENT] <= 0:
+                    continue
+                if (
+                    accel[opponent_idx] < -hard_brake
+                    or abs(steer[opponent_idx]) > hard_steer
+                ):
+                    fault_penalty[opponent_idx] = 1.0
+                    continue
+
+                # Conservative fault: only clear for high-confidence ego rear-end.
+                fault = 1.0
+                ambiguous = 1.0
+                for ego_idx in ego_indices:
+                    if not o_valid or not bool(pre_valid[ego_idx]):
+                        continue
+                    rx = float(pre_x[ego_idx]) - ox
+                    ry = float(pre_y[ego_idx]) - oy
+                    distance = math.hypot(rx, ry)
+                    if distance <= 1e-6:
+                        continue
+                    longitudinal = rx * o_cos + ry * o_sin
+                    lateral = o_cos * ry - o_sin * rx
+                    e_speed = float(pre_speed[ego_idx])
+                    e_h = float(pre_h[ego_idx])
+                    e_vx = e_speed * math.cos(e_h)
+                    e_vy = e_speed * math.sin(e_h)
+                    closing = (
+                        (e_vx - o_vx) * (-rx) + (e_vy - o_vy) * (-ry)
+                    ) / distance
+                    max_contact = (
+                        0.5 * (float(pre_len[ego_idx]) + o_len) + safe_distance
+                    )
+                    if (
+                        longitudinal < 0.0
+                        and abs(lateral) <= max(float(pre_wid[ego_idx]), o_wid)
+                        and closing > 0.0
+                        and distance <= max_contact
+                    ):
+                        fault = 0.0
+                        ambiguous = 0.0
+                        break
+                fault_penalty[opponent_idx] = fault
+                ambiguous_collision_events[opponent_idx] = ambiguous
 
     @staticmethod
     def _observation_speed(observations, num_agents):
@@ -229,33 +462,34 @@ class AsymmetricRewardEvaluator:
         state,
         speed,
     ):
-        rel = np.asarray(
-            [
-                state.x[opponent_idx] - state.x[ego_idx],
-                state.y[opponent_idx] - state.y[ego_idx],
-            ],
-            dtype=np.float32,
-        )
-        distance = float(np.linalg.norm(rel))
+        rel_x = float(state.x[opponent_idx] - state.x[ego_idx])
+        rel_y = float(state.y[opponent_idx] - state.y[ego_idx])
+        distance = math.hypot(rel_x, rel_y)
         if distance <= 1e-6:
             return 0.0, 0.0, 0.0
-        ego_forward = np.asarray(
-            [np.cos(state.heading[ego_idx]), np.sin(state.heading[ego_idx])]
-        )
-        longitudinal = float(np.dot(rel, ego_forward))
-        lateral = float(ego_forward[0] * rel[1] - ego_forward[1] * rel[0])
-        velocities = self._velocity(speed, state.heading)
-        closing = float(
-            np.dot(velocities[ego_idx] - velocities[opponent_idx], rel)
-            / distance
-        )
+        ego_fx = math.cos(float(state.heading[ego_idx]))
+        ego_fy = math.sin(float(state.heading[ego_idx]))
+        longitudinal = rel_x * ego_fx + rel_y * ego_fy
+        lateral = ego_fx * rel_y - ego_fy * rel_x
+        ego_speed = float(speed[ego_idx])
+        opp_speed = float(speed[opponent_idx])
+        ego_vx = ego_speed * ego_fx
+        ego_vy = ego_speed * ego_fy
+        opp_h = float(state.heading[opponent_idx])
+        opp_vx = opp_speed * math.cos(opp_h)
+        opp_vy = opp_speed * math.sin(opp_h)
+        closing = ((ego_vx - opp_vx) * rel_x + (ego_vy - opp_vy) * rel_y) / distance
         bumper_distance = max(
             distance
-            - 0.5 * (state.length[ego_idx] + state.length[opponent_idx]),
+            - 0.5
+            * (
+                float(state.length[ego_idx])
+                + float(state.length[opponent_idx])
+            ),
             0.0,
         )
         if closing <= 1e-6:
-            return np.inf, longitudinal, lateral
+            return math.inf, longitudinal, lateral
         ttc = max(
             bumper_distance - self.config.thresholds.safe_distance_m,
             0.0,
@@ -273,7 +507,7 @@ class AsymmetricRewardEvaluator:
         accel,
     ):
         best_cost = 0.0
-        best_ttc = np.inf
+        best_ttc = math.inf
         hard_brake_event = 0.0
         threshold = self.config.thresholds.ttc_seconds
         for ego_idx in ego_indices:
@@ -288,7 +522,7 @@ class AsymmetricRewardEvaluator:
             )
             if longitudinal <= 0 or abs(lateral) > lateral_limit:
                 continue
-            if np.isfinite(pre_ttc):
+            if math.isfinite(pre_ttc):
                 best_ttc = min(best_ttc, pre_ttc)
             if post_state.valid[ego_idx] and post_state.valid[opponent_idx]:
                 post_ttc, _, _ = self._pair_ttc(
@@ -315,9 +549,9 @@ class AsymmetricRewardEvaluator:
 
     @staticmethod
     def _ttc_risk(ttc, threshold):
-        if not np.isfinite(ttc):
+        if not math.isfinite(ttc):
             return 0.0
-        return float(np.clip((threshold - ttc) / threshold, 0.0, 1.0))
+        return min(max((threshold - ttc) / threshold, 0.0), 1.0)
 
     def _fault_penalty(
         self,
@@ -339,44 +573,34 @@ class AsymmetricRewardEvaluator:
         ):
             return 1.0, 0.0
 
-        velocities = self._velocity(pre_speed, pre_state.heading)
+        ox = float(pre_state.x[opponent_idx])
+        oy = float(pre_state.y[opponent_idx])
+        o_h = float(pre_state.heading[opponent_idx])
+        o_cos = math.cos(o_h)
+        o_sin = math.sin(o_h)
+        o_speed = float(pre_speed[opponent_idx])
+        o_vx = o_speed * o_cos
+        o_vy = o_speed * o_sin
         for ego_idx in ego_indices:
             if not pre_state.valid[ego_idx] or not pre_state.valid[opponent_idx]:
                 continue
-            rel_from_opponent = np.asarray(
-                [
-                    pre_state.x[ego_idx] - pre_state.x[opponent_idx],
-                    pre_state.y[ego_idx] - pre_state.y[opponent_idx],
-                ],
-                dtype=np.float32,
-            )
-            distance = float(np.linalg.norm(rel_from_opponent))
+            rx = float(pre_state.x[ego_idx]) - ox
+            ry = float(pre_state.y[ego_idx]) - oy
+            distance = math.hypot(rx, ry)
             if distance <= 1e-6:
                 continue
-            opponent_forward = np.asarray(
-                [
-                    np.cos(pre_state.heading[opponent_idx]),
-                    np.sin(pre_state.heading[opponent_idx]),
-                ]
-            )
-            longitudinal = float(np.dot(rel_from_opponent, opponent_forward))
-            lateral = float(
-                opponent_forward[0] * rel_from_opponent[1]
-                - opponent_forward[1] * rel_from_opponent[0]
-            )
-            vector_ego_to_opponent = -rel_from_opponent
-            closing = float(
-                np.dot(
-                    velocities[ego_idx] - velocities[opponent_idx],
-                    vector_ego_to_opponent,
-                )
-                / distance
-            )
+            longitudinal = rx * o_cos + ry * o_sin
+            lateral = o_cos * ry - o_sin * rx
+            e_speed = float(pre_speed[ego_idx])
+            e_h = float(pre_state.heading[ego_idx])
+            e_vx = e_speed * math.cos(e_h)
+            e_vy = e_speed * math.sin(e_h)
+            closing = ((e_vx - o_vx) * (-rx) + (e_vy - o_vy) * (-ry)) / distance
             max_contact_distance = (
                 0.5
                 * (
-                    pre_state.length[ego_idx]
-                    + pre_state.length[opponent_idx]
+                    float(pre_state.length[ego_idx])
+                    + float(pre_state.length[opponent_idx])
                 )
                 + self.config.thresholds.safe_distance_m
             )
@@ -384,8 +608,8 @@ class AsymmetricRewardEvaluator:
                 longitudinal < 0
                 and abs(lateral)
                 <= max(
-                    pre_state.width[ego_idx],
-                    pre_state.width[opponent_idx],
+                    float(pre_state.width[ego_idx]),
+                    float(pre_state.width[opponent_idx]),
                 )
                 and closing > 0
                 and distance <= max_contact_distance
@@ -413,29 +637,29 @@ class AsymmetricRewardEvaluator:
         lateral_accel = (
             post_speed[opponent_idx] * heading_delta / self.dt
         )
-        violations = [
-            self._hinge(abs(accel[opponent_idx]), thresholds.max_accel_mps2),
-            self._hinge(
+        violations = (
+            self._hinge(abs(accel[opponent_idx]), thresholds.max_accel_mps2)
+            + self._hinge(
                 abs(lateral_accel),
                 thresholds.max_lateral_accel_mps2,
-            ),
-            self._hinge(abs(jerk[opponent_idx]), thresholds.max_jerk_mps3),
-            self._hinge(
+            )
+            + self._hinge(abs(jerk[opponent_idx]), thresholds.max_jerk_mps3)
+            + self._hinge(
                 abs(steer_rate[opponent_idx]),
                 thresholds.max_steer_rate_radps,
-            ),
-            max(0.0, float(raw_components[opponent_idx, OFFROAD_COMPONENT])),
-            max(0.0, float(raw_components[opponent_idx, REVERSE_COMPONENT])),
-            max(
+            )
+            + max(0.0, float(raw_components[opponent_idx, OFFROAD_COMPONENT]))
+            + max(0.0, float(raw_components[opponent_idx, REVERSE_COMPONENT]))
+            + max(
                 0.0,
                 float(raw_components[opponent_idx, SPEED_LIMIT_COMPONENT]),
-            ),
-        ]
+            )
+        )
         max_cost = (
             self.config.limits.kinematics_penalty_cap
             / max(self.config.weights.kinematics, 1e-6)
         )
-        return float(np.clip(sum(violations), 0.0, max_cost))
+        return min(max(violations, 0.0), max_cost)
 
     @staticmethod
     def _hinge(value, limit):
@@ -443,7 +667,7 @@ class AsymmetricRewardEvaluator:
 
     @staticmethod
     def _wrap_angle(angle):
-        return (float(angle) + np.pi) % (2 * np.pi) - np.pi
+        return (float(angle) + math.pi) % (2.0 * math.pi) - math.pi
 
     @staticmethod
     def _decode_steer(actions, action_type, num_agents):
@@ -457,7 +681,7 @@ class AsymmetricRewardEvaluator:
         indices = actions.reshape(num_agents, -1)[:, 0].astype(np.int64)
         if np.any(indices < 0) or np.any(indices >= 91):
             raise ValueError("classic discrete action indices must be in [0, 90]")
-        return np.linspace(-1.0, 1.0, 13, dtype=np.float32)[indices % 13]
+        return AsymmetricRewardEvaluator._DISCRETE_STEER[indices % 13]
 
     @staticmethod
     def _aggregate_metrics(

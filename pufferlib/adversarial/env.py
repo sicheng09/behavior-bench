@@ -1,5 +1,6 @@
 import numpy as np
 
+from pufferlib.ocean.drive import binding
 from pufferlib.ocean.drive.drive import Drive
 
 from .config import load_adversarial_config
@@ -86,11 +87,89 @@ class AdversarialMixDrive(Drive):
         )
         self._pending_adversarial_metrics = {}
         self._invalid_reward_events = 0
-        self._pre_state = StateFrame.from_mapping(
-            self.get_global_agent_state()
-        )
-        self._pre_observations = self.observations.copy()
+        self._init_state_buffers()
+        self._pre_state = self._capture_state_frame()
+        self._pre_observations = np.empty_like(self.observations)
+        np.copyto(self._pre_observations, self.observations)
         self._check_assignment_thresholds()
+
+    def _init_state_buffers(self):
+        n = self.num_agents
+        self._state_x = np.zeros(n, dtype=np.float32)
+        self._state_y = np.zeros(n, dtype=np.float32)
+        self._state_z = np.zeros(n, dtype=np.float32)
+        self._state_heading = np.zeros(n, dtype=np.float32)
+        self._state_id = np.zeros(n, dtype=np.int32)
+        self._state_length = np.zeros(n, dtype=np.float32)
+        self._state_width = np.zeros(n, dtype=np.float32)
+        self._state_type = np.zeros(n, dtype=np.int32)
+        self._state_valid = np.ones(n, dtype=bool)
+        # Ping-pong copies so pre/post frames never alias.
+        self._pre_x = np.zeros(n, dtype=np.float32)
+        self._pre_y = np.zeros(n, dtype=np.float32)
+        self._pre_heading = np.zeros(n, dtype=np.float32)
+        self._pre_length = np.zeros(n, dtype=np.float32)
+        self._pre_width = np.zeros(n, dtype=np.float32)
+        self._pre_valid = np.ones(n, dtype=bool)
+
+    def _capture_state_frame(self):
+        binding.vec_get_global_agent_state(
+            self.c_envs,
+            self._state_x,
+            self._state_y,
+            self._state_z,
+            self._state_heading,
+            self._state_id,
+            self._state_length,
+            self._state_width,
+            self._state_type,
+        )
+        np.copyto(self._pre_x, self._state_x)
+        np.copyto(self._pre_y, self._state_y)
+        np.copyto(self._pre_heading, self._state_heading)
+        np.copyto(self._pre_length, self._state_length)
+        np.copyto(self._pre_width, self._state_width)
+        self._pre_valid[:] = (
+            np.isfinite(self._pre_x)
+            & np.isfinite(self._pre_y)
+            & (self._pre_x > -9000)
+            & (self._pre_y > -9000)
+        )
+        return StateFrame(
+            x=self._pre_x,
+            y=self._pre_y,
+            heading=self._pre_heading,
+            length=self._pre_length,
+            width=self._pre_width,
+            valid=self._pre_valid,
+        )
+
+    def _capture_post_state_frame(self):
+        binding.vec_get_global_agent_state(
+            self.c_envs,
+            self._state_x,
+            self._state_y,
+            self._state_z,
+            self._state_heading,
+            self._state_id,
+            self._state_length,
+            self._state_width,
+            self._state_type,
+        )
+        self._state_valid[:] = (
+            np.isfinite(self._state_x)
+            & np.isfinite(self._state_y)
+            & (self._state_x > -9000)
+            & (self._state_y > -9000)
+        )
+        return StateFrame(
+            x=self._state_x,
+            y=self._state_y,
+            heading=self._state_heading,
+            length=self._state_length,
+            width=self._state_width,
+            valid=self._state_valid,
+        )
 
     def _check_assignment_thresholds(self):
         import warnings
@@ -117,27 +196,26 @@ class AdversarialMixDrive(Drive):
     def reset(self, seed=0):
         observations, info = super().reset(seed)
         self._adversarial_evaluator.reset(self.num_agents)
-        self._pre_state = StateFrame.from_mapping(
-            self.get_global_agent_state()
-        )
-        self._pre_observations = self.observations.copy()
+        self._pre_state = self._capture_state_frame()
+        np.copyto(self._pre_observations, self.observations)
         return observations, info
 
     def resample_maps(self):
         super().resample_maps()
+        if self.num_agents != len(self._state_x):
+            self._init_state_buffers()
+            self._pre_observations = np.empty_like(self.observations)
         self._assignment_metrics = audit_scene_roles(
             self.agent_offsets, self._role_ids
         )
         self._check_assignment_thresholds()
         self._adversarial_evaluator.reset(self.num_agents)
-        self._pre_state = StateFrame.from_mapping(
-            self.get_global_agent_state()
-        )
-        self._pre_observations = self.observations.copy()
+        self._pre_state = self._capture_state_frame()
+        np.copyto(self._pre_observations, self.observations)
 
-    def _apply_adversarial_rewards(self, actions):
+    def _apply_adversarial_rewards(self, actions, collect_metrics):
         base_rewards = self.rewards.copy()
-        post_state = StateFrame.from_mapping(self.get_global_agent_state())
+        post_state = self._capture_post_state_frame()
         result = self._adversarial_evaluator.evaluate(
             base_rewards=base_rewards,
             pre_state=self._pre_state,
@@ -151,9 +229,11 @@ class AdversarialMixDrive(Drive):
             action_type=(
                 "discrete" if self._action_type_flag == 0 else "continuous"
             ),
+            collect_metrics=collect_metrics,
         )
         self.rewards[:] = result.rewards
-        self._pending_adversarial_metrics = result.metrics
+        if collect_metrics:
+            self._pending_adversarial_metrics = result.metrics
         self._invalid_reward_events += int(
             result.metrics.get("adv/invalid_reward_events", 0)
         )
@@ -164,8 +244,22 @@ class AdversarialMixDrive(Drive):
             raise FloatingPointError(
                 "Adversarial reward exceeded max_invalid_reward_events"
             )
-        self._pre_state = post_state
-        self._pre_observations = self.observations.copy()
+        # Promote post buffers into pre buffers without aliasing.
+        np.copyto(self._pre_x, self._state_x)
+        np.copyto(self._pre_y, self._state_y)
+        np.copyto(self._pre_heading, self._state_heading)
+        np.copyto(self._pre_length, self._state_length)
+        np.copyto(self._pre_width, self._state_width)
+        np.copyto(self._pre_valid, self._state_valid)
+        self._pre_state = StateFrame(
+            x=self._pre_x,
+            y=self._pre_y,
+            heading=self._pre_heading,
+            length=self._pre_length,
+            width=self._pre_width,
+            valid=self._pre_valid,
+        )
+        np.copyto(self._pre_observations, self.observations)
 
     def step(self, actions):
         will_resample = (
@@ -173,11 +267,15 @@ class AdversarialMixDrive(Drive):
             and self.resample_frequency > 0
             and self.tick % self.resample_frequency == 0
         )
+        # Drive.step increments tick on the non-resample path; mirror that
+        # prediction so metrics are collected only on report boundaries.
+        next_tick = self.tick if will_resample else self.tick + 1
+        collect_metrics = next_tick % self.report_interval == 0
         result = super().step(actions)
         if not will_resample:
-            self._apply_adversarial_rewards(actions)
+            self._apply_adversarial_rewards(actions, collect_metrics)
         observations, rewards, terminals, truncations, info = result
-        if self.tick % self.report_interval == 0:
+        if collect_metrics and not will_resample:
             metrics = {
                 **self._assignment_metrics,
                 **self._pending_adversarial_metrics,
