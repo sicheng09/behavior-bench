@@ -85,6 +85,36 @@ def test_config_rejects_positive_cap_above_quarter(tmp_path):
         load_adversarial_config(path)
 
 
+@pytest.mark.parametrize(
+    ("section", "field", "value"),
+    [
+        ("weights", "fault", float("nan")),
+        ("weights", "ego_cost", float("inf")),
+        ("limits", "positive_reward_cap", float("nan")),
+    ],
+)
+def test_config_rejects_non_finite_reward_values(
+    tmp_path, section, field, value
+):
+    path = _write_config(
+        tmp_path,
+        lambda data: data["reward"][section].update({field: value}),
+    )
+    with pytest.raises(ValueError, match="finite"):
+        load_adversarial_config(path)
+
+
+def test_loader_rejects_unknown_strategy(tmp_path):
+    path = _write_config(
+        tmp_path,
+        lambda data: data["roles"]["primary_opponent"].update(
+            {"strategy": "idm"}
+        ),
+    )
+    with pytest.raises(ValueError, match="Unknown or unimplemented"):
+        load_adversarial_config(path)
+
+
 def test_registry_resolves_only_implemented_v1_strategies():
     ego = DEFAULT_STRATEGY_REGISTRY.resolve("ego_drive_recurrent")
     opponent = DEFAULT_STRATEGY_REGISTRY.resolve(
