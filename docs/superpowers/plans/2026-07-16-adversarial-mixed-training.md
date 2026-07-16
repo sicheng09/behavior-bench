@@ -17,8 +17,9 @@
 - Reward output is finite and clipped to `[-1, 1]`; configured non-fault positive reward is capped at `0.25`; `w2 >= 4 * w1`.
 - Unknown or unimplemented opponent strategies fail at startup; they never silently fall back.
 - The first version must not modify `pufferlib/pufferl.py`, `pufferlib/ocean/drive/drive.h`, or `pufferlib/ocean/drive/binding.c`.
+- Do **not** change existing validation metric definitions for Adversary training: leave `pufferlib/evaluation/collision_classifier.py`, `.logs/val` at-fault / PDM semantics, and related eval tests unchanged. Adversary fault logic lives only in `pufferlib/adversarial/reward.py`.
 - Pairwise calculations are restricted to scene slices from `agent_offsets`; never construct a global `num_agents × num_agents` matrix.
-- The repository currently has no Git author identity configured. Do not invent one. Run commit steps only after `git var GIT_AUTHOR_IDENT` succeeds; otherwise leave changes uncommitted and report that exact blocker.
+- Local Git identity is configured (`SichengWang <sichengwang@buaa.edu.cn>`). Run commit steps with that identity; do not invent a different author.
 
 ---
 
@@ -51,6 +52,7 @@
 - `pufferlib/ocean/drive/drive.py`
 - `pufferlib/ocean/drive/drive.h`
 - `pufferlib/ocean/drive/binding.c`
+- `pufferlib/evaluation/collision_classifier.py` and validation at-fault / PDM metric definitions
 
 ---
 

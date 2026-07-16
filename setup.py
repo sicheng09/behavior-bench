@@ -326,6 +326,7 @@ install_requires = [
     "scipy==1.17.0",
     "pillow==11.3.0",
     "msgpack==1.1.2",
+    "PyYAML>=6.0",
     "torch-geometric==2.7.0",
     "torch-cluster==1.6.3",
 ]

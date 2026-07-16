@@ -194,6 +194,52 @@ This is useful for measuring the gap between learned and expert driving behavior
 
 ---
 
+## Adversarial Mixed Training
+
+Train two `Drive + Recurrent` policies in the same global agent population:
+
+```bash
+puffer train puffer_drive_adversarial \
+  --config pufferlib/config/ocean/drive_adversarial.ini
+```
+
+- policy 0 (`ego`) uses the original Drive reward.
+- policy 1 (`primary_opponent`) uses the asymmetric adversarial reward.
+- Existing `mix_ppo` performs global deficit-based policy assignment and owns
+  BPTT routing, optimizers, checkpoints, and per-policy logs.
+- Small scenes may naturally be Ego-only or Opponent-only; inspect
+  `adversarial/assignment/*` metrics rather than forcing per-scene rounding.
+- Validation metrics (`.logs/val` / `collision_classifier` strict PDM at-fault)
+  are unchanged. Adversary fault logic exists only in training reward code.
+
+Override the global ratio without changing code:
+
+```bash
+puffer train puffer_drive_adversarial \
+  --config pufferlib/config/ocean/drive_adversarial.ini \
+  --train.mix-ppo-policy-mix "ego:0.75,primary_opponent:0.25"
+```
+
+The original command remains unchanged:
+
+```bash
+puffer train puffer_drive
+```
+
+### Wrapper SPS note (v1)
+
+Measured with `scripts/bench_adversarial_sps.py` (64 agents, 1k warm + 10k steps, identical discrete settings):
+
+```text
+baseline_sps ≈ 9.8e5
+adversarial_sps ≈ 1.7e5
+overhead ≈ 0.82
+```
+
+The Python asymmetric reward path currently exceeds the 10% overhead target. Profiling shows the dominant cost is scene-local opponent/ego pair evaluation in `pufferlib/adversarial/reward.py`, not `Drive` C step. V1 keeps the non-invasive Python wrapper; further gains need Numba/C telemetry, not changes to validation PDM metrics.
+
+---
+
 ## Tips and Common Workflows
 
 **Start with a small run to verify setup:**
