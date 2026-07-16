@@ -194,6 +194,40 @@ This is useful for measuring the gap between learned and expert driving behavior
 
 ---
 
+## Adversarial Mixed Training
+
+Train two `Drive + Recurrent` policies in the same global agent population:
+
+```bash
+puffer train puffer_drive_adversarial \
+  --config pufferlib/config/ocean/drive_adversarial.ini
+```
+
+- policy 0 (`ego`) uses the original Drive reward.
+- policy 1 (`primary_opponent`) uses the asymmetric adversarial reward.
+- Existing `mix_ppo` performs global deficit-based policy assignment and owns
+  BPTT routing, optimizers, checkpoints, and per-policy logs.
+- Small scenes may naturally be Ego-only or Opponent-only; inspect
+  `adversarial/assignment/*` metrics rather than forcing per-scene rounding.
+- Validation metrics (`.logs/val` / `collision_classifier` strict PDM at-fault)
+  are unchanged. Adversary fault logic exists only in training reward code.
+
+Override the global ratio without changing code:
+
+```bash
+puffer train puffer_drive_adversarial \
+  --config pufferlib/config/ocean/drive_adversarial.ini \
+  --train.mix-ppo-policy-mix "ego:0.75,primary_opponent:0.25"
+```
+
+The original command remains unchanged:
+
+```bash
+puffer train puffer_drive
+```
+
+---
+
 ## Tips and Common Workflows
 
 **Start with a small run to verify setup:**
