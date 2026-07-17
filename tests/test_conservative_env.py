@@ -8,6 +8,7 @@ from pufferlib.conservative.env import (
     audit_scene_roles,
     normalize_role_ids,
 )
+from pufferlib.ocean.drive.drive import Drive
 
 
 def test_normalize_role_ids_tiles_and_rejects_unknown():
@@ -34,14 +35,21 @@ def _drive_init_stub(self, **kwargs):
 
 
 def test_init_pops_conservative_kwargs_sets_attrs_and_registers():
+    captured = {}
+
+    def _capturing_stub(self, **kwargs):
+        captured.update(kwargs)
+        _drive_init_stub(self, **kwargs)
+
     with patch(
         "pufferlib.conservative.env.Drive.__init__",
-        _drive_init_stub,
+        _capturing_stub,
     ):
         env = ConservativeMixDrive(
             partner_mode="action_constraint",
             partner_max_abs_steer=0.333,
         )
+    assert not any(key.startswith("partner_") for key in captured)
     assert env.partner_mode == "action_constraint"
     assert env.partner_max_abs_steer == 0.333
     assert env.conservative_config.partner_mode == "action_constraint"
@@ -70,3 +78,7 @@ def test_init_rejects_wrong_policy_count():
 def test_init_rejects_unknown_partner_mode():
     with pytest.raises(ValueError, match="partner_mode"):
         ConservativeMixDrive(partner_mode="idm")
+
+
+def test_step_inherits_drive_without_override():
+    assert ConservativeMixDrive.step is Drive.step
