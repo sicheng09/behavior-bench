@@ -75,26 +75,36 @@ python -m pytest tests/test_mix_ppo.py tests/test_adversarial_mix_env.py -q
 
 ## 4. 用 git 反做合并（历史回退）
 
-适用于希望提交历史上也去掉本次合并的场景。
+适用于希望提交历史上也去掉本次引入的场景。
 
-### 4.1 合并后尚未 push
+**本次合入记录（fast-forward，无独立 merge commit）：**
+
+| 项 | 值 |
+| --- | --- |
+| 合入前主线 SHA | `5428d1793cc8df50a689bc6407cdec97953696d0` |
+| 合入后 tip（含本说明） | `521129a5c4693a1609a82d6d8f7ecf77998e6409` |
+| 合入方式 | `git merge feature/conservative-mix` → **fast-forward** |
+| 功能提交区间 | `5428d179..521129a5` |
+
+因是 fast-forward，**没有** `git revert -m 1 <merge_commit>` 可用的双亲合并提交；历史回退用下面两种方式之一。
+
+### 4.1 合入后尚未 push（或可改写远程）
 
 ```bash
-# 记下合并前 SHA（合并前可 git rev-parse HEAD）
-git reset --hard <merge前的SHA>
+git reset --hard 5428d1793cc8df50a689bc6407cdec97953696d0
 ```
 
-危险：会丢掉合并之后产生的本地提交。仅在确定没有需保留的后续提交时使用。
+危险：会丢掉该 SHA 之后的本地提交（含本功能全部 commits）。仅在确定没有需保留的后续提交时使用。
 
-### 4.2 合并后已 push（推荐）
+### 4.2 合入后已 push（推荐：逆向提交，不改写历史）
 
 ```bash
-# <merge_commit> 为合并提交；-m 1 表示保留第一父分支（主线）一侧
-git revert -m 1 <merge_commit>
+# 反做整个功能区间（会生成一批或一个反向提交，视 git 版本/策略而定）
+git revert --no-commit 5428d179..521129a5
+git commit -m "revert: remove ConservativeMix (5428d179..521129a5)"
 ```
 
-若之后又有基于该合并的新提交，需按依赖顺序 revert，或改用 §3 的业务回退。
-
+若区间上又叠了无关提交，优先改用 §3 业务回退，避免误伤。
 ### 4.3 仅停用、不删代码
 
 不删文件，只停止使用新 env 即可：继续用 `puffer train puffer_drive`，不要传 `puffer_drive_conservative_mix`。代码留在树里但默认路径不执行。
