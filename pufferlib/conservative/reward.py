@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 import numpy as np
 
@@ -95,9 +96,9 @@ class PartnerShapingEvaluator:
         base_rewards: np.ndarray,
         role_ids: np.ndarray,
         actions: np.ndarray,
-        reward_components_raw: np.ndarray | None = None,
-        lead_gap_m: np.ndarray | None = None,
-        speed_mps: np.ndarray | None = None,
+        reward_components_raw: Optional[np.ndarray] = None,
+        lead_gap_m: Optional[np.ndarray] = None,
+        speed_mps: Optional[np.ndarray] = None,
     ) -> PartnerShapingResult:
         base = np.asarray(base_rewards, dtype=np.float32).reshape(-1)
         roles = np.asarray(role_ids).reshape(-1)

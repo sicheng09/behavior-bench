@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Optional
 
 _VALID_MODES = frozenset(
     {"action_constraint", "reward_shaping", "both", "off"}
@@ -30,7 +31,7 @@ class ConservativePartnerConfig:
     w_steer: float = 0.05
     w_gap: float = 0.10
     warn_mixed_scene_rate_below: float = 0.8
-    fail_mixed_scene_rate_below: float | None = None
+    fail_mixed_scene_rate_below: Optional[float] = None
 
     @property
     def use_action_constraint(self) -> bool:
