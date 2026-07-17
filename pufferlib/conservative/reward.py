@@ -19,6 +19,72 @@ class PartnerShapingResult:
     metrics: dict
 
 
+def compute_lead_gap_and_speed(
+    x,
+    y,
+    heading,
+    length,
+    agent_offsets,
+    *,
+    prev_x=None,
+    prev_y=None,
+    dt=0.1,
+    lateral_m=2.5,
+):
+    """Per-agent same-scene forward bumper gap (m) and speed (m/s).
+
+    Lead = nearest valid vehicle ahead along heading with |lateral| < lateral_m.
+    Gap is bumper-to-bumper (center distance minus half-lengths); no lead → +inf.
+    Speed from finite difference when prev positions are finite; else 0.
+    Scenes are sliced via agent_offsets (no global NxN).
+    """
+    x = np.asarray(x, dtype=np.float64)
+    y = np.asarray(y, dtype=np.float64)
+    heading = np.asarray(heading, dtype=np.float64)
+    length = np.asarray(length, dtype=np.float64)
+    offsets = np.asarray(agent_offsets, dtype=np.int64)
+    n = x.shape[0]
+    lead_gap = np.full(n, np.inf, dtype=np.float32)
+    speed = np.zeros(n, dtype=np.float32)
+
+    if prev_x is not None and prev_y is not None and dt > 0:
+        px = np.asarray(prev_x, dtype=np.float64)
+        py = np.asarray(prev_y, dtype=np.float64)
+        valid_prev = np.isfinite(px) & np.isfinite(py)
+        dx = x - px
+        dy = y - py
+        speed_est = np.sqrt(dx * dx + dy * dy) / float(dt)
+        speed = np.where(valid_prev, speed_est, 0.0).astype(np.float32)
+
+    for start, stop in zip(offsets[:-1], offsets[1:]):
+        idxs = range(int(start), int(stop))
+        for i in idxs:
+            if not (np.isfinite(x[i]) and np.isfinite(y[i])):
+                continue
+            cos_h = np.cos(heading[i])
+            sin_h = np.sin(heading[i])
+            best = np.inf
+            for j in idxs:
+                if j == i:
+                    continue
+                if not (np.isfinite(x[j]) and np.isfinite(y[j])):
+                    continue
+                dx = x[j] - x[i]
+                dy = y[j] - y[i]
+                forward = dx * cos_h + dy * sin_h
+                if forward <= 0:
+                    continue
+                lateral = abs(-dx * sin_h + dy * cos_h)
+                if lateral > lateral_m:
+                    continue
+                bumper = forward - 0.5 * (length[i] + length[j])
+                if bumper < best:
+                    best = bumper
+            if np.isfinite(best):
+                lead_gap[i] = np.float32(max(best, 0.0))
+    return lead_gap, speed
+
+
 class PartnerShapingEvaluator:
     def __init__(self, config: ConservativePartnerConfig):
         self.config = config

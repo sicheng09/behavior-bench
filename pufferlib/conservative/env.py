@@ -6,6 +6,10 @@ from pufferlib.ocean.drive.drive import Drive
 
 from pufferlib.conservative.config import parse_conservative_config
 from pufferlib.conservative.policy import register_conservative_policies
+from pufferlib.conservative.reward import (
+    PartnerShapingEvaluator,
+    compute_lead_gap_and_speed,
+)
 
 EGO = 0
 PARTNER = 1
@@ -22,6 +26,10 @@ _CONSERVATIVE_KEYS = {
     "warn_mixed_scene_rate_below",
     "fail_mixed_scene_rate_below",
 }
+
+# Drive control timestep (seconds); used for finite-difference speed.
+_DT_S = 0.1
+_LATERAL_LANE_M = 2.5
 
 
 def normalize_role_ids(policy_log_ids, num_agents):
@@ -101,7 +109,31 @@ class ConservativeMixDrive(Drive):
         self._assignment_metrics = audit_scene_roles(
             self.agent_offsets, self._role_ids
         )
+        self._partner_shaping_evaluator = None
+        self._pending_shaping_metrics = {}
+        self._gap_x = self._gap_y = None
+        self._gap_heading = self._gap_length = None
+        self._gap_z = self._gap_id = self._gap_width = self._gap_type = None
+        self._prev_x = self._prev_y = None
+        if self.conservative_config.use_reward_shaping:
+            self._partner_shaping_evaluator = PartnerShapingEvaluator(
+                self.conservative_config
+            )
+            self._init_gap_state_buffers()
         self._check_assignment_thresholds()
+
+    def _init_gap_state_buffers(self):
+        n = self.num_agents
+        self._gap_x = np.zeros(n, dtype=np.float32)
+        self._gap_y = np.zeros(n, dtype=np.float32)
+        self._gap_z = np.zeros(n, dtype=np.float32)
+        self._gap_heading = np.zeros(n, dtype=np.float32)
+        self._gap_id = np.zeros(n, dtype=np.int32)
+        self._gap_length = np.zeros(n, dtype=np.float32)
+        self._gap_width = np.zeros(n, dtype=np.float32)
+        self._gap_type = np.zeros(n, dtype=np.int32)
+        self._prev_x = np.full(n, np.nan, dtype=np.float32)
+        self._prev_y = np.full(n, np.nan, dtype=np.float32)
 
     def _check_assignment_thresholds(self):
         mixed_rate = self._assignment_metrics["assignment/mixed_scene_rate"]
@@ -125,5 +157,88 @@ class ConservativeMixDrive(Drive):
             self.agent_offsets, self._role_ids
         )
         self._check_assignment_thresholds()
+        if self._partner_shaping_evaluator is not None:
+            if self.num_agents != len(self._gap_x):
+                self._init_gap_state_buffers()
+            else:
+                self._prev_x.fill(np.nan)
+                self._prev_y.fill(np.nan)
 
-    # Phase A: no reward override — inherit Drive.step
+    def _lead_gap_and_speed(self):
+        """Same-scene forward lead gap + finite-diff speed; None if unavailable."""
+        if self._gap_x is None or not hasattr(self, "c_envs"):
+            return None, None
+        try:
+            from pufferlib.ocean.drive import binding
+
+            binding.vec_get_global_agent_state(
+                self.c_envs,
+                self._gap_x,
+                self._gap_y,
+                self._gap_z,
+                self._gap_heading,
+                self._gap_id,
+                self._gap_length,
+                self._gap_width,
+                self._gap_type,
+            )
+        except Exception:
+            return None, None
+        lead_gap_m, speed_mps = compute_lead_gap_and_speed(
+            self._gap_x,
+            self._gap_y,
+            self._gap_heading,
+            self._gap_length,
+            self.agent_offsets,
+            prev_x=self._prev_x,
+            prev_y=self._prev_y,
+            dt=_DT_S,
+            lateral_m=_LATERAL_LANE_M,
+        )
+        np.copyto(self._prev_x, self._gap_x)
+        np.copyto(self._prev_y, self._gap_y)
+        return lead_gap_m, speed_mps
+
+    def _apply_partner_shaping(self, actions, collect_metrics):
+        lead_gap_m, speed_mps = self._lead_gap_and_speed()
+        result = self._partner_shaping_evaluator.evaluate(
+            base_rewards=self.rewards,
+            role_ids=self._role_ids,
+            actions=actions,
+            reward_components_raw=self.reward_components_raw,
+            lead_gap_m=lead_gap_m,
+            speed_mps=speed_mps,
+        )
+        self.rewards[:] = result.rewards
+        if collect_metrics:
+            self._pending_shaping_metrics = result.metrics
+
+    def step(self, actions):
+        will_resample = (
+            self.tick > 0
+            and self.resample_frequency > 0
+            and self.tick % self.resample_frequency == 0
+        )
+        # Drive.step increments tick on the non-resample path; mirror that
+        # prediction so metrics are collected only on report boundaries.
+        next_tick = self.tick if will_resample else self.tick + 1
+        collect_metrics = next_tick % self.report_interval == 0
+        result = super().step(actions)
+        if (
+            not will_resample
+            and self.conservative_config.use_reward_shaping
+            and self._partner_shaping_evaluator is not None
+        ):
+            self._apply_partner_shaping(actions, collect_metrics)
+        observations, rewards, terminals, truncations, info = result
+        if (
+            collect_metrics
+            and not will_resample
+            and self.conservative_config.use_reward_shaping
+        ):
+            metrics = {
+                **self._assignment_metrics,
+                **self._pending_shaping_metrics,
+            }
+            info.append({"conservative": metrics})
+        return observations, rewards, terminals, truncations, info
