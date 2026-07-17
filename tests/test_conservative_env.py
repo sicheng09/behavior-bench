@@ -3,6 +3,9 @@ from unittest.mock import patch
 import numpy as np
 import pytest
 
+from pufferlib.ocean.environment import MAKE_FUNCTIONS
+from pufferlib.pufferl import load_config
+
 from pufferlib.conservative.env import (
     ConservativeMixDrive,
     audit_scene_roles,
@@ -82,3 +85,16 @@ def test_init_rejects_unknown_partner_mode():
 
 def test_step_inherits_drive_without_override():
     assert ConservativeMixDrive.step is Drive.step
+
+
+def test_conservative_mix_registered_lazily():
+    assert "drive_conservative_mix" in MAKE_FUNCTIONS
+
+
+@patch("sys.argv", ["pufferl.py"])
+def test_load_conservative_mix_ini():
+    args = load_config("puffer_drive_conservative_mix")
+    assert args["env_name"] == "puffer_drive_conservative_mix"
+    assert args["train"]["mix_ppo"] in (True, "True", "true", 1, "1")
+    assert "DriveSteerConstrained" in args["train"]["mix_ppo_policy_names"]
+    assert float(args["env"].get("idm_fraction", 0)) == 0.0

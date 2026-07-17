@@ -184,6 +184,9 @@ MAKE_FUNCTIONS = {
     "drive_adversarial": lazy_import(
         "pufferlib.adversarial.env", "AdversarialMixDrive"
     ),
+    "drive_conservative_mix": lazy_import(
+        "pufferlib.conservative.env", "ConservativeMixDrive"
+    ),
     "spaces": make_spaces,
     "multiagent": make_multiagent,
 }
