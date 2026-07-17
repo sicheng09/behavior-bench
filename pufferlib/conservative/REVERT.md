@@ -82,9 +82,9 @@ python -m pytest tests/test_mix_ppo.py tests/test_adversarial_mix_env.py -q
 | 项 | 值 |
 | --- | --- |
 | 合入前主线 SHA | `5428d1793cc8df50a689bc6407cdec97953696d0` |
-| 合入后 tip（含本说明） | `521129a5c4693a1609a82d6d8f7ecf77998e6409` |
+| 合入后 tip（含本说明） | 见 `git log -1 --oneline`；首次合入 tip 为 `521129a5`，随后 REVERT 补记为 `41043ccc` |
 | 合入方式 | `git merge feature/conservative-mix` → **fast-forward** |
-| 功能提交区间 | `5428d179..521129a5` |
+| 功能提交区间 | `5428d179..41043ccc`（含 REVERT 文档） |
 
 因是 fast-forward，**没有** `git revert -m 1 <merge_commit>` 可用的双亲合并提交；历史回退用下面两种方式之一。
 
@@ -100,8 +100,8 @@ git reset --hard 5428d1793cc8df50a689bc6407cdec97953696d0
 
 ```bash
 # 反做整个功能区间（会生成一批或一个反向提交，视 git 版本/策略而定）
-git revert --no-commit 5428d179..521129a5
-git commit -m "revert: remove ConservativeMix (5428d179..521129a5)"
+git revert --no-commit 5428d179..41043ccc
+git commit -m "revert: remove ConservativeMix (5428d179..41043ccc)"
 ```
 
 若区间上又叠了无关提交，优先改用 §3 业务回退，避免误伤。
