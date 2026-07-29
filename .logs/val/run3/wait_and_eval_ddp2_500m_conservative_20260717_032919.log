@@ -1,0 +1,15 @@
+[2026-07-17 03:29:19] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_and_eval_ddp2_500m_conservative_20260717_032919.log
+[2026-07-17 03:29:19] Tag: ddp2_500m_conservative
+[2026-07-17 03:29:19] Train session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:29:19] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_ebpobmog
+[2026-07-17 03:29:19] Eval: ego policy0 vs IDM on pufferinter -> /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3/p0_ego_Drive_Recurrent
+[2026-07-17 03:29:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:30:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:31:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:32:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:33:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:34:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:35:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:36:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:37:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12
+[2026-07-17 03:38:19] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-conservative-gpu12

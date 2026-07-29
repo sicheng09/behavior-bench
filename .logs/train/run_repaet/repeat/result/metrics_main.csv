@@ -1,0 +1,28 @@
+experiment,traffic,phase,wandb,goal_pct,collision_pct,at_fault_pct,offroad_pct,reward
+H0 run4_r2,IDM,H0,u9ymfcqr,81.6600,5.7700,4.5800,0.8500,-0.675500
+DriveLite A strat,IDM,1st,r0jht7bf,82.6800,2.7200,1.7000,1.0200,-0.501700
+DriveLite A strat,IDM,2nd,bly4mcn2,83.3600,2.8900,1.8700,1.1900,-0.574400
+DriveLite B strat,IDM,1st,qgytyxt4,81.1500,5.0900,4.0700,1.7000,-0.692900
+DriveLite B strat,IDM,2nd,jy3p9j4h,81.1500,4.4100,3.7400,1.5300,-0.655800
+Perception strat,IDM,1st,yov2516v,81.1500,2.7200,2.3800,1.5300,-0.542000
+Perception strat,IDM,2nd,q2lm8afu,80.8100,3.2300,2.5500,0.8500,-0.565100
+MIXMOE strat,IDM,1st,o4trtoxc,80.9800,5.9400,4.9200,1.1900,-0.721500
+MIXMOE strat,IDM,2nd,0eyyzzwx,83.1900,4.9200,4.4100,0.5100,-0.610700
+H0 run4_r2,Expert,H0,u9ymfcqr,71.3100,16.8100,15.2800,0.6800,-0.816500
+DriveLite A strat,Expert,1st,r0jht7bf,73.8500,14.4300,13.4100,1.0200,-0.701000
+DriveLite A strat,Expert,2nd,bly4mcn2,74.0200,13.4100,12.5600,1.0200,-0.773000
+DriveLite B strat,Expert,1st,qgytyxt4,72.5000,14.0900,12.2200,1.8700,-0.793700
+DriveLite B strat,Expert,2nd,jy3p9j4h,74.0200,13.7500,12.7300,1.0200,-0.777500
+Perception strat,Expert,1st,yov2516v,71.6500,15.6200,13.5800,0.6800,-0.707100
+Perception strat,Expert,2nd,q2lm8afu,71.1400,16.3000,14.0900,0.6800,-0.809200
+MIXMOE strat,Expert,1st,o4trtoxc,71.9900,16.8100,14.7700,1.3600,-0.898500
+MIXMOE strat,Expert,2nd,0eyyzzwx,70.9700,15.1100,13.5800,0.6800,-0.809000
+H0 run4_r2,Smart,H0,u9ymfcqr,80.4800,6.7900,4.9200,0.8500,-0.741100
+DriveLite A strat,Smart,1st,r0jht7bf,84.2100,2.8900,2.2100,0.6800,-0.596500
+DriveLite A strat,Smart,2nd,bly4mcn2,83.5300,3.4000,2.7200,0.6800,-0.685500
+DriveLite B strat,Smart,1st,qgytyxt4,80.4800,5.0900,4.5800,2.5500,-0.759800
+DriveLite B strat,Smart,2nd,jy3p9j4h,82.1700,3.4000,2.3800,1.8700,-0.742000
+Perception strat,Smart,1st,yov2516v,81.3200,4.0700,2.5500,1.1900,-0.636900
+Perception strat,Smart,2nd,q2lm8afu,81.3200,4.4100,3.2300,1.5300,-0.700000
+MIXMOE strat,Smart,1st,o4trtoxc,82.5100,4.2400,3.5700,1.7000,-0.756900
+MIXMOE strat,Smart,2nd,0eyyzzwx,81.8300,5.4300,4.4100,0.8500,-0.723900

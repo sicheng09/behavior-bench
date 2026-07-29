@@ -52,6 +52,11 @@ from pufferlib.policy_mix import (
     group_policy_losses,
     parse_policy_mix,
 )
+from pufferlib.policy_sampling import (
+    build_policy_segment_pools,
+    parse_stratified_policy_specs,
+    resolve_policy_update_steps,
+)
 
 try:
     from pufferlib import _C
@@ -253,6 +258,26 @@ class PuffeRL:
             len(self.policies),
             default=True,
         )
+        self.mix_ppo_sampling = str(
+            config.get("mix_ppo_sampling", "shared")
+        ).strip().lower()
+        if self.mix_ppo_sampling not in ("shared", "stratified"):
+            raise pufferlib.APIUsageError(
+                "mix_ppo_sampling must be 'shared' or 'stratified'"
+            )
+        if self.mix_ppo_sampling == "stratified" and not self.mix_ppo:
+            raise pufferlib.APIUsageError(
+                "mix_ppo_sampling=stratified requires mix_ppo=True"
+            )
+        self.stratified_policy_specs = None
+        self.stratified_last_stats = {}
+        if self.mix_ppo_sampling == "stratified":
+            self.stratified_policy_specs = parse_stratified_policy_specs(
+                config,
+                len(self.policies),
+                config["bptt_horizon"],
+                self.policy_trainable,
+            )
 
         # LSTM
         if config["use_rnn"]:
@@ -946,8 +971,330 @@ class PuffeRL:
         logs.update(extra_logs)
         return loss, logs, newvalue, last_newvalue, ratio
 
+    def _assert_stratified_ddp_values_match(self, values, *, label):
+        """Fail collectively before DDP work if rank-local schedules diverge."""
+        if not torch.distributed.is_initialized():
+            return
+
+        world_size = torch.distributed.get_world_size()
+        if world_size <= 1:
+            return
+
+        local = torch.as_tensor(
+            values,
+            dtype=torch.int64,
+            device=self.segment_policy_ids.device,
+        )
+        gathered = [torch.empty_like(local) for _ in range(world_size)]
+        torch.distributed.all_gather(gathered, local)
+        rank_values = [rank_value.cpu().tolist() for rank_value in gathered]
+        if any(value != rank_values[0] for value in rank_values[1:]):
+            raise pufferlib.APIUsageError(
+                "stratified mix_ppo DDP requires identical "
+                f"{label} on every rank; got {rank_values}"
+            )
+
+    def _train_mix_ppo_stratified(self):
+        """Train each mixed policy from its own logical pool in shared storage."""
+        profile = self.profile
+        epoch = self.epoch
+        profile("train", epoch)
+        losses = defaultdict(float)
+        config = self.config
+        device = config["device"]
+        horizon = config["bptt_horizon"]
+
+        pools = build_policy_segment_pools(
+            self.segment_policy_ids, len(self.policies)
+        )
+        self._assert_stratified_ddp_values_match(
+            [int(pool.numel()) for pool in pools],
+            label="per-policy rollout pool sizes",
+        )
+        self._assert_stratified_ddp_values_match(
+            [spec.minibatch_size for spec in self.stratified_policy_specs]
+            + [
+                -1 if spec.update_steps is None else spec.update_steps
+                for spec in self.stratified_policy_specs
+            ]
+            + [int(trainable) for trainable in self.policy_trainable],
+            label="per-policy minibatch, configured update, and trainable settings",
+        )
+        update_steps = resolve_policy_update_steps(
+            self.stratified_policy_specs,
+            pools,
+            horizon=horizon,
+            update_epochs=config["update_epochs"],
+            trainable=self.policy_trainable,
+        )
+        self._assert_stratified_ddp_values_match(
+            update_steps,
+            label="resolved per-policy optimizer step counts",
+        )
+        max_updates = max(update_steps, default=0)
+        if max_updates <= 0:
+            raise pufferlib.APIUsageError(
+                "stratified mix_ppo has no trainable policy updates"
+            )
+
+        b0 = config["prio_beta0"]
+        a = config["prio_alpha"]
+        anneal_beta = b0 + (1 - b0) * a * self.epoch / self.total_epochs
+        self.ratio[:] = 1
+        selected_counts = [0] * len(self.policies)
+        optimizer_steps = [0] * len(self.policies)
+        unique_selected = [
+            torch.zeros(self.segments, dtype=torch.bool, device=device)
+            for _ in self.policies
+        ]
+        priority_mass = [0.0] * len(self.policies)
+        advantages = torch.zeros_like(self.terminals)
+
+        for update_idx in range(max_updates):
+            profile("train_misc", epoch, nest=True)
+            shape = self.truncations.shape
+            advantages = torch.zeros(shape, device=device)
+            adv_terminal = torch.empty(
+                (self.terminals.shape[0], self.terminals.shape[1] + 1),
+                device=device,
+            )
+            adv_terminal[:, :-1] = self.terminals
+            adv_terminal[:, -1] = self.terminals[:, -1]
+            advantages = compute_puff_advantage(
+                self.values,
+                self.rewards,
+                adv_terminal,
+                self.truncations,
+                self.ratio,
+                advantages,
+                config["gamma"],
+                config["gae_lambda"],
+                config["vtrace_rho_clip"],
+                config["vtrace_c_clip"],
+            )
+
+            terminals = self.terminals.bool()
+            terminals_shifted = torch.cat(
+                [torch.zeros_like(terminals[:, :1]), terminals[:, :-1]], dim=1
+            )
+            invalid_mask = terminals & terminals_shifted
+            invalid_observations = self.observations[:, -1, 0] == -1000
+            invalid_mask[:, -1] = invalid_mask[:, -1] | invalid_observations
+            invalid_mask = invalid_mask | self.truncations.bool()
+
+            if self._adv_filter_enabled and update_idx == 0:
+                with torch.no_grad():
+                    valid_adv_abs = advantages.abs() * (~invalid_mask).float()
+                    a_max = valid_adv_abs.max().item()
+                    if not self._ewma_initialized:
+                        self._ewma_a_max = a_max
+                        self._ewma_initialized = True
+                    else:
+                        self._ewma_a_max = (
+                            self._adv_filter_beta * a_max
+                            + (1.0 - self._adv_filter_beta) * self._ewma_a_max
+                        )
+                    threshold = self._adv_filter_threshold * self._ewma_a_max
+                    self._adv_filter_mask = (
+                        advantages.abs() >= threshold
+                    ) & ~invalid_mask
+                    self._adv_filter_retention = (
+                        self._adv_filter_mask.float().mean().item()
+                    )
+                    self._adv_filter_threshold_value = threshold
+
+            masked_advantages = advantages * ~invalid_mask
+            if self._adv_filter_enabled and self._adv_filter_mask is not None:
+                masked_advantages = (
+                    masked_advantages * self._adv_filter_mask.float()
+                )
+
+            for policy_idx, policy in enumerate(self.policies):
+                if update_idx >= update_steps[policy_idx]:
+                    continue
+                if not self.policy_trainable[policy_idx]:
+                    continue
+
+                pool = pools[policy_idx]
+                spec = self.stratified_policy_specs[policy_idx]
+                minibatch_segments = spec.minibatch_size // horizon
+                if self._adv_filter_enabled:
+                    local_probs = torch.full(
+                        (pool.numel(),),
+                        1.0 / pool.numel(),
+                        device=device,
+                    )
+                    local_choice = torch.multinomial(
+                        local_probs, minibatch_segments
+                    )
+                    mb_prio = torch.ones(
+                        minibatch_segments, 1, device=device
+                    )
+                else:
+                    pool_adv = masked_advantages[pool].abs().sum(axis=1)
+                    pool_valid_steps = (~invalid_mask[pool]).sum(axis=1) + 1e-6
+                    pool_adv_avg = pool_adv / pool_valid_steps
+                    local_weights = torch.nan_to_num(
+                        pool_adv_avg**a, 0, 0, 0
+                    )
+                    local_probs = (local_weights + 1e-6) / (
+                        local_weights.sum() + 1e-6
+                    )
+                    local_choice = torch.multinomial(
+                        local_probs, minibatch_segments
+                    )
+                    mb_prio = (
+                        pool.numel() * local_probs[local_choice, None]
+                    ) ** -anneal_beta
+
+                idx = pool[local_choice]
+                mb_filter_mask = (
+                    self._adv_filter_mask[idx]
+                    if self._adv_filter_enabled
+                    and self._adv_filter_mask is not None
+                    else None
+                )
+                mb_obs = self.observations[idx]
+                mb_actions = self.actions[idx]
+                mb_logprobs = self.logprobs[idx]
+                mb_rewards = self.rewards[idx]
+                mb_terminals = self.terminals[idx]
+                mb_truncations = self.truncations[idx]
+                mb_ratio = self.ratio[idx]
+                mb_values = self.values[idx]
+                mb_returns = advantages[idx] + mb_values[:, :-1]
+                mb_advantages = advantages[idx]
+
+                with self.amp_context:
+                    loss, policy_logs, newvalue, last_newvalue, ratio = (
+                        self._compute_ppo_minibatch_loss(
+                            policy,
+                            self.uncompiled_policies[policy_idx],
+                            mb_obs,
+                            mb_actions,
+                            mb_logprobs,
+                            mb_rewards,
+                            mb_terminals,
+                            mb_truncations,
+                            mb_ratio,
+                            mb_values,
+                            mb_returns,
+                            mb_advantages,
+                            mb_prio,
+                            mb_filter_mask,
+                            self.policy_uses_rnn[policy_idx],
+                        )
+                    )
+
+                self.ratio[idx] = ratio.detach()
+                self.values[idx, :-1] = newvalue.detach().float()
+                self.values[idx, -1:] = last_newvalue.detach().float()
+
+                optimizer = self.optimizers[policy_idx]
+                optimizer.zero_grad()
+                loss.backward()
+                torch.nn.utils.clip_grad_norm_(
+                    self.policies[policy_idx].parameters(),
+                    config["max_grad_norm"],
+                )
+                optimizer.step()
+
+                optimizer_steps[policy_idx] += 1
+                selected_counts[policy_idx] += int(idx.numel()) * horizon
+                unique_selected[policy_idx][idx] = True
+                priority_mass[policy_idx] += float(
+                    local_probs[local_choice].sum().item()
+                )
+                for key, value in policy_logs.items():
+                    value = value.item() if hasattr(value, "item") else float(value)
+                    losses[f"policy_{policy_idx}/{key}"] += (
+                        value / update_steps[policy_idx]
+                    )
+
+        self.stratified_last_stats = {}
+        for policy_idx, pool in enumerate(pools):
+            pool_transitions = int(pool.numel()) * horizon
+            unique_segments = int(unique_selected[policy_idx].sum().item())
+            steps = optimizer_steps[policy_idx]
+            stats = {
+                "rollout_samples": pool_transitions,
+                "minibatch_size": self.stratified_policy_specs[
+                    policy_idx
+                ].minibatch_size,
+                "optimizer_steps": steps,
+                "sampled_transitions": selected_counts[policy_idx],
+                "unique_segments": unique_segments,
+                "sample_reuse_ratio": (
+                    selected_counts[policy_idx] / pool_transitions
+                    if pool_transitions
+                    else 0.0
+                ),
+                "sampled_priority_mass_mean": (
+                    priority_mass[policy_idx] / steps if steps else 0.0
+                ),
+            }
+            self.stratified_last_stats[policy_idx] = stats
+            for key, value in stats.items():
+                losses[f"policy_{policy_idx}/stratified_{key}"] = value
+
+        profile("train_misc", epoch)
+        if config["anneal_lr"]:
+            for scheduler in self.schedulers:
+                if scheduler is not None:
+                    scheduler.step()
+
+        y_pred = self.values[:, :-1].flatten()
+        y_true = advantages.flatten() + self.values[:, :-1].flatten()
+        var_y = y_true.var()
+        explained_var = (
+            torch.nan
+            if var_y == 0
+            else 1 - (y_true - y_pred).var() / var_y
+        )
+        losses["explained_variance"] = explained_var.item()
+
+        profile.end()
+        logs = None
+        self.epoch += 1
+        done_training = self.global_step >= config["total_timesteps"]
+        if (
+            done_training
+            or self.global_step == 0
+            or time.time() > self.last_log_time + 0.25
+        ):
+            self.losses = losses
+            logs = self.mean_and_log()
+            self.print_dashboard()
+            self.stats = defaultdict(list)
+            self.last_log_time = time.time()
+            self.last_log_step = self.global_step
+            profile.clear()
+
+        if self.epoch % config["checkpoint_interval"] == 0 or done_training:
+            self.save_checkpoint()
+            self.msg = f"Checkpoint saved at update {self.epoch}"
+
+        if self.config["eval"]["wosac_realism_eval"] and (
+            self.epoch % self.config["eval"]["eval_interval"] == 0
+            or done_training
+        ):
+            pufferlib.utils.run_wosac_eval_in_subprocess(
+                self.config, self.logger, self.global_step
+            )
+
+        if self.config["eval"]["human_replay_eval"] and (
+            self.epoch % self.config["eval"]["eval_interval"] == 0
+            or done_training
+        ):
+            pufferlib.utils.run_human_replay_eval_in_subprocess(
+                self.config, self.logger, self.global_step
+            )
+        return logs
+
     @record
     def train(self):
+        if self.mix_ppo_sampling == "stratified":
+            return self._train_mix_ppo_stratified()
         profile = self.profile
         epoch = self.epoch
         profile("train", epoch)

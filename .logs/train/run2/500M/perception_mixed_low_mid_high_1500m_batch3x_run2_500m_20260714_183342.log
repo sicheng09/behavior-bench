@@ -1,0 +1,9 @@
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from /home/fanyuqi/.netrc.
+wandb: Currently logged in as: sichengwang (sichengwang-beihang-university) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run a4do2gws
+wandb: Tracking run with wandb version 0.28.0
+wandb: Run data is saved locally in /home/fanyuqi/wsc/behavior-bench/wandb/run-20260714_183348-a4do2gws
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run perception_mixed_low_mid_high_1500m_batch3x_run2_500m
+wandb: ⭐️ View project at https://wandb.ai/sichengwang-beihang-university/behavior-bench
+wandb: 🚀 View run at https://wandb.ai/sichengwang-beihang-university/behavior-bench/runs/a4do2gws

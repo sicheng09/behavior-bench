@@ -1,0 +1,119 @@
+[2026-07-17 03:35:35] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_all_and_analyze_20260717_033535.log
+[2026-07-17 03:35:35] Waiting for train auto-eval watchers + in-flight 4B eval to produce summaries.
+[2026-07-17 03:35:35] OK baseline present: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_run3/p0_ego_Drive_Recurrent
+[2026-07-17 03:35:35] OK baseline present: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_weak_goal_run3/p0_ego_Drive_Recurrent
+[2026-07-17 03:35:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:37:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:39:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:41:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:43:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:45:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:47:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:49:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:51:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:53:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:55:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:57:35] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 03:59:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 04:01:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 04:03:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 04:05:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 04:07:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=3 waiters=3 eval_tmux=1
+[2026-07-17 04:09:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=1 waiters=3 eval_tmux=1
+[2026-07-17 04:11:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=1 waiters=1 eval_tmux=3
+[2026-07-17 04:14:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=1 waiters=1 eval_tmux=3
+[2026-07-17 04:17:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=1 waiters=1 eval_tmux=3
+[2026-07-17 04:20:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=4
+[2026-07-17 04:24:06] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=4
+[2026-07-17 04:27:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=4
+[2026-07-17 04:31:06] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 04:34:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 04:38:06] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 04:41:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 04:45:06] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 04:48:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 04:52:06] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 04:55:36] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 04:59:07] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3 adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=3
+[2026-07-17 05:02:37] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=1
+[2026-07-17 05:05:07] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=1
+[2026-07-17 05:07:37] Pending summaries: adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3 | trains=0 waiters=0 eval_tmux=1
+[2026-07-17 05:10:07] All required summaries found. Running analysis.
+# Run3 adversarial vs homogeneous (ego vs IDM, pufferinter)
+
+metric                             homo_500madv_500m_baselineadv_500m_weak_goaladv_500m_low_ego_costadv_500m_high_normalityadv_500m_conservative  adv_4b_default
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+goal_reached_rate                     81.32%          79.46%          77.59%          77.25%          76.74%          73.68%          79.12%
+collision_rate                         5.94%           4.92%           6.79%           8.49%           5.26%           9.85%           5.94%
+at_fault_collision_rate                3.23%           4.07%           6.45%           7.47%           4.41%           9.34%           5.26%
+offroad_rate                           1.36%           2.38%           2.21%           2.38%           1.87%           3.40%           1.87%
+total_reward                          -0.724          -0.628          -0.816          -0.807          -0.627          -0.824          -0.652
+
+## Delta vs homo_500m
+metric                      adv_500m_baselineadv_500m_weak_goaladv_500m_low_ego_costadv_500m_high_normalityadv_500m_conservative  adv_4b_default
+goal_reached_rate                    -1.86pp         -3.73pp         -4.07pp         -4.58pp         -7.64pp         -2.20pp
+collision_rate                       -1.02pp         +0.85pp         +2.55pp         -0.68pp         +3.91pp         +0.00pp
+at_fault_collision_rate              +0.84pp         +3.22pp         +4.24pp         +1.18pp         +6.11pp         +2.03pp
+offroad_rate                         +1.02pp         +0.85pp         +1.02pp         +0.51pp         +2.04pp         +0.51pp
+total_reward                          +0.097          -0.092          -0.083          +0.098          -0.100          +0.073
+
+## Collision type distributions
+### homo_500m  (/home/fanyuqi/wsc/behavior-bench/.logs/val/run1/results/500M/homogeneous_drive_lstm_500m_batch1x_run1/Drive_Recurrent/20260714_150238_c150a5)
+  n_colliding_maps=35  at_fault=19/35 (54%)
+    ACTIVE_LATERAL_COLLISION        18  at_fault=5/18
+    ACTIVE_FRONT_COLLISION          12  at_fault=12/12
+    ACTIVE_REAR_COLLISION            3  at_fault=1/3
+    STOPPED_TRACK_COLLISION          1  at_fault=1/1
+    STOPPED_EGO_COLLISION            1  at_fault=0/1
+
+### adv_500m_baseline  (/home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_run3/p0_ego_Drive_Recurrent/20260717_012514_e7de5d)
+  n_colliding_maps=29  at_fault=24/29 (83%)
+    ACTIVE_FRONT_COLLISION          17  at_fault=17/17
+    ACTIVE_LATERAL_COLLISION        11  at_fault=7/11
+    STOPPED_EGO_COLLISION            1  at_fault=0/1
+
+### adv_500m_weak_goal  (/home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_weak_goal_run3/p0_ego_Drive_Recurrent/20260717_012716_1f30ed)
+  n_colliding_maps=40  at_fault=38/40 (95%)
+    ACTIVE_FRONT_COLLISION          31  at_fault=31/31
+    ACTIVE_LATERAL_COLLISION         7  at_fault=6/7
+    STOPPED_EGO_COLLISION            1  at_fault=0/1
+    STOPPED_TRACK_COLLISION          1  at_fault=1/1
+
+### adv_500m_low_ego_cost  (/home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3/p0_ego_Drive_Recurrent/20260717_041022_0c8d13)
+  n_colliding_maps=50  at_fault=44/50 (88%)
+    ACTIVE_FRONT_COLLISION          34  at_fault=34/34
+    ACTIVE_LATERAL_COLLISION        14  at_fault=9/14
+    STOPPED_TRACK_COLLISION          1  at_fault=1/1
+    STOPPED_EGO_COLLISION            1  at_fault=0/1
+
+### adv_500m_high_normality  (/home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_high_normality_run3/p0_ego_Drive_Recurrent/20260717_041022_00bfa3)
+  n_colliding_maps=31  at_fault=26/31 (84%)
+    ACTIVE_FRONT_COLLISION          20  at_fault=20/20
+    ACTIVE_LATERAL_COLLISION         7  at_fault=4/7
+    STOPPED_TRACK_COLLISION          2  at_fault=2/2
+    ACTIVE_REAR_COLLISION            1  at_fault=0/1
+    STOPPED_EGO_COLLISION            1  at_fault=0/1
+
+### adv_500m_conservative  (/home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_conservative_run3/p0_ego_Drive_Recurrent/20260717_042021_2db8ee)
+  n_colliding_maps=58  at_fault=55/58 (95%)
+    ACTIVE_FRONT_COLLISION          42  at_fault=42/42
+    ACTIVE_LATERAL_COLLISION        14  at_fault=12/14
+    STOPPED_EGO_COLLISION            1  at_fault=0/1
+    STOPPED_TRACK_COLLISION          1  at_fault=1/1
+
+### adv_4b_default  (/home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_batch2x_4b_run3/p0_ego_Drive_Recurrent/20260717_033332_c57f63)
+  n_colliding_maps=35  at_fault=31/35 (89%)
+    ACTIVE_FRONT_COLLISION          25  at_fault=25/25
+    ACTIVE_LATERAL_COLLISION         8  at_fault=5/8
+    STOPPED_TRACK_COLLISION          1  at_fault=1/1
+    STOPPED_EGO_COLLISION            1  at_fault=0/1
+
+## Verdict notes
+- adv_500m_baseline: MIXED | better=['coll~ok'] worse=['goal-1.9pp', 'fault+0.8pp']
+- adv_500m_weak_goal: WORSE | better=['—'] worse=['goal-3.7pp', 'fault+3.2pp', 'coll+0.9pp']
+- adv_500m_low_ego_cost: WORSE | better=['—'] worse=['goal-4.1pp', 'fault+4.2pp', 'coll+2.6pp']
+- adv_500m_high_normality: MIXED | better=['coll~ok'] worse=['goal-4.6pp', 'fault+1.2pp']
+- adv_500m_conservative: WORSE | better=['—'] worse=['goal-7.6pp', 'fault+6.1pp', 'coll+3.9pp']
+- adv_4b_default: MIXED | better=['coll~ok'] worse=['goal-2.2pp', 'fault+2.0pp']
+
+[2026-07-17 05:10:07] Analysis complete. Report: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/run3_comparison_report.md

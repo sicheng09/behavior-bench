@@ -1,0 +1,67 @@
+[2026-07-17 20:17:13] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_and_eval_ddp2_500m_idm50_20260717_201713.log
+[2026-07-17 20:17:13] Tag: ddp2_500m_idm50
+[2026-07-17 20:17:13] Train session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:17:13] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_xxqq3fw8
+[2026-07-17 20:17:13] Min ego checkpoint epoch: 954 (model_policy_0 only)
+[2026-07-17 20:17:13] Eval: ego policy0 vs IDM on pufferinter -> /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_idm50_run3/p0_ego_Drive_Recurrent
+[2026-07-17 20:17:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:18:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:19:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:20:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:21:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:22:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:23:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:24:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:25:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:26:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:27:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:28:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:29:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:30:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:31:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:32:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:33:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:34:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:35:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:36:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:37:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:38:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:39:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:40:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:41:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:42:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:43:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:44:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:45:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:46:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:47:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:48:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:49:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:50:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:51:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:52:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:53:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:54:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:55:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:56:13] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:57:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:58:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 20:59:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:00:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:01:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:02:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:03:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:04:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:05:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:06:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:07:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:08:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:09:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:10:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:11:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-idm50-gpu01
+[2026-07-17 21:12:14] Training session ended.
+[2026-07-17 21:12:14] Waiting for experiment dir and FINAL ego checkpoint (epoch>=954).
+[2026-07-17 21:12:34] Using FINAL ego checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_xxqq3fw8/model_policy_0_puffer_drive_adversarial_000954.pt
+[2026-07-17 21:12:34] Launched eval: eval-run3-adv500m-idm50-p0-ego-vs-idm-gpu0-20260717_211234 on GPU 0
+[2026-07-17 21:12:34] Wrapper/results: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_idm50_run3/p0_ego_Drive_Recurrent/
+[2026-07-17 21:12:34] Done launching. Attach with: tmux attach -t eval-run3-adv500m-idm50-p0-ego-vs-idm-gpu0-20260717_211234

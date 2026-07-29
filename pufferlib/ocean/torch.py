@@ -408,6 +408,96 @@ class DriveMoE3(DriveMoE):
         super().__init__(env, num_experts=3, **kwargs)
 
 
+class _HybridPerceptionMixin:
+    """Non-parameterized perception adapter for opt-in mixed training.
+
+    This mixin is intentionally used only by the Hybrid* policy classes below.
+    Existing Drive/DriveLite/DriveMoE3 classes keep their original forward
+    paths and therefore retain checkpoint and behavior compatibility.
+    """
+
+    def _init_hybrid_perception(self, perception_level, perception_radius=50.0, sector_degrees=360.0):
+        self.perception_level = str(perception_level)
+        self.perception_radius = float(perception_radius)
+        self.sector_degrees = float(sector_degrees)
+
+    def apply_perception_mask(self, observations):
+        if self.perception_level == "high" or self.sector_degrees >= 360.0:
+            return observations
+
+        masked = observations.clone()
+        ego_dim = self.ego_dim
+        partner_dim = self.max_partner_objects * self.partner_features
+        road_dim = self.max_road_objects * self.road_features
+        partner_start = ego_dim
+        road_start = ego_dim + partner_dim
+        road_end = road_start + road_dim
+
+        partner_objects = masked[:, partner_start:road_start].view(
+            -1, self.max_partner_objects, self.partner_features
+        )
+        road_objects = masked[:, road_start:road_end].view(
+            -1, self.max_road_objects, self.road_features
+        )
+        partner_objects *= self._hybrid_visible_mask(partner_objects).unsqueeze(-1).to(
+            partner_objects.dtype
+        )
+        road_objects *= self._hybrid_visible_mask(road_objects).unsqueeze(-1).to(
+            road_objects.dtype
+        )
+        return masked
+
+    def _hybrid_visible_mask(self, objects):
+        non_empty = objects.abs().sum(dim=-1) > 0
+        rel_x = objects[:, :, 0]
+        rel_y = objects[:, :, 1]
+        distance = torch.sqrt(rel_x.square() + rel_y.square())
+        angle = torch.atan2(rel_y, rel_x)
+        normalized_radius = self.perception_radius * 0.02
+        half_sector = float(np.deg2rad(self.sector_degrees / 2.0))
+        return non_empty & (distance <= normalized_radius) & (angle.abs() <= half_sector)
+
+    def encode_observations(self, observations, state=None):
+        # Mask before the parent encoder. For DriveMoE this also masks the
+        # router input, preventing the router from leaking global perception.
+        return super().encode_observations(self.apply_perception_mask(observations), state=state)
+
+
+class HybridDriveLiteLow(_HybridPerceptionMixin, DriveLite):
+    """Opt-in Low policy: DriveLite with 60-degree/50m perception."""
+
+    def __init__(self, env, **kwargs):
+        super().__init__(env, **kwargs)
+        self._init_hybrid_perception("low", perception_radius=50.0, sector_degrees=60.0)
+
+
+class HybridDriveMid(_HybridPerceptionMixin, Drive):
+    """Opt-in Mid policy: Drive with 120-degree/50m perception."""
+
+    def __init__(self, env, **kwargs):
+        super().__init__(env, **kwargs)
+        self._init_hybrid_perception("mid", perception_radius=50.0, sector_degrees=120.0)
+
+
+class HybridDriveMoE3High(_HybridPerceptionMixin, DriveMoE3):
+    """Opt-in High policy: DriveMoE3 with unrestricted perception."""
+
+    def __init__(self, env, **kwargs):
+        super().__init__(env, **kwargs)
+        self._init_hybrid_perception("high", perception_radius=50.0, sector_degrees=360.0)
+
+
+class HybridDriveOriginal(Drive):
+    """Opt-in Original policy with the unchanged global Drive path.
+
+    This class has no new parameters or preprocessing. It gives the mixed
+    configuration an explicit policy name while keeping the original model
+    architecture and state-dict layout.
+    """
+
+    pass
+
+
 class DriveConditioned(nn.Module):
     """Drive policy with Gigaflow-paper reward conditioning (Creward).
 

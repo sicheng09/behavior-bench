@@ -1,0 +1,3 @@
+[2026-07-13 22:19:56] Waiting for run2 001000 checkpoints.
+[2026-07-13 22:19:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-13 22:24:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt

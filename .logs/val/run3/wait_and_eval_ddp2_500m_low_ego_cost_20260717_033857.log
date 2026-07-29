@@ -1,0 +1,43 @@
+[2026-07-17 03:38:57] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_and_eval_ddp2_500m_low_ego_cost_20260717_033857.log
+[2026-07-17 03:38:57] Tag: ddp2_500m_low_ego_cost
+[2026-07-17 03:38:57] Train session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:38:57] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_sch8ornd
+[2026-07-17 03:38:57] Min ego checkpoint epoch: 954 (model_policy_0 only)
+[2026-07-17 03:38:57] Eval: ego policy0 vs IDM on pufferinter -> /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3/p0_ego_Drive_Recurrent
+[2026-07-17 03:38:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:39:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:40:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:41:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:42:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:43:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:44:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:45:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:46:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:47:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:48:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:49:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:50:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:51:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:52:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:53:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:54:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:55:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:56:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:57:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:58:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 03:59:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:00:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:01:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:02:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:03:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:04:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:05:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:06:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:07:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:08:57] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-low-ego-cost-gpu34
+[2026-07-17 04:09:57] Training session ended.
+[2026-07-17 04:09:57] Waiting for experiment dir and FINAL ego checkpoint (epoch>=954).
+[2026-07-17 04:10:17] Using FINAL ego checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_sch8ornd/model_policy_0_puffer_drive_adversarial_000954.pt
+[2026-07-17 04:10:19] Launched eval: eval-run3-adv500m-low-ego-cost-p0-ego-vs-idm-gpu3-20260717_041019 on GPU 3
+[2026-07-17 04:10:19] Wrapper/results: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_low_ego_cost_run3/p0_ego_Drive_Recurrent/
+[2026-07-17 04:10:19] Done launching. Attach with: tmux attach -t eval-run3-adv500m-low-ego-cost-p0-ego-vs-idm-gpu3-20260717_041019

@@ -1,0 +1,44 @@
+[2026-07-13 22:26:53] Starting run2 001000 eval watcher, homogeneous first.
+[2026-07-13 22:26:53] Homogeneous 001000 checkpoints are ready.
+[2026-07-13 22:26:56] Launched eval: eval1000-run2-homo-low-gpu4-20260713_222656 -> homogeneous_perception_low_2b_batch1x_run2/DrivePerceptionLow_Recurrent on GPU 4
+[2026-07-13 22:26:56] Launched eval: eval1000-run2-homo-mid-gpu5-20260713_222656 -> homogeneous_perception_mid_2b_batch1x_run2/DrivePerceptionMid_Recurrent on GPU 5
+[2026-07-13 22:26:56] Launched eval: eval1000-run2-homo-high-gpu6-20260713_222656 -> homogeneous_perception_high_drive_2b_batch1x_run2/Drive_Recurrent on GPU 6
+[2026-07-13 22:26:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 22:31:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 22:36:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 22:41:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 22:46:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 22:51:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 22:56:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 23:01:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 23:06:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 23:11:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 23:16:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 23:21:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 23:26:56] Waiting for eval sessions matching: eval1000-run2-homo
+[2026-07-13 23:31:56] Homogeneous 001000 evals finished.
+[2026-07-13 23:31:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-13 23:36:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-13 23:41:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-13 23:46:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-13 23:51:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-13 23:56:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:01:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:06:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:11:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:16:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:21:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:26:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:31:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:36:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:41:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:46:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:51:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 00:56:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:01:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:06:56] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_d2spiva4/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:11:56] Mixed 001000 checkpoints are ready.
+[2026-07-14 01:11:59] Launched eval: eval1000-run2-mix-p0-low-gpu4-20260714_011159 -> perception_mixed_low_mid_high_6b_batch3x_run2/p0_DrivePerceptionLow_Recurrent on GPU 4
+[2026-07-14 01:11:59] Launched eval: eval1000-run2-mix-p1-mid-gpu5-20260714_011159 -> perception_mixed_low_mid_high_6b_batch3x_run2/p1_DrivePerceptionMid_Recurrent on GPU 5
+[2026-07-14 01:11:59] Launched eval: eval1000-run2-mix-p2-high-gpu6-20260714_011159 -> perception_mixed_low_mid_high_6b_batch3x_run2/p2_Drive_Recurrent on GPU 6
+[2026-07-14 01:11:59] Mixed 001000 eval sessions launched.

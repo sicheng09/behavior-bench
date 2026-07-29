@@ -1,0 +1,21 @@
+[2026-07-24 01:32:29] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/mixmoe_stratified/wait_and_eval_parallel_20260724_013229.log
+[2026-07-24 01:32:29] Train=repeat-mixmoe-strat-gpu3 run=mix_moe_drive_moe_moe3_stratified_1500m_run_repaet_repeat map=[idm:0 expert:1 smart:5]
+[2026-07-24 01:32:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:33:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:34:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:35:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:36:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:37:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:38:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:39:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:40:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:41:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:42:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:43:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:44:29] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:45:30] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:46:30] Waiting for training: tmux=1 proc=1
+[2026-07-24 01:47:30] Training finished.
+[2026-07-24 01:47:30] W&B=0eyyzzwx
+[2026-07-24 01:47:35] Checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_0eyyzzwx/model_policy_0_puffer_drive_000954.pt
+[2026-07-24 01:47:52] All parallel evals launched.

@@ -12,9 +12,9 @@ from pufferlib.adversarial.reward import (
 )
 
 
-def reward_config():
+def reward_config(goal=0.0):
     return RewardConfig(
-        weights=RewardWeights(0.20, 1.0, 0.20, 0.02),
+        weights=RewardWeights(0.20, 1.0, 0.20, 0.02, goal),
         limits=RewardLimits(0.25, 0.50, 10),
         thresholds=RewardThresholds(
             hard_brake_mps2=3.0,
@@ -51,8 +51,9 @@ def evaluate(
     actions=None,
     pre_speed=None,
     post_speed=None,
+    config=None,
 ):
-    evaluator = AsymmetricRewardEvaluator(reward_config(), dt=0.1)
+    evaluator = AsymmetricRewardEvaluator(config or reward_config(), dt=0.1)
     evaluator.reset(2)
     pre_obs = np.zeros((2, 23), dtype=np.float32)
     post_obs = np.zeros((2, 23), dtype=np.float32)
@@ -196,3 +197,22 @@ def test_non_finite_base_reward_is_replaced_and_counted():
     result = evaluate(pre, post, [0, np.nan], np.zeros((2, 11)))
     assert result.rewards[1] == -1.0
     assert result.metrics["adv/invalid_reward_events"] == 1
+
+
+def test_weak_goal_event_adds_capped_positive_bonus():
+    # Stationary distant opponent: no ego_cost / kinematics; only goal fires.
+    pre = frame([0, 40], [0, 0], [0, 0])
+    post = frame([0, 40], [0, 0], [0, 0])
+    raw = np.zeros((2, 11), dtype=np.float32)
+    raw[1, 2] = 1.0  # GOAL_COMPONENT
+    result = evaluate(
+        pre,
+        post,
+        [0, 0],
+        raw,
+        pre_speed=[0, 0],
+        post_speed=[0, 0],
+        config=reward_config(goal=0.15),
+    )
+    assert result.components["goal_event"][1] == 1.0
+    assert abs(float(result.rewards[1]) - 0.15) < 1e-5

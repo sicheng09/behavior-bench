@@ -32,18 +32,34 @@ _DT_S = 0.1
 _LATERAL_LANE_M = 2.5
 
 
-def normalize_role_ids(policy_log_ids, num_agents):
+def normalize_role_ids(policy_log_ids, num_agents, policy_log_count=None):
+    """Map one ego policy and any number of partner policies to two roles.
+
+    ``mix_ppo`` keeps the original policy ids so each neural policy can be
+    forwarded, sampled, and logged independently.  Conservative shaping only
+    needs to distinguish the learner (policy 0) from surrounding neural
+    traffic (every policy id > 0), so collapse the latter to PARTNER here.
+    """
     if not policy_log_ids:
         raise ValueError("ConservativeMixDrive requires mix_ppo policy_log_ids")
     ids = np.asarray(policy_log_ids, dtype=np.int64)
     if ids.ndim != 1 or len(ids) == 0:
         raise ValueError("policy_log_ids must be a non-empty 1D sequence")
+    if np.any(ids < 0):
+        raise ValueError("policy_log_ids must be non-negative")
+    if policy_log_count is not None:
+        count = int(policy_log_count)
+        if count < 2:
+            raise ValueError(
+                "ConservativeMixDrive requires at least 2 mix_ppo policies"
+            )
+        if np.any(ids >= count):
+            raise ValueError(
+                "policy_log_ids must be smaller than policy_log_count"
+            )
     repeats = (num_agents + len(ids) - 1) // len(ids)
     ids = np.tile(ids, repeats)[:num_agents]
-    unknown = np.setdiff1d(np.unique(ids), np.asarray([EGO, PARTNER]))
-    if len(unknown):
-        raise ValueError(f"V1 supports only policy ids 0 and 1, got {unknown}")
-    return ids
+    return np.where(ids == EGO, EGO, PARTNER).astype(np.int64, copy=False)
 
 
 def audit_scene_roles(agent_offsets, role_ids):
@@ -100,12 +116,16 @@ class ConservativeMixDrive(Drive):
         )
         self.partner_mode = self.conservative_config.partner_mode
         super().__init__(**raw)
-        if self.policy_log_count != 2:
+        if self.policy_log_count < 2:
             raise ValueError(
-                "ConservativeMixDrive requires exactly 2 mix_ppo policies"
+                "ConservativeMixDrive requires at least 2 mix_ppo policies"
             )
         register_conservative_policies()
-        self._role_ids = normalize_role_ids(self.policy_log_ids, self.num_agents)
+        self._role_ids = normalize_role_ids(
+            self.policy_log_ids,
+            self.num_agents,
+            self.policy_log_count,
+        )
         self._assignment_metrics = audit_scene_roles(
             self.agent_offsets, self._role_ids
         )

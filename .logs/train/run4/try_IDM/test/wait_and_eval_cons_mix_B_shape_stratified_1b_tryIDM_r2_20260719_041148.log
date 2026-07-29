@@ -1,0 +1,197 @@
+[2026-07-19 04:11:48] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/train/run4/try_IDM/test/wait_and_eval_cons_mix_B_shape_stratified_1b_tryIDM_r2_20260719_041148.log
+[2026-07-19 04:11:48] Train session: cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:11:48] WANDB_RUN_ID: 0t9jeeso
+[2026-07-19 04:11:48] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_conservative_mix_0t9jeeso
+[2026-07-19 04:11:48] Results: /home/fanyuqi/wsc/behavior-bench/.logs/train/run4/try_IDM/test/cons_mix_B_shape_stratified_1b_tryIDM_r2/Drive_Recurrent/
+[2026-07-19 04:11:48] Eval GPUs: IDM=2 PPO=4 MIN_EPOCH=953
+[2026-07-19 04:11:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:12:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:13:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:14:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:15:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:16:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:17:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:18:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:19:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:20:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:21:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:22:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:23:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:24:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:25:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:26:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:27:48] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:28:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:29:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:30:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:31:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:32:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:33:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:34:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:35:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:36:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:37:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:38:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:39:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:40:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:41:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:42:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:43:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:44:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:45:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:46:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:47:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:48:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:49:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:50:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:51:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:52:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:53:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:54:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:55:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:56:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:57:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:58:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 04:59:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:00:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:01:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:02:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:03:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:04:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:05:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:06:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:07:49] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:08:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:09:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:10:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:11:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:12:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:13:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:14:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:15:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:16:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:17:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:18:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:19:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:20:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:21:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:22:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:23:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:24:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:25:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:26:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:27:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:28:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:29:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:30:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:31:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:32:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:33:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:34:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:35:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:36:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:37:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:38:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:39:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:40:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:41:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:42:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:43:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:44:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:45:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:46:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:47:50] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:48:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:49:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:50:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:51:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:52:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:53:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:54:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:55:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:56:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:57:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:58:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 05:59:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:00:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:01:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:02:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:03:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:04:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:05:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:06:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:07:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:08:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:09:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:10:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:11:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:12:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:13:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:14:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:15:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:16:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:17:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:18:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:19:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:20:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:21:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:22:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:23:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:24:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:25:51] Waiting for training: tmux=1 proc=1 session=cons-mix-B-strat-r2-gpu0
+[2026-07-19 06:26:51] Training finished (tmux gone + no train PID).
+[2026-07-19 06:26:51] Resolving final ego checkpoint (min_epoch=953)...
+[2026-07-19 06:27:11] Using checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_conservative_mix_0t9jeeso/model_policy_0_puffer_drive_conservative_mix_000954.pt
+[2026-07-19 06:27:12] Launched eval: eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 on GPU 2 (traffic=idm)
+[2026-07-19 06:27:13] Launched eval: eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712 on GPU 4 (traffic=ppo)
+[2026-07-19 06:27:13] Waiting for eval sessions to finish...
+[2026-07-19 06:27:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:29:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:31:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:33:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:35:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:37:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:39:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:41:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:43:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:45:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:47:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:49:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:51:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:53:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:55:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:57:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 06:59:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:01:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:03:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:05:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:07:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:09:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:11:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:13:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:15:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:17:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:19:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:21:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:23:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:25:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:27:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:29:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:31:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:33:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:35:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:37:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:39:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:41:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:43:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:45:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:47:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:49:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:51:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:53:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:55:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:57:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 07:59:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 08:01:13] Eval still running: idm=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-idm-gpu2-20260719_062711 ppo=eval-cons_mix_B_shape_stratified_1b_tryIDM_r2-vs-ppo-gpu4-20260719_062712
+[2026-07-19 08:03:13] All evals finished for cons_mix_B_shape_stratified_1b_tryIDM_r2
+[2026-07-19 08:03:13] Results under: /home/fanyuqi/wsc/behavior-bench/.logs/train/run4/try_IDM/test/cons_mix_B_shape_stratified_1b_tryIDM_r2/Drive_Recurrent/

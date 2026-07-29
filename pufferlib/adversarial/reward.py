@@ -10,6 +10,7 @@ from .config import RewardConfig
 MAX_SPEED_MPS = 100.0
 COLLISION_COMPONENT = 0
 OFFROAD_COMPONENT = 1
+GOAL_COMPONENT = 2
 REVERSE_COMPONENT = 9
 SPEED_LIMIT_COMPONENT = 10
 
@@ -128,12 +129,17 @@ class AsymmetricRewardEvaluator:
         fault_penalty = np.zeros(n, dtype=np.float32)
         kinematics_cost = np.zeros(n, dtype=np.float32)
         normality = np.zeros(n, dtype=np.float32)
+        goal_event = np.zeros(n, dtype=np.float32)
         min_ttc = np.full(n, np.inf, dtype=np.float32)
         hard_brake_events = np.zeros(n, dtype=np.float32)
         ambiguous_collision_events = np.zeros(n, dtype=np.float32)
 
         opponent_mask = role_ids == 1
         if np.any(opponent_mask):
+            goal_event[opponent_mask] = np.maximum(
+                raw_components[opponent_mask, GOAL_COMPONENT],
+                0.0,
+            )
             self._fill_opponent_rewards(
                 agent_offsets,
                 role_ids,
@@ -161,6 +167,7 @@ class AsymmetricRewardEvaluator:
             - weights.fault * fault_penalty
             - weights.kinematics * kinematics_cost
             + weights.normality * normality
+            + weights.goal * goal_event
         )
         adversarial = np.where(
             raw_adversarial > 0,
@@ -185,6 +192,7 @@ class AsymmetricRewardEvaluator:
             "fault_penalty": fault_penalty,
             "kinematics_cost": kinematics_cost,
             "normality": normality,
+            "goal_event": goal_event,
             "min_ttc": min_ttc,
         }
         if collect_metrics:
@@ -703,6 +711,7 @@ class AsymmetricRewardEvaluator:
             "adv/penalty_fault": mean(components["fault_penalty"]),
             "adv/cost_kinematics": mean(components["kinematics_cost"]),
             "adv/normality": mean(components["normality"]),
+            "adv/goal_event": mean(components["goal_event"]),
             "adv/reward_total": mean(rewards),
             "adv/min_ttc": (
                 float(np.min(finite_ttc)) if len(finite_ttc) else -1.0

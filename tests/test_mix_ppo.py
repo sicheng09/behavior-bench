@@ -5,6 +5,7 @@ import sys
 import tempfile
 from contextlib import redirect_stdout
 from types import SimpleNamespace
+from unittest import mock
 
 import gymnasium
 import numpy as np
@@ -21,6 +22,44 @@ from pufferlib.pufferl import Profile, PuffeRL, load_config, load_env, load_mixe
 
 
 class TestMixPPO(unittest.TestCase):
+    def test_stratified_ddp_check_is_noop_without_distributed(self):
+        trainer = SimpleNamespace(segment_policy_ids=torch.zeros(1))
+        with mock.patch(
+            "pufferlib.pufferl.torch.distributed.is_initialized",
+            return_value=False,
+        ), mock.patch(
+            "pufferlib.pufferl.torch.distributed.all_gather"
+        ) as all_gather:
+            PuffeRL._assert_stratified_ddp_values_match(
+                trainer, [8, 8], label="test values"
+            )
+
+        all_gather.assert_not_called()
+
+    def test_stratified_ddp_check_rejects_rank_mismatch(self):
+        trainer = SimpleNamespace(segment_policy_ids=torch.zeros(1))
+
+        def mismatched_all_gather(outputs, _local):
+            outputs[0].copy_(torch.tensor([8, 8]))
+            outputs[1].copy_(torch.tensor([8, 4]))
+
+        with mock.patch(
+            "pufferlib.pufferl.torch.distributed.is_initialized",
+            return_value=True,
+        ), mock.patch(
+            "pufferlib.pufferl.torch.distributed.get_world_size",
+            return_value=2,
+        ), mock.patch(
+            "pufferlib.pufferl.torch.distributed.all_gather",
+            side_effect=mismatched_all_gather,
+        ), self.assertRaisesRegex(
+            pufferlib.APIUsageError,
+            "identical test values on every rank",
+        ):
+            PuffeRL._assert_stratified_ddp_values_match(
+                trainer, [8, 8], label="test values"
+            )
+
     def test_parse_policy_mix_accepts_named_fractions(self):
         names, fractions = parse_policy_mix("learner:0.5, transformer:0.25, gameformer:0.25")
 
@@ -484,6 +523,99 @@ class TestMixPPO(unittest.TestCase):
             self.assertTrue(pufferl.mix_ppo)
             self.assertEqual(len(pufferl.policies), 2)
             self.assertEqual(torch.bincount(pufferl.segment_policy_ids, minlength=2).tolist(), [2, 2])
+        finally:
+            if pufferl is not None:
+                pufferl.utilization.stop()
+            if vecenv is not None:
+                vecenv.close()
+            if old_data_root is None:
+                os.environ.pop("DRIVE_BINARIES_DATA_ROOT", None)
+            else:
+                os.environ["DRIVE_BINARIES_DATA_ROOT"] = old_data_root
+
+    def test_mix_ppo_stratified_uses_independent_logical_pools(self):
+        env_name = "puffer_drive"
+        argv = sys.argv[:]
+        try:
+            sys.argv = [sys.argv[0]]
+            args = load_config(env_name)
+        finally:
+            sys.argv = argv
+
+        args["train"].update(
+            {
+                "device": "cpu",
+                "optimizer": "adam",
+                "compile": False,
+                "total_timesteps": 16,
+                "batch_size": 16,
+                "bptt_horizon": 4,
+                "minibatch_size": 16,
+                "max_minibatch_size": 16,
+                "update_epochs": 1,
+                "render": False,
+                "checkpoint_interval": 999999,
+                "mix_ppo": True,
+                "mix_ppo_policy_mix": "learner:0.5, clone:0.5",
+                "mix_ppo_policy_names": "Drive,Drive",
+                "mix_ppo_sampling": "stratified",
+                "mix_ppo_policy_minibatch_sizes": "4,4",
+                "mix_ppo_policy_update_steps": "2,2",
+            }
+        )
+        args["vec"].update({"num_workers": 1, "num_envs": 1, "batch_size": 1})
+        args["env"].update(
+            {
+                "num_agents": 4,
+                "action_type": "discrete",
+                "num_maps": 1,
+                "init_mode": "create_all_valid",
+                "control_mode": "control_agents",
+                "episode_length": 2,
+                "resample_frequency": 1000,
+            }
+        )
+        args["policy"].update({"input_size": 32, "hidden_size": 32})
+        args["rnn"].update({"input_size": 32, "hidden_size": 32})
+        args["eval"] = {
+            "wosac_realism_eval": False,
+            "human_replay_eval": False,
+        }
+        old_data_root = os.environ.get("DRIVE_BINARIES_DATA_ROOT")
+        os.environ["DRIVE_BINARIES_DATA_ROOT"] = os.path.join(
+            os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+            "resources",
+            "drive",
+            "binaries",
+        )
+        os.environ["PUFFER_DISABLE_VIDEO"] = "1"
+
+        vecenv = None
+        pufferl = None
+        try:
+            vecenv = load_env(env_name, args)
+            policy = load_policy(args, vecenv, env_name)
+            policies = load_mixed_policies(args, vecenv, env_name, policy)
+            train_config = dict(**args["train"], env=env_name, eval=args["eval"])
+            pufferl = PuffeRL(train_config, vecenv, policies, logger=None)
+
+            pufferl.evaluate()
+            logs = pufferl.train()
+
+            self.assertEqual(pufferl.mix_ppo_sampling, "stratified")
+            self.assertEqual(
+                torch.bincount(pufferl.segment_policy_ids, minlength=2).tolist(),
+                [2, 2],
+            )
+            for policy_idx in (0, 1):
+                stats = pufferl.stratified_last_stats[policy_idx]
+                self.assertEqual(stats["rollout_samples"], 8)
+                self.assertEqual(stats["minibatch_size"], 4)
+                self.assertEqual(stats["optimizer_steps"], 2)
+                self.assertEqual(stats["sampled_transitions"], 8)
+            self.assertEqual(
+                logs["losses/policy_0/stratified_optimizer_steps"], 2
+            )
         finally:
             if pufferl is not None:
                 pufferl.utilization.stop()

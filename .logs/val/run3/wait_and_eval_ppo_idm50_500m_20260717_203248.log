@@ -1,0 +1,51 @@
+[2026-07-17 20:32:48] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_and_eval_ppo_idm50_500m_20260717_203248.log
+[2026-07-17 20:32:48] Tag: ppo_idm50_500m
+[2026-07-17 20:32:48] Train session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:32:48] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_s4r7gjec
+[2026-07-17 20:32:48] Min checkpoint epoch: 954 (model_puffer_drive_*.pt)
+[2026-07-17 20:32:48] Eval: Drive/Recurrent vs IDM on pufferinter -> /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/ppo_idm50_drive_lstm_500m_run3/Drive_Recurrent
+[2026-07-17 20:32:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:33:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:34:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:35:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:36:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:37:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:38:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:39:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:40:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:41:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:42:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:43:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:44:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:45:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:46:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:47:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:48:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:49:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:50:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:51:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:52:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:53:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:54:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:55:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:56:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:57:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:58:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 20:59:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:00:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:01:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:02:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:03:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:04:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:05:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:06:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:07:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:08:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:09:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:10:48] Waiting for training session: ppo-idm50-drive-lstm-500m-gpu2
+[2026-07-17 21:11:48] Training session ended.
+[2026-07-17 21:11:48] Waiting for experiment dir and FINAL checkpoint (epoch>=954).
+[2026-07-17 21:12:08] Using FINAL checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_s4r7gjec/model_puffer_drive_000954.pt
+[2026-07-17 21:12:09] Launched eval: eval-run3-ppo-idm50-vs-idm-gpu2-20260717_211209 on GPU 2
+[2026-07-17 21:12:09] Wrapper/results: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/ppo_idm50_drive_lstm_500m_run3/Drive_Recurrent/
+[2026-07-17 21:12:09] Done launching. Attach with: tmux attach -t eval-run3-ppo-idm50-vs-idm-gpu2-20260717_211209

@@ -1,0 +1,29 @@
+[2026-07-17 00:46:06] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_and_eval_ddp2_500m_20260717_004606.log
+[2026-07-17 00:46:06] Train session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:46:06] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_wpj0xhn8
+[2026-07-17 00:46:06] Eval: ego(policy0) vs IDM on pufferinter -> /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_run3/p0_ego_Drive_Recurrent
+[2026-07-17 00:46:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:47:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:48:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:49:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:50:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:51:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:52:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:53:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:54:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:55:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:56:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:57:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:58:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 00:59:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:00:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:01:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:02:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:03:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:04:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:05:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:06:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:07:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:08:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:09:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34
+[2026-07-17 01:10:06] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-gpu34

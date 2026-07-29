@@ -1,0 +1,1110 @@
+21:20:44 | INFO  | ============================================================
+21:20:44 | INFO  | EVALUATION CONFIG
+21:20:44 | INFO  | ============================================================
+21:20:44 | INFO  | Output:        /home/fanyuqi/wsc/behavior-bench/.logs/train/run4/problem/test_PDM/homogeneous_drive_lstm_500m_batch1x_run1/Drive_Recurrent/20260721_212044_d2680c
+21:20:44 | INFO  | Config saved:  /home/fanyuqi/wsc/behavior-bench/.logs/train/run4/problem/test_PDM/homogeneous_drive_lstm_500m_batch1x_run1/Drive_Recurrent/20260721_212044_d2680c/config.json
+21:20:44 | INFO  | Maps:          1000  |  Split: pufferinter
+21:20:44 | INFO  | Episodes:      length=91
+21:20:44 | INFO  | Action type:   continuous
+21:20:44 | INFO  | ------------------------------------------------------------
+21:20:44 | INFO  | Ego:           ppo
+21:20:44 | INFO  |   weights_path: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:20:44 | INFO  |   device: cuda
+21:20:44 | INFO  |   input_size: 64
+21:20:44 | INFO  |   hidden_size: 256
+21:20:44 | INFO  |   policy_action_type: discrete
+21:20:44 | INFO  |   stochastic: false
+21:20:44 | INFO  |   temperature: 1.0
+21:20:44 | INFO  |   policy_class_name: Drive
+21:20:44 | INFO  |   rnn_name: Recurrent
+21:20:44 | INFO  |   rnn_input_size: 256
+21:20:44 | INFO  |   rnn_hidden_size: 256
+21:20:44 | INFO  |   reward_conditioning: False
+21:20:44 | INFO  | Traffic:       pdm
+21:20:44 | INFO  |   horizon: 40
+21:20:44 | INFO  |   proposal_other: constant_velocity
+21:20:44 | INFO  | ------------------------------------------------------------
+21:20:44 | INFO  | Goal:          3 (remove)
+21:20:44 | INFO  | Terminate:     1 (all_agents_done)
+21:20:44 | INFO  | Collision:     2  |  Offroad: 2
+21:20:44 | INFO  | Viz:           False  |  Planner viz: False
+21:20:44 | INFO  | ============================================================
+21:20:44 | INFO  | Loaded manifest with 1000 entries from /home/fanyuqi/wsc/behavior-bench/data/eval_splits/pufferinter/manifest.csv
+21:20:44 | WARNING | Ego entity 34 not in active agents for map 0, skipping
+21:20:44 | WARNING |   Skipped map 0 (ID=0)
+21:20:44 | WARNING | Ego entity 37 not in active agents for map 1, skipping
+21:20:44 | WARNING |   Skipped map 1 (ID=1)
+21:20:44 | WARNING | Ego entity 57 not in active agents for map 2, skipping
+21:20:44 | WARNING |   Skipped map 2 (ID=2)
+21:20:47 | INFO  | MultiAgentPDMPlanner: 48 traffic agents × 15 proposals each
+21:20:54 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:21:59 | INFO  | --- 1/1000 maps | 1m15s  ETA: 1251m 58s ---
+21:21:59 | INFO  |   Goal: 1/1 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:21:59 | INFO  |   Reward: -2.10 +/- 0.00 | GoalDist: 0.0m | Plan: 2ms | Map: 75.2s | 0.8 maps/min
+21:21:59 | INFO  |   [+ ] Map 0 (ID=3)  r=-2.10  gd=0.0m  t=75.2s
+21:21:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:21:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.1000
+21:21:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+132.0000
+21:21:59 | INFO  |                    l_align=-50.5297  l_center=+1.8454  timestep=+5.1000  reverse=+0.0000  speed_limit=+31.0000
+21:21:59 | WARNING | Ego entity 7 not in active agents for map 4, skipping
+21:21:59 | WARNING |   Skipped map 4 (ID=4)
+21:21:59 | INFO  | --- 1/1000 maps | 1m15s  ETA: 1252m 23s ---
+21:21:59 | INFO  |   Goal: 1/1 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:21:59 | INFO  |   Reward: -2.10 +/- 0.00 | GoalDist: 0.0m | Plan: 2ms | Map: 75.2s | 0.8 maps/min
+21:21:59 | INFO  |   [+ ] Map 0 (ID=3)  r=-2.10  gd=0.0m  t=75.2s
+21:21:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:21:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.1000
+21:21:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+132.0000
+21:21:59 | INFO  |                    l_align=-50.5297  l_center=+1.8454  timestep=+5.1000  reverse=+0.0000  speed_limit=+31.0000
+21:22:02 | INFO  | MultiAgentPDMPlanner: 15 traffic agents × 15 proposals each
+21:22:07 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:22:08 | INFO  | --- 2/1000 maps | 1m24s  ETA: 700m 26s ---
+21:22:08 | INFO  |   Goal: 2/2 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:22:08 | INFO  |   Reward: -0.90 +/- 1.20 | GoalDist: 0.0m | Plan: 1ms | Map: 42.1s | 1.4 maps/min
+21:22:08 | INFO  |   [+ ] Map 1 (ID=5)  r=+0.30  gd=0.0m  t=9.0s
+21:22:08 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:22:08 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-0.7000
+21:22:08 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+17.0000
+21:22:08 | INFO  |                    l_align=+1.7e-03  l_center=+0.1968  timestep=+0.7000  reverse=+0.0000  speed_limit=+7.0000
+21:22:13 | INFO  | MultiAgentPDMPlanner: 51 traffic agents × 15 proposals each
+21:22:18 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:22:20 | INFO  | --- 3/1000 maps | 1m36s  ETA: 532m 30s ---
+21:22:20 | INFO  |   Goal: 3/3 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:22:20 | INFO  |   Reward: -0.27 +/- 1.33 | GoalDist: 0.0m | Plan: 1ms | Map: 32.0s | 1.9 maps/min
+21:22:20 | INFO  |   [+ ] Map 2 (ID=6)  r=+1.00  gd=infm  t=11.9s
+21:22:20 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:22:20 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:22:20 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:22:20 | INFO  |                    l_align=+2.5e-04  l_center=-6.6e-03  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:22:29 | INFO  | MultiAgentPDMPlanner: 55 traffic agents × 15 proposals each
+21:22:35 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:23:59 | INFO  | --- 4/1000 maps | 3m14s  ETA: 806m 27s ---
+21:23:59 | INFO  |   Goal: 4/4 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:23:59 | INFO  |   Reward: -0.98 +/- 1.68 | GoalDist: 0.0m | Plan: 1ms | Map: 48.6s | 1.2 maps/min
+21:23:59 | INFO  |   [+ ] Map 3 (ID=7)  r=-3.10  gd=0.0m  t=98.2s
+21:23:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:23:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.1000
+21:23:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+165.0000
+21:23:59 | INFO  |                    l_align=-67.6352  l_center=+1.6076  timestep=+5.7000  reverse=+0.0000  speed_limit=+41.0000
+21:23:59 | WARNING | Ego entity 82 not in active agents for map 8, skipping
+21:23:59 | WARNING |   Skipped map 8 (ID=8)
+21:23:59 | INFO  | --- 4/1000 maps | 3m14s  ETA: 806m 32s ---
+21:23:59 | INFO  |   Goal: 4/4 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:23:59 | INFO  |   Reward: -0.98 +/- 1.68 | GoalDist: 0.0m | Plan: 1ms | Map: 48.6s | 1.2 maps/min
+21:23:59 | INFO  |   [+ ] Map 3 (ID=7)  r=-3.10  gd=0.0m  t=98.2s
+21:23:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:23:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.1000
+21:23:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+165.0000
+21:23:59 | INFO  |                    l_align=-67.6352  l_center=+1.6076  timestep=+5.7000  reverse=+0.0000  speed_limit=+41.0000
+21:24:03 | INFO  | MultiAgentPDMPlanner: 44 traffic agents × 15 proposals each
+21:24:09 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:26:23 | INFO  | --- 5/1000 maps | 5m39s  ETA: 1125m 11s ---
+21:26:23 | INFO  |   Goal: 4/5 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:26:23 | INFO  |   Reward: -1.84 +/- 2.29 | GoalDist: 0.0m | Plan: 1ms | Map: 67.8s | 0.9 maps/min
+21:26:23 | INFO  |   [- ] Map 4 (ID=9)  r=-5.30  gd=0.1m  t=144.9s
+21:26:23 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:26:23 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-5.3000
+21:26:23 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+220.0000
+21:26:23 | INFO  |                    l_align=-32.2596  l_center=+3.8503  timestep=+9.0000  reverse=+0.0000  speed_limit=+53.0000
+21:26:30 | INFO  | MultiAgentPDMPlanner: 40 traffic agents × 15 proposals each
+21:26:36 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:27:57 | INFO  | --- 6/1000 maps | 7m12s  ETA: 1194m 20s ---
+21:27:57 | INFO  |   Goal: 5/6 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:27:57 | INFO  |   Reward: -2.05 +/- 2.14 | GoalDist: 0.0m | Plan: 1ms | Map: 72.1s | 0.8 maps/min
+21:27:57 | INFO  |   [+ ] Map 5 (ID=10)  r=-3.10  gd=0.0m  t=93.3s
+21:27:57 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:27:57 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.1000
+21:27:57 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+156.0000
+21:27:57 | INFO  |                    l_align=-5.2278  l_center=+3.8075  timestep=+5.9000  reverse=+0.0000  speed_limit=+41.0000
+21:27:57 | WARNING | Ego entity 128 not in active agents for map 11, skipping
+21:27:57 | WARNING |   Skipped map 11 (ID=11)
+21:27:57 | INFO  | --- 6/1000 maps | 7m12s  ETA: 1194m 25s ---
+21:27:57 | INFO  |   Goal: 5/6 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:27:57 | INFO  |   Reward: -2.05 +/- 2.14 | GoalDist: 0.0m | Plan: 1ms | Map: 72.1s | 0.8 maps/min
+21:27:57 | INFO  |   [+ ] Map 5 (ID=10)  r=-3.10  gd=0.0m  t=93.3s
+21:27:57 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:27:57 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.1000
+21:27:57 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+156.0000
+21:27:57 | INFO  |                    l_align=-5.2278  l_center=+3.8075  timestep=+5.9000  reverse=+0.0000  speed_limit=+41.0000
+21:28:00 | INFO  | MultiAgentPDMPlanner: 14 traffic agents × 15 proposals each
+21:28:05 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:28:07 | INFO  | --- 7/1000 maps | 7m22s  ETA: 1046m 47s ---
+21:28:07 | INFO  |   Goal: 6/7 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:28:07 | INFO  |   Reward: -1.61 +/- 2.25 | GoalDist: 0.0m | Plan: 1ms | Map: 63.2s | 0.9 maps/min
+21:28:07 | INFO  |   [+ ] Map 6 (ID=12)  r=+1.00  gd=0.0m  t=10.2s
+21:28:07 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:28:07 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:28:07 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+14.0000
+21:28:07 | INFO  |                    l_align=+2.3e-03  l_center=+0.6140  timestep=+1.0000  reverse=+0.0000  speed_limit=+0.0000
+21:28:14 | INFO  | MultiAgentPDMPlanner: 51 traffic agents × 15 proposals each
+21:28:20 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:28:22 | INFO  | --- 8/1000 maps | 7m37s  ETA: 945m 12s ---
+21:28:22 | INFO  |   Goal: 7/8 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:28:22 | INFO  |   Reward: -1.29 +/- 2.28 | GoalDist: 0.0m | Plan: 1ms | Map: 57.1s | 1.0 maps/min
+21:28:22 | INFO  |   [+ ] Map 7 (ID=13)  r=+1.00  gd=infm  t=14.6s
+21:28:22 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:28:22 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:28:22 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:28:22 | INFO  |                    l_align=+2.5e-04  l_center=+0.0291  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:28:22 | WARNING | Ego entity 46 not in active agents for map 14, skipping
+21:28:22 | WARNING |   Skipped map 14 (ID=14)
+21:28:22 | INFO  | --- 8/1000 maps | 7m37s  ETA: 945m 14s ---
+21:28:22 | INFO  |   Goal: 7/8 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:28:22 | INFO  |   Reward: -1.29 +/- 2.28 | GoalDist: 0.0m | Plan: 1ms | Map: 57.1s | 1.0 maps/min
+21:28:22 | INFO  |   [+ ] Map 7 (ID=13)  r=+1.00  gd=infm  t=14.6s
+21:28:22 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:28:22 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:28:22 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:28:22 | INFO  |                    l_align=+2.5e-04  l_center=+0.0291  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:28:27 | INFO  | MultiAgentPDMPlanner: 39 traffic agents × 15 proposals each
+21:28:33 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:29:46 | INFO  | --- 9/1000 maps | 9m1s  ETA: 994m 18s ---
+21:29:46 | INFO  |   Goal: 8/9 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:29:46 | INFO  |   Reward: -1.24 +/- 2.15 | GoalDist: 0.0m | Plan: 1ms | Map: 60.2s | 1.0 maps/min
+21:29:46 | INFO  |   [+ ] Map 8 (ID=15)  r=-0.90  gd=0.0m  t=84.4s
+21:29:46 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:29:46 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-1.9000
+21:29:46 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+132.0000
+21:29:46 | INFO  |                    l_align=+0.0104  l_center=+6.6128  timestep=+5.1000  reverse=+0.0000  speed_limit=+19.0000
+21:29:46 | WARNING | Ego entity 24 not in active agents for map 16, skipping
+21:29:46 | WARNING |   Skipped map 16 (ID=16)
+21:29:46 | INFO  | --- 9/1000 maps | 9m1s  ETA: 994m 21s ---
+21:29:46 | INFO  |   Goal: 8/9 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:29:46 | INFO  |   Reward: -1.24 +/- 2.15 | GoalDist: 0.0m | Plan: 1ms | Map: 60.2s | 1.0 maps/min
+21:29:46 | INFO  |   [+ ] Map 8 (ID=15)  r=-0.90  gd=0.0m  t=84.4s
+21:29:46 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:29:46 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-1.9000
+21:29:46 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+132.0000
+21:29:46 | INFO  |                    l_align=+0.0104  l_center=+6.6128  timestep=+5.1000  reverse=+0.0000  speed_limit=+19.0000
+21:29:47 | INFO  | MultiAgentPDMPlanner: 4 traffic agents × 15 proposals each
+21:29:52 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:29:52 | INFO  | --- 10/1000 maps | 9m7s  ETA: 903m 33s ---
+21:29:52 | INFO  |   Goal: 9/10 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:29:52 | INFO  |   Reward: -1.02 +/- 2.15 | GoalDist: 0.0m | Plan: 1ms | Map: 54.7s | 1.1 maps/min
+21:29:52 | INFO  |   [+ ] Map 9 (ID=17)  r=+1.00  gd=infm  t=5.8s
+21:29:52 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:29:52 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:29:52 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:29:52 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:29:54 | INFO  | MultiAgentPDMPlanner: 29 traffic agents × 15 proposals each
+21:29:58 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:29:59 | INFO  | --- 11/1000 maps | 9m14s  ETA: 831m 34s ---
+21:29:59 | INFO  |   Goal: 10/11 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:29:59 | INFO  |   Reward: -0.84 +/- 2.13 | GoalDist: 0.0m | Plan: 1ms | Map: 50.4s | 1.2 maps/min
+21:29:59 | INFO  |   [+ ] Map 10 (ID=18)  r=+1.00  gd=infm  t=7.3s
+21:29:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:29:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:29:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:29:59 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:29:59 | WARNING | Ego entity 63 not in active agents for map 19, skipping
+21:29:59 | WARNING |   Skipped map 19 (ID=19)
+21:29:59 | INFO  | --- 11/1000 maps | 9m14s  ETA: 831m 36s ---
+21:29:59 | INFO  |   Goal: 10/11 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:29:59 | INFO  |   Reward: -0.84 +/- 2.13 | GoalDist: 0.0m | Plan: 1ms | Map: 50.4s | 1.2 maps/min
+21:29:59 | INFO  |   [+ ] Map 10 (ID=18)  r=+1.00  gd=infm  t=7.3s
+21:29:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:29:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:29:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:29:59 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:29:59 | WARNING | Ego entity 8 not in active agents for map 20, skipping
+21:29:59 | WARNING |   Skipped map 20 (ID=20)
+21:29:59 | INFO  | --- 11/1000 maps | 9m14s  ETA: 831m 37s ---
+21:29:59 | INFO  |   Goal: 10/11 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:29:59 | INFO  |   Reward: -0.84 +/- 2.13 | GoalDist: 0.0m | Plan: 1ms | Map: 50.4s | 1.2 maps/min
+21:29:59 | INFO  |   [+ ] Map 10 (ID=18)  r=+1.00  gd=infm  t=7.3s
+21:29:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:29:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:29:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:29:59 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:30:01 | INFO  | MultiAgentPDMPlanner: 12 traffic agents × 15 proposals each
+21:30:06 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:30:06 | INFO  | --- 12/1000 maps | 9m22s  ETA: 771m 18s ---
+21:30:06 | INFO  |   Goal: 11/12 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:30:06 | INFO  |   Reward: -0.68 +/- 2.10 | GoalDist: 0.0m | Plan: 1ms | Map: 46.8s | 1.3 maps/min
+21:30:06 | INFO  |   [+ ] Map 11 (ID=21)  r=+1.00  gd=infm  t=7.1s
+21:30:06 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:30:06 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:30:06 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:30:06 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:30:07 | INFO  | MultiAgentPDMPlanner: 8 traffic agents × 15 proposals each
+21:30:12 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:30:12 | INFO  | --- 13/1000 maps | 9m27s  ETA: 718m 41s ---
+21:30:12 | INFO  |   Goal: 12/13 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:30:12 | INFO  |   Reward: -0.55 +/- 2.07 | GoalDist: 0.0m | Plan: 1ms | Map: 43.7s | 1.4 maps/min
+21:30:12 | INFO  |   [+ ] Map 12 (ID=22)  r=+1.00  gd=infm  t=5.9s
+21:30:12 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:30:12 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:30:12 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:30:12 | INFO  |                    l_align=+2.4e-04  l_center=+0.0344  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:30:12 | WARNING | Ego entity 11 not in active agents for map 23, skipping
+21:30:12 | WARNING |   Skipped map 23 (ID=23)
+21:30:12 | INFO  | --- 13/1000 maps | 9m27s  ETA: 718m 42s ---
+21:30:12 | INFO  |   Goal: 12/13 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:30:12 | INFO  |   Reward: -0.55 +/- 2.07 | GoalDist: 0.0m | Plan: 1ms | Map: 43.7s | 1.4 maps/min
+21:30:12 | INFO  |   [+ ] Map 12 (ID=22)  r=+1.00  gd=infm  t=5.9s
+21:30:12 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:30:12 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:30:12 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:30:12 | INFO  |                    l_align=+2.4e-04  l_center=+0.0344  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:30:23 | INFO  | MultiAgentPDMPlanner: 110 traffic agents × 15 proposals each
+21:30:28 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:30:35 | INFO  | --- 14/1000 maps | 9m50s  ETA: 693m 38s ---
+21:30:35 | INFO  |   Goal: 13/14 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:30:35 | INFO  |   Reward: -0.44 +/- 2.03 | GoalDist: 0.0m | Plan: 1ms | Map: 42.2s | 1.4 maps/min
+21:30:35 | INFO  |   [+ ] Map 13 (ID=24)  r=+1.00  gd=infm  t=22.9s
+21:30:35 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:30:35 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:30:35 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:30:35 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:30:35 | WARNING | Ego entity 12 not in active agents for map 25, skipping
+21:30:35 | WARNING |   Skipped map 25 (ID=25)
+21:30:35 | INFO  | --- 14/1000 maps | 9m50s  ETA: 693m 39s ---
+21:30:35 | INFO  |   Goal: 13/14 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:30:35 | INFO  |   Reward: -0.44 +/- 2.03 | GoalDist: 0.0m | Plan: 1ms | Map: 42.2s | 1.4 maps/min
+21:30:35 | INFO  |   [+ ] Map 13 (ID=24)  r=+1.00  gd=infm  t=22.9s
+21:30:35 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:30:35 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:30:35 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:30:35 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:30:35 | WARNING | Ego entity 53 not in active agents for map 26, skipping
+21:30:35 | WARNING |   Skipped map 26 (ID=26)
+21:30:35 | INFO  | --- 14/1000 maps | 9m50s  ETA: 693m 40s ---
+21:30:35 | INFO  |   Goal: 13/14 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:30:35 | INFO  |   Reward: -0.44 +/- 2.03 | GoalDist: 0.0m | Plan: 1ms | Map: 42.2s | 1.4 maps/min
+21:30:35 | INFO  |   [+ ] Map 13 (ID=24)  r=+1.00  gd=infm  t=22.9s
+21:30:35 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:30:35 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:30:35 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:30:35 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:30:36 | INFO  | MultiAgentPDMPlanner: 10 traffic agents × 15 proposals each
+21:30:41 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:30:41 | INFO  | --- 15/1000 maps | 9m56s  ETA: 653m 21s ---
+21:30:41 | INFO  |   Goal: 13/15 | Coll: 0.0% | Fault: 0.0% | Offroad: 0.0% | Lane: 100.0%
+21:30:41 | INFO  |   Reward: -0.41 +/- 1.97 | GoalDist: 0.0m | Plan: 1ms | Map: 39.8s | 1.5 maps/min
+21:30:41 | INFO  |   [- ] Map 14 (ID=27)  r=+0.00  gd=infm  t=6.0s
+21:30:41 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:30:41 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:30:41 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:30:41 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:30:44 | INFO  | MultiAgentPDMPlanner: 33 traffic agents × 15 proposals each
+21:30:49 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:31:39 | INFO  | --- 16/1000 maps | 10m55s  ETA: 671m 38s ---
+21:31:39 | INFO  |   Goal: 13/16 | Coll: 6.2% | Fault: 6.2% | Offroad: 0.0% | Lane: 100.0%
+21:31:39 | INFO  |   Reward: -0.82 +/- 2.47 | GoalDist: 0.0m | Plan: 1ms | Map: 40.9s | 1.5 maps/min
+21:31:39 | INFO  |   [-!] Map 15 (ID=28)  r=-6.92  gd=0.0m  t=58.3s
+21:31:39 | INFO  |           rewards: collision=-2.1164  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:31:39 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.8000
+21:31:39 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+193.0000
+21:31:39 | INFO  |                    l_align=+0.0173  l_center=+6.0245  timestep=+7.9000  reverse=+0.0000  speed_limit=+48.0000
+21:31:50 | INFO  | MultiAgentPDMPlanner: 57 traffic agents × 15 proposals each
+21:31:55 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:31:58 | INFO  | --- 17/1000 maps | 11m13s  ETA: 649m 17s ---
+21:31:58 | INFO  |   Goal: 14/17 | Coll: 5.9% | Fault: 5.9% | Offroad: 0.0% | Lane: 100.0%
+21:31:58 | INFO  |   Reward: -0.71 +/- 2.44 | GoalDist: 0.0m | Plan: 1ms | Map: 39.6s | 1.5 maps/min
+21:31:58 | INFO  |   [+ ] Map 16 (ID=29)  r=+1.00  gd=infm  t=18.5s
+21:31:58 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:31:58 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:31:58 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:31:58 | INFO  |                    l_align=+1.3e-04  l_center=+0.0953  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:31:58 | WARNING | Ego entity 15 not in active agents for map 30, skipping
+21:31:58 | WARNING |   Skipped map 30 (ID=30)
+21:31:58 | INFO  | --- 17/1000 maps | 11m13s  ETA: 649m 18s ---
+21:31:58 | INFO  |   Goal: 14/17 | Coll: 5.9% | Fault: 5.9% | Offroad: 0.0% | Lane: 100.0%
+21:31:58 | INFO  |   Reward: -0.71 +/- 2.44 | GoalDist: 0.0m | Plan: 1ms | Map: 39.6s | 1.5 maps/min
+21:31:58 | INFO  |   [+ ] Map 16 (ID=29)  r=+1.00  gd=infm  t=18.5s
+21:31:58 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:31:58 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:31:58 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:31:58 | INFO  |                    l_align=+1.3e-04  l_center=+0.0953  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:32:09 | INFO  | MultiAgentPDMPlanner: 92 traffic agents × 15 proposals each
+21:32:14 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:32:17 | INFO  | --- 18/1000 maps | 11m32s  ETA: 630m 3s ---
+21:32:17 | INFO  |   Goal: 15/18 | Coll: 5.6% | Fault: 5.6% | Offroad: 0.0% | Lane: 100.0%
+21:32:17 | INFO  |   Reward: -0.62 +/- 2.40 | GoalDist: 0.0m | Plan: 1ms | Map: 38.5s | 1.6 maps/min
+21:32:17 | INFO  |   [+ ] Map 17 (ID=31)  r=+1.00  gd=infm  t=19.2s
+21:32:17 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:32:17 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:32:17 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:32:17 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:32:20 | INFO  | MultiAgentPDMPlanner: 29 traffic agents × 15 proposals each
+21:32:24 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:32:25 | INFO  | --- 19/1000 maps | 11m40s  ETA: 602m 51s ---
+21:32:25 | INFO  |   Goal: 16/19 | Coll: 5.3% | Fault: 5.3% | Offroad: 0.0% | Lane: 100.0%
+21:32:25 | INFO  |   Reward: -0.53 +/- 2.36 | GoalDist: 0.0m | Plan: 1ms | Map: 36.9s | 1.6 maps/min
+21:32:25 | INFO  |   [+ ] Map 18 (ID=32)  r=+1.00  gd=infm  t=7.6s
+21:32:25 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:32:25 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:32:25 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:32:25 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:32:26 | INFO  | MultiAgentPDMPlanner: 24 traffic agents × 15 proposals each
+21:32:31 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:32:31 | INFO  | --- 20/1000 maps | 11m47s  ETA: 577m 25s ---
+21:32:31 | INFO  |   Goal: 16/20 | Coll: 5.0% | Fault: 5.0% | Offroad: 0.0% | Lane: 100.0%
+21:32:31 | INFO  |   Reward: -0.51 +/- 2.31 | GoalDist: 0.0m | Plan: 1ms | Map: 35.3s | 1.7 maps/min
+21:32:31 | INFO  |   [- ] Map 19 (ID=33)  r=+0.00  gd=infm  t=6.5s
+21:32:31 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:32:31 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:32:31 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:32:31 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:32:31 | WARNING | Ego entity 8 not in active agents for map 34, skipping
+21:32:31 | WARNING |   Skipped map 34 (ID=34)
+21:32:31 | INFO  | --- 20/1000 maps | 11m47s  ETA: 577m 26s ---
+21:32:31 | INFO  |   Goal: 16/20 | Coll: 5.0% | Fault: 5.0% | Offroad: 0.0% | Lane: 100.0%
+21:32:31 | INFO  |   Reward: -0.51 +/- 2.31 | GoalDist: 0.0m | Plan: 1ms | Map: 35.3s | 1.7 maps/min
+21:32:31 | INFO  |   [- ] Map 19 (ID=33)  r=+0.00  gd=infm  t=6.5s
+21:32:31 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:32:31 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:32:31 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:32:31 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:32:34 | INFO  | MultiAgentPDMPlanner: 50 traffic agents × 15 proposals each
+21:32:39 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:33:22 | INFO  | --- 21/1000 maps | 12m37s  ETA: 588m 38s ---
+21:33:22 | INFO  |   Goal: 17/21 | Coll: 4.8% | Fault: 4.8% | Offroad: 0.0% | Lane: 100.0%
+21:33:22 | INFO  |   Reward: -0.60 +/- 2.29 | GoalDist: 0.0m | Plan: 1ms | Map: 36.1s | 1.7 maps/min
+21:33:22 | INFO  |   [+ ] Map 20 (ID=35)  r=-2.50  gd=0.0m  t=50.5s
+21:33:22 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:33:22 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.5000
+21:33:22 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+141.0000
+21:33:22 | INFO  |                    l_align=+0.0126  l_center=+4.5361  timestep=+5.5000  reverse=+0.0000  speed_limit=+35.0000
+21:33:22 | WARNING | Ego entity 19 not in active agents for map 36, skipping
+21:33:22 | WARNING |   Skipped map 36 (ID=36)
+21:33:22 | INFO  | --- 21/1000 maps | 12m37s  ETA: 588m 40s ---
+21:33:22 | INFO  |   Goal: 17/21 | Coll: 4.8% | Fault: 4.8% | Offroad: 0.0% | Lane: 100.0%
+21:33:22 | INFO  |   Reward: -0.60 +/- 2.29 | GoalDist: 0.0m | Plan: 1ms | Map: 36.1s | 1.7 maps/min
+21:33:22 | INFO  |   [+ ] Map 20 (ID=35)  r=-2.50  gd=0.0m  t=50.5s
+21:33:22 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:33:22 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.5000
+21:33:22 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+141.0000
+21:33:22 | INFO  |                    l_align=+0.0126  l_center=+4.5361  timestep=+5.5000  reverse=+0.0000  speed_limit=+35.0000
+21:33:22 | INFO  | MultiAgentPDMPlanner: 3 traffic agents × 15 proposals each
+21:33:27 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:33:29 | INFO  | --- 22/1000 maps | 12m44s  ETA: 566m 17s ---
+21:33:29 | INFO  |   Goal: 18/22 | Coll: 4.5% | Fault: 4.5% | Offroad: 0.0% | Lane: 100.0%
+21:33:29 | INFO  |   Reward: -0.79 +/- 2.40 | GoalDist: 0.0m | Plan: 1ms | Map: 34.7s | 1.7 maps/min
+21:33:29 | INFO  |   [+ ] Map 21 (ID=37)  r=-4.80  gd=0.0m  t=6.7s
+21:33:29 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:33:29 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-5.8000
+21:33:29 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+162.0000
+21:33:29 | INFO  |                    l_align=-106.6481  l_center=+1.7401  timestep=+5.8000  reverse=+0.0000  speed_limit=+58.0000
+21:33:29 | WARNING | Ego entity 9 not in active agents for map 38, skipping
+21:33:29 | WARNING |   Skipped map 38 (ID=38)
+21:33:29 | INFO  | --- 22/1000 maps | 12m44s  ETA: 566m 18s ---
+21:33:29 | INFO  |   Goal: 18/22 | Coll: 4.5% | Fault: 4.5% | Offroad: 0.0% | Lane: 100.0%
+21:33:29 | INFO  |   Reward: -0.79 +/- 2.40 | GoalDist: 0.0m | Plan: 1ms | Map: 34.7s | 1.7 maps/min
+21:33:29 | INFO  |   [+ ] Map 21 (ID=37)  r=-4.80  gd=0.0m  t=6.7s
+21:33:29 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:33:29 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-5.8000
+21:33:29 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+162.0000
+21:33:29 | INFO  |                    l_align=-106.6481  l_center=+1.7401  timestep=+5.8000  reverse=+0.0000  speed_limit=+58.0000
+21:33:34 | INFO  | MultiAgentPDMPlanner: 55 traffic agents × 15 proposals each
+21:33:40 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:35:25 | INFO  | --- 23/1000 maps | 14m40s  ETA: 623m 13s ---
+21:35:25 | INFO  |   Goal: 19/23 | Coll: 4.3% | Fault: 4.3% | Offroad: 0.0% | Lane: 100.0%
+21:35:25 | INFO  |   Reward: -0.93 +/- 2.43 | GoalDist: 0.0m | Plan: 1ms | Map: 38.3s | 1.6 maps/min
+21:35:25 | INFO  |   [+ ] Map 22 (ID=39)  r=-3.90  gd=0.0m  t=115.9s
+21:35:25 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:35:25 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.9000
+21:35:25 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+170.0000
+21:35:25 | INFO  |                    l_align=-14.5021  l_center=+4.4966  timestep=+6.4000  reverse=+0.0000  speed_limit=+49.0000
+21:35:25 | WARNING | Ego entity 13 not in active agents for map 40, skipping
+21:35:25 | WARNING |   Skipped map 40 (ID=40)
+21:35:25 | INFO  | --- 23/1000 maps | 14m40s  ETA: 623m 14s ---
+21:35:25 | INFO  |   Goal: 19/23 | Coll: 4.3% | Fault: 4.3% | Offroad: 0.0% | Lane: 100.0%
+21:35:25 | INFO  |   Reward: -0.93 +/- 2.43 | GoalDist: 0.0m | Plan: 1ms | Map: 38.3s | 1.6 maps/min
+21:35:25 | INFO  |   [+ ] Map 22 (ID=39)  r=-3.90  gd=0.0m  t=115.9s
+21:35:25 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:35:25 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.9000
+21:35:25 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+170.0000
+21:35:25 | INFO  |                    l_align=-14.5021  l_center=+4.4966  timestep=+6.4000  reverse=+0.0000  speed_limit=+49.0000
+21:35:25 | WARNING | Ego entity 23 not in active agents for map 41, skipping
+21:35:25 | WARNING |   Skipped map 41 (ID=41)
+21:35:25 | INFO  | --- 23/1000 maps | 14m40s  ETA: 623m 15s ---
+21:35:25 | INFO  |   Goal: 19/23 | Coll: 4.3% | Fault: 4.3% | Offroad: 0.0% | Lane: 100.0%
+21:35:25 | INFO  |   Reward: -0.93 +/- 2.43 | GoalDist: 0.0m | Plan: 1ms | Map: 38.3s | 1.6 maps/min
+21:35:25 | INFO  |   [+ ] Map 22 (ID=39)  r=-3.90  gd=0.0m  t=115.9s
+21:35:25 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:35:25 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.9000
+21:35:25 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+170.0000
+21:35:25 | INFO  |                    l_align=-14.5021  l_center=+4.4966  timestep=+6.4000  reverse=+0.0000  speed_limit=+49.0000
+21:35:38 | INFO  | MultiAgentPDMPlanner: 42 traffic agents × 15 proposals each
+21:35:43 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:36:52 | INFO  | --- 24/1000 maps | 16m8s  ETA: 656m 12s ---
+21:36:52 | INFO  |   Goal: 19/24 | Coll: 8.3% | Fault: 8.3% | Offroad: 0.0% | Lane: 100.0%
+21:36:52 | INFO  |   Reward: -1.20 +/- 2.71 | GoalDist: 0.0m | Plan: 1ms | Map: 40.3s | 1.5 maps/min
+21:36:52 | INFO  |   [-!] Map 23 (ID=42)  r=-7.37  gd=0.1m  t=87.8s
+21:36:52 | INFO  |           rewards: collision=-1.7690  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:36:52 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-5.6000
+21:36:52 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+194.0000
+21:36:52 | INFO  |                    l_align=+0.0162  l_center=+5.0422  timestep=+7.1000  reverse=+0.0000  speed_limit=+56.0000
+21:36:52 | WARNING | Ego entity 56 not in active agents for map 43, skipping
+21:36:52 | WARNING |   Skipped map 43 (ID=43)
+21:36:52 | INFO  | --- 24/1000 maps | 16m8s  ETA: 656m 13s ---
+21:36:52 | INFO  |   Goal: 19/24 | Coll: 8.3% | Fault: 8.3% | Offroad: 0.0% | Lane: 100.0%
+21:36:52 | INFO  |   Reward: -1.20 +/- 2.71 | GoalDist: 0.0m | Plan: 1ms | Map: 40.3s | 1.5 maps/min
+21:36:52 | INFO  |   [-!] Map 23 (ID=42)  r=-7.37  gd=0.1m  t=87.8s
+21:36:52 | INFO  |           rewards: collision=-1.7690  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:36:52 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-5.6000
+21:36:52 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+194.0000
+21:36:52 | INFO  |                    l_align=+0.0162  l_center=+5.0422  timestep=+7.1000  reverse=+0.0000  speed_limit=+56.0000
+21:36:52 | WARNING | Ego entity 9 not in active agents for map 44, skipping
+21:36:52 | WARNING |   Skipped map 44 (ID=44)
+21:36:52 | INFO  | --- 24/1000 maps | 16m8s  ETA: 656m 14s ---
+21:36:52 | INFO  |   Goal: 19/24 | Coll: 8.3% | Fault: 8.3% | Offroad: 0.0% | Lane: 100.0%
+21:36:52 | INFO  |   Reward: -1.20 +/- 2.71 | GoalDist: 0.0m | Plan: 1ms | Map: 40.3s | 1.5 maps/min
+21:36:52 | INFO  |   [-!] Map 23 (ID=42)  r=-7.37  gd=0.1m  t=87.8s
+21:36:52 | INFO  |           rewards: collision=-1.7690  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:36:52 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-5.6000
+21:36:52 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+194.0000
+21:36:52 | INFO  |                    l_align=+0.0162  l_center=+5.0422  timestep=+7.1000  reverse=+0.0000  speed_limit=+56.0000
+21:36:56 | INFO  | MultiAgentPDMPlanner: 43 traffic agents × 15 proposals each
+21:37:01 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:37:03 | INFO  | --- 25/1000 maps | 16m18s  ETA: 636m 1s ---
+21:37:03 | INFO  |   Goal: 20/25 | Coll: 8.0% | Fault: 8.0% | Offroad: 0.0% | Lane: 100.0%
+21:37:03 | INFO  |   Reward: -1.11 +/- 2.69 | GoalDist: 0.0m | Plan: 1ms | Map: 39.1s | 1.5 maps/min
+21:37:03 | INFO  |   [+ ] Map 24 (ID=45)  r=+1.00  gd=infm  t=10.3s
+21:37:03 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:37:03 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:37:03 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:37:03 | INFO  |                    l_align=+2.5e-04  l_center=+0.0119  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:37:07 | INFO  | MultiAgentPDMPlanner: 39 traffic agents × 15 proposals each
+21:37:12 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:38:08 | INFO  | --- 26/1000 maps | 17m24s  ETA: 651m 53s ---
+21:38:08 | INFO  |   Goal: 20/26 | Coll: 11.5% | Fault: 11.5% | Offroad: 0.0% | Lane: 100.0%
+21:38:08 | INFO  |   Reward: -1.33 +/- 2.87 | GoalDist: 0.0m | Plan: 1ms | Map: 40.1s | 1.5 maps/min
+21:38:08 | INFO  |   [-!] Map 25 (ID=46)  r=-7.01  gd=0.0m  t=65.6s
+21:38:08 | INFO  |           rewards: collision=-2.8086  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:38:08 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.2000
+21:38:08 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+155.0000
+21:38:08 | INFO  |                    l_align=-5.6768  l_center=+2.8023  timestep=+5.3000  reverse=+0.0000  speed_limit=+42.0000
+21:38:08 | WARNING | Ego entity 49 not in active agents for map 47, skipping
+21:38:08 | WARNING |   Skipped map 47 (ID=47)
+21:38:08 | INFO  | --- 26/1000 maps | 17m24s  ETA: 651m 54s ---
+21:38:08 | INFO  |   Goal: 20/26 | Coll: 11.5% | Fault: 11.5% | Offroad: 0.0% | Lane: 100.0%
+21:38:08 | INFO  |   Reward: -1.33 +/- 2.87 | GoalDist: 0.0m | Plan: 1ms | Map: 40.1s | 1.5 maps/min
+21:38:08 | INFO  |   [-!] Map 25 (ID=46)  r=-7.01  gd=0.0m  t=65.6s
+21:38:08 | INFO  |           rewards: collision=-2.8086  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:38:08 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.2000
+21:38:08 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+155.0000
+21:38:08 | INFO  |                    l_align=-5.6768  l_center=+2.8023  timestep=+5.3000  reverse=+0.0000  speed_limit=+42.0000
+21:38:12 | INFO  | MultiAgentPDMPlanner: 37 traffic agents × 15 proposals each
+21:38:17 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:38:17 | INFO  | --- 27/1000 maps | 17m33s  ETA: 632m 35s ---
+21:38:17 | INFO  |   Goal: 21/27 | Coll: 11.1% | Fault: 11.1% | Offroad: 0.0% | Lane: 100.0%
+21:38:17 | INFO  |   Reward: -1.25 +/- 2.85 | GoalDist: 0.0m | Plan: 1ms | Map: 39.0s | 1.5 maps/min
+21:38:17 | INFO  |   [+ ] Map 26 (ID=48)  r=+1.00  gd=infm  t=9.1s
+21:38:17 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:38:17 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:38:17 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+1.0000
+21:38:17 | INFO  |                    l_align=-0.1136  l_center=+0.0000  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:38:23 | INFO  | MultiAgentPDMPlanner: 42 traffic agents × 15 proposals each
+21:38:28 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:38:29 | INFO  | --- 28/1000 maps | 17m44s  ETA: 616m 4s ---
+21:38:29 | INFO  |   Goal: 22/28 | Coll: 10.7% | Fault: 10.7% | Offroad: 0.0% | Lane: 100.0%
+21:38:29 | INFO  |   Reward: -1.17 +/- 2.83 | GoalDist: 0.0m | Plan: 1ms | Map: 38.0s | 1.6 maps/min
+21:38:29 | INFO  |   [+ ] Map 27 (ID=49)  r=+1.00  gd=infm  t=11.6s
+21:38:29 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:38:29 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:38:29 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+1.0000
+21:38:29 | INFO  |                    l_align=-0.1270  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:38:33 | INFO  | MultiAgentPDMPlanner: 34 traffic agents × 15 proposals each
+21:38:38 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:38:39 | INFO  | --- 29/1000 maps | 17m54s  ETA: 599m 37s ---
+21:38:39 | INFO  |   Goal: 23/29 | Coll: 10.3% | Fault: 10.3% | Offroad: 0.0% | Lane: 100.0%
+21:38:39 | INFO  |   Reward: -1.09 +/- 2.81 | GoalDist: 0.0m | Plan: 1ms | Map: 37.0s | 1.6 maps/min
+21:38:39 | INFO  |   [+ ] Map 28 (ID=50)  r=+1.00  gd=infm  t=9.7s
+21:38:39 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:38:39 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:38:39 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:38:39 | INFO  |                    l_align=+2.5e-04  l_center=-8.1e-03  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:38:39 | WARNING | Ego entity 37 not in active agents for map 51, skipping
+21:38:39 | WARNING |   Skipped map 51 (ID=51)
+21:38:39 | INFO  | --- 29/1000 maps | 17m54s  ETA: 599m 38s ---
+21:38:39 | INFO  |   Goal: 23/29 | Coll: 10.3% | Fault: 10.3% | Offroad: 0.0% | Lane: 100.0%
+21:38:39 | INFO  |   Reward: -1.09 +/- 2.81 | GoalDist: 0.0m | Plan: 1ms | Map: 37.0s | 1.6 maps/min
+21:38:39 | INFO  |   [+ ] Map 28 (ID=50)  r=+1.00  gd=infm  t=9.7s
+21:38:39 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:38:39 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:38:39 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:38:39 | INFO  |                    l_align=+2.5e-04  l_center=-8.1e-03  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:38:39 | WARNING | Ego entity 45 not in active agents for map 52, skipping
+21:38:39 | WARNING |   Skipped map 52 (ID=52)
+21:38:39 | INFO  | --- 29/1000 maps | 17m54s  ETA: 599m 38s ---
+21:38:39 | INFO  |   Goal: 23/29 | Coll: 10.3% | Fault: 10.3% | Offroad: 0.0% | Lane: 100.0%
+21:38:39 | INFO  |   Reward: -1.09 +/- 2.81 | GoalDist: 0.0m | Plan: 1ms | Map: 37.0s | 1.6 maps/min
+21:38:39 | INFO  |   [+ ] Map 28 (ID=50)  r=+1.00  gd=infm  t=9.7s
+21:38:39 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:38:39 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:38:39 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:38:39 | INFO  |                    l_align=+2.5e-04  l_center=-8.1e-03  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:38:42 | INFO  | MultiAgentPDMPlanner: 25 traffic agents × 15 proposals each
+21:38:47 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:39:23 | INFO  | --- 30/1000 maps | 18m39s  ETA: 603m 4s ---
+21:39:23 | INFO  |   Goal: 24/30 | Coll: 10.0% | Fault: 10.0% | Offroad: 0.0% | Lane: 100.0%
+21:39:23 | INFO  |   Reward: -1.13 +/- 2.77 | GoalDist: 0.0m | Plan: 1ms | Map: 37.3s | 1.6 maps/min
+21:39:23 | INFO  |   [+ ] Map 29 (ID=53)  r=-2.30  gd=0.0m  t=44.5s
+21:39:23 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:39:23 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.3000
+21:39:23 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+144.0000
+21:39:23 | INFO  |                    l_align=-13.8003  l_center=+1.3830  timestep=+5.4000  reverse=+0.0000  speed_limit=+33.0000
+21:39:26 | INFO  | MultiAgentPDMPlanner: 19 traffic agents × 15 proposals each
+21:39:31 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:39:31 | INFO  | --- 31/1000 maps | 18m47s  ETA: 587m 14s ---
+21:39:31 | INFO  |   Goal: 25/31 | Coll: 9.7% | Fault: 9.7% | Offroad: 0.0% | Lane: 100.0%
+21:39:31 | INFO  |   Reward: -1.06 +/- 2.75 | GoalDist: 0.0m | Plan: 1ms | Map: 36.3s | 1.7 maps/min
+21:39:31 | INFO  |   [+ ] Map 30 (ID=54)  r=+1.00  gd=infm  t=8.1s
+21:39:31 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:39:31 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:39:31 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:39:31 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:39:35 | INFO  | MultiAgentPDMPlanner: 22 traffic agents × 15 proposals each
+21:39:40 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:40:13 | INFO  | --- 32/1000 maps | 19m28s  ETA: 589m 10s ---
+21:40:13 | INFO  |   Goal: 26/32 | Coll: 9.4% | Fault: 9.4% | Offroad: 0.0% | Lane: 100.0%
+21:40:13 | INFO  |   Reward: -1.10 +/- 2.71 | GoalDist: 0.0m | Plan: 1ms | Map: 36.5s | 1.6 maps/min
+21:40:13 | INFO  |   [+ ] Map 31 (ID=55)  r=-2.20  gd=0.0m  t=41.4s
+21:40:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:40:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.2000
+21:40:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+172.0000
+21:40:13 | INFO  |                    l_align=-29.4519  l_center=+2.7905  timestep=+6.1000  reverse=+0.0000  speed_limit=+32.0000
+21:40:13 | WARNING | Ego entity 41 not in active agents for map 56, skipping
+21:40:13 | WARNING |   Skipped map 56 (ID=56)
+21:40:13 | INFO  | --- 32/1000 maps | 19m28s  ETA: 589m 11s ---
+21:40:13 | INFO  |   Goal: 26/32 | Coll: 9.4% | Fault: 9.4% | Offroad: 0.0% | Lane: 100.0%
+21:40:13 | INFO  |   Reward: -1.10 +/- 2.71 | GoalDist: 0.0m | Plan: 1ms | Map: 36.5s | 1.6 maps/min
+21:40:13 | INFO  |   [+ ] Map 31 (ID=55)  r=-2.20  gd=0.0m  t=41.4s
+21:40:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:40:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.2000
+21:40:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+172.0000
+21:40:13 | INFO  |                    l_align=-29.4519  l_center=+2.7905  timestep=+6.1000  reverse=+0.0000  speed_limit=+32.0000
+21:40:17 | INFO  | MultiAgentPDMPlanner: 25 traffic agents × 15 proposals each
+21:40:22 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:40:59 | INFO  | --- 33/1000 maps | 20m14s  ETA: 593m 10s ---
+21:40:59 | INFO  |   Goal: 27/33 | Coll: 9.1% | Fault: 9.1% | Offroad: 0.0% | Lane: 100.0%
+21:40:59 | INFO  |   Reward: -1.21 +/- 2.75 | GoalDist: 0.0m | Plan: 1ms | Map: 36.8s | 1.6 maps/min
+21:40:59 | INFO  |   [+ ] Map 32 (ID=57)  r=-4.90  gd=0.0m  t=45.9s
+21:40:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:40:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-5.9000
+21:40:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+166.0000
+21:40:59 | INFO  |                    l_align=-1.0361  l_center=+6.2280  timestep=+6.1000  reverse=+0.0000  speed_limit=+59.0000
+21:41:01 | INFO  | MultiAgentPDMPlanner: 19 traffic agents × 15 proposals each
+21:41:06 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:41:06 | INFO  | --- 34/1000 maps | 20m22s  ETA: 578m 44s ---
+21:41:06 | INFO  |   Goal: 28/34 | Coll: 8.8% | Fault: 8.8% | Offroad: 0.0% | Lane: 100.0%
+21:41:06 | INFO  |   Reward: -1.15 +/- 2.74 | GoalDist: 0.0m | Plan: 1ms | Map: 35.9s | 1.7 maps/min
+21:41:06 | INFO  |   [+ ] Map 33 (ID=58)  r=+1.00  gd=infm  t=7.6s
+21:41:06 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:06 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:06 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+3.0000
+21:41:06 | INFO  |                    l_align=+2.5e-04  l_center=+0.0892  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:41:08 | INFO  | MultiAgentPDMPlanner: 20 traffic agents × 15 proposals each
+21:41:13 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:41:13 | INFO  | --- 35/1000 maps | 20m28s  ETA: 564m 37s ---
+21:41:13 | INFO  |   Goal: 28/35 | Coll: 8.6% | Fault: 8.6% | Offroad: 0.0% | Lane: 100.0%
+21:41:13 | INFO  |   Reward: -1.12 +/- 2.70 | GoalDist: 0.0m | Plan: 1ms | Map: 35.1s | 1.7 maps/min
+21:41:13 | INFO  |   [- ] Map 34 (ID=59)  r=+0.00  gd=infm  t=6.5s
+21:41:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | WARNING | Ego entity 54 not in active agents for map 60, skipping
+21:41:13 | WARNING |   Skipped map 60 (ID=60)
+21:41:13 | INFO  | --- 35/1000 maps | 20m28s  ETA: 564m 38s ---
+21:41:13 | INFO  |   Goal: 28/35 | Coll: 8.6% | Fault: 8.6% | Offroad: 0.0% | Lane: 100.0%
+21:41:13 | INFO  |   Reward: -1.12 +/- 2.70 | GoalDist: 0.0m | Plan: 1ms | Map: 35.1s | 1.7 maps/min
+21:41:13 | INFO  |   [- ] Map 34 (ID=59)  r=+0.00  gd=infm  t=6.5s
+21:41:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | WARNING | Ego entity 39 not in active agents for map 61, skipping
+21:41:13 | WARNING |   Skipped map 61 (ID=61)
+21:41:13 | INFO  | --- 35/1000 maps | 20m28s  ETA: 564m 38s ---
+21:41:13 | INFO  |   Goal: 28/35 | Coll: 8.6% | Fault: 8.6% | Offroad: 0.0% | Lane: 100.0%
+21:41:13 | INFO  |   Reward: -1.12 +/- 2.70 | GoalDist: 0.0m | Plan: 1ms | Map: 35.1s | 1.7 maps/min
+21:41:13 | INFO  |   [- ] Map 34 (ID=59)  r=+0.00  gd=infm  t=6.5s
+21:41:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | WARNING | Ego entity 69 not in active agents for map 62, skipping
+21:41:13 | WARNING |   Skipped map 62 (ID=62)
+21:41:13 | INFO  | --- 35/1000 maps | 20m28s  ETA: 564m 38s ---
+21:41:13 | INFO  |   Goal: 28/35 | Coll: 8.6% | Fault: 8.6% | Offroad: 0.0% | Lane: 100.0%
+21:41:13 | INFO  |   Reward: -1.12 +/- 2.70 | GoalDist: 0.0m | Plan: 1ms | Map: 35.1s | 1.7 maps/min
+21:41:13 | INFO  |   [- ] Map 34 (ID=59)  r=+0.00  gd=infm  t=6.5s
+21:41:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | WARNING | Ego entity 14 not in active agents for map 63, skipping
+21:41:13 | WARNING |   Skipped map 63 (ID=63)
+21:41:13 | INFO  | --- 35/1000 maps | 20m28s  ETA: 564m 39s ---
+21:41:13 | INFO  |   Goal: 28/35 | Coll: 8.6% | Fault: 8.6% | Offroad: 0.0% | Lane: 100.0%
+21:41:13 | INFO  |   Reward: -1.12 +/- 2.70 | GoalDist: 0.0m | Plan: 1ms | Map: 35.1s | 1.7 maps/min
+21:41:13 | INFO  |   [- ] Map 34 (ID=59)  r=+0.00  gd=infm  t=6.5s
+21:41:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | WARNING | Ego entity 33 not in active agents for map 64, skipping
+21:41:13 | WARNING |   Skipped map 64 (ID=64)
+21:41:13 | INFO  | --- 35/1000 maps | 20m28s  ETA: 564m 40s ---
+21:41:13 | INFO  |   Goal: 28/35 | Coll: 8.6% | Fault: 8.6% | Offroad: 0.0% | Lane: 100.0%
+21:41:13 | INFO  |   Reward: -1.12 +/- 2.70 | GoalDist: 0.0m | Plan: 1ms | Map: 35.1s | 1.7 maps/min
+21:41:13 | INFO  |   [- ] Map 34 (ID=59)  r=+0.00  gd=infm  t=6.5s
+21:41:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | WARNING | Ego entity 48 not in active agents for map 65, skipping
+21:41:13 | WARNING |   Skipped map 65 (ID=65)
+21:41:13 | INFO  | --- 35/1000 maps | 20m28s  ETA: 564m 40s ---
+21:41:13 | INFO  |   Goal: 28/35 | Coll: 8.6% | Fault: 8.6% | Offroad: 0.0% | Lane: 100.0%
+21:41:13 | INFO  |   Reward: -1.12 +/- 2.70 | GoalDist: 0.0m | Plan: 1ms | Map: 35.1s | 1.7 maps/min
+21:41:13 | INFO  |   [- ] Map 34 (ID=59)  r=+0.00  gd=infm  t=6.5s
+21:41:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:41:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:41:21 | INFO  | MultiAgentPDMPlanner: 40 traffic agents × 15 proposals each
+21:41:26 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:42:39 | INFO  | --- 36/1000 maps | 21m54s  ETA: 586m 50s ---
+21:42:39 | INFO  |   Goal: 28/36 | Coll: 11.1% | Fault: 8.3% | Offroad: 0.0% | Lane: 100.0%
+21:42:39 | INFO  |   Reward: -1.28 +/- 2.83 | GoalDist: 0.0m | Plan: 1ms | Map: 36.5s | 1.6 maps/min
+21:42:39 | INFO  |   [-!] Map 35 (ID=66)  r=-6.84  gd=0.2m  t=86.1s
+21:42:39 | INFO  |           rewards: collision=-2.3415  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:42:39 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.5000
+21:42:39 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+148.0000
+21:42:39 | INFO  |                    l_align=-0.5415  l_center=+3.3545  timestep=+5.7000  reverse=+0.0000  speed_limit=+45.0000
+21:42:39 | WARNING | Ego entity 12 not in active agents for map 67, skipping
+21:42:39 | WARNING |   Skipped map 67 (ID=67)
+21:42:39 | INFO  | --- 36/1000 maps | 21m54s  ETA: 586m 50s ---
+21:42:39 | INFO  |   Goal: 28/36 | Coll: 11.1% | Fault: 8.3% | Offroad: 0.0% | Lane: 100.0%
+21:42:39 | INFO  |   Reward: -1.28 +/- 2.83 | GoalDist: 0.0m | Plan: 1ms | Map: 36.5s | 1.6 maps/min
+21:42:39 | INFO  |   [-!] Map 35 (ID=66)  r=-6.84  gd=0.2m  t=86.1s
+21:42:39 | INFO  |           rewards: collision=-2.3415  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:42:39 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.5000
+21:42:39 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+148.0000
+21:42:39 | INFO  |                    l_align=-0.5415  l_center=+3.3545  timestep=+5.7000  reverse=+0.0000  speed_limit=+45.0000
+21:42:40 | INFO  | MultiAgentPDMPlanner: 17 traffic agents × 15 proposals each
+21:42:45 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:42:46 | INFO  | --- 37/1000 maps | 22m1s  ETA: 573m 10s ---
+21:42:46 | INFO  |   Goal: 29/37 | Coll: 10.8% | Fault: 8.1% | Offroad: 0.0% | Lane: 100.0%
+21:42:46 | INFO  |   Reward: -1.21 +/- 2.81 | GoalDist: 0.0m | Plan: 1ms | Map: 35.7s | 1.7 maps/min
+21:42:46 | INFO  |   [+ ] Map 36 (ID=68)  r=+1.00  gd=infm  t=6.4s
+21:42:46 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:42:46 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:42:46 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:42:46 | INFO  |                    l_align=+2.5e-04  l_center=+0.1852  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:42:46 | WARNING | Ego entity 19 not in active agents for map 69, skipping
+21:42:46 | WARNING |   Skipped map 69 (ID=69)
+21:42:46 | INFO  | --- 37/1000 maps | 22m1s  ETA: 573m 10s ---
+21:42:46 | INFO  |   Goal: 29/37 | Coll: 10.8% | Fault: 8.1% | Offroad: 0.0% | Lane: 100.0%
+21:42:46 | INFO  |   Reward: -1.21 +/- 2.81 | GoalDist: 0.0m | Plan: 1ms | Map: 35.7s | 1.7 maps/min
+21:42:46 | INFO  |   [+ ] Map 36 (ID=68)  r=+1.00  gd=infm  t=6.4s
+21:42:46 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:42:46 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:42:46 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:42:46 | INFO  |                    l_align=+2.5e-04  l_center=+0.1852  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:42:47 | INFO  | MultiAgentPDMPlanner: 11 traffic agents × 15 proposals each
+21:42:52 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:42:59 | INFO  | --- 38/1000 maps | 22m15s  ETA: 563m 19s ---
+21:42:59 | INFO  |   Goal: 30/38 | Coll: 10.5% | Fault: 7.9% | Offroad: 0.0% | Lane: 100.0%
+21:42:59 | INFO  |   Reward: -1.32 +/- 2.84 | GoalDist: 0.0m | Plan: 1ms | Map: 35.1s | 1.7 maps/min
+21:42:59 | INFO  |   [+ ] Map 37 (ID=70)  r=-5.10  gd=0.0m  t=13.8s
+21:42:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:42:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-6.1000
+21:42:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+175.0000
+21:42:59 | INFO  |                    l_align=-24.5178  l_center=+2.1603  timestep=+6.4000  reverse=+0.0000  speed_limit=+61.0000
+21:43:07 | INFO  | MultiAgentPDMPlanner: 54 traffic agents × 15 proposals each
+21:43:13 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:45:04 | INFO  | --- 39/1000 maps | 24m20s  ETA: 599m 36s ---
+21:45:04 | INFO  |   Goal: 31/39 | Coll: 10.3% | Fault: 7.7% | Offroad: 0.0% | Lane: 100.0%
+21:45:04 | INFO  |   Reward: -1.26 +/- 2.83 | GoalDist: 0.0m | Plan: 1ms | Map: 37.4s | 1.6 maps/min
+21:45:04 | INFO  |   [+ ] Map 38 (ID=71)  r=+1.00  gd=0.0m  t=124.9s
+21:45:04 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:45:04 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:45:04 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+141.0000
+21:45:04 | INFO  |                    l_align=-8.6413  l_center=+3.9558  timestep=+5.7000  reverse=+0.0000  speed_limit=+0.0000
+21:45:04 | WARNING | Ego entity 35 not in active agents for map 72, skipping
+21:45:04 | WARNING |   Skipped map 72 (ID=72)
+21:45:04 | INFO  | --- 39/1000 maps | 24m20s  ETA: 599m 37s ---
+21:45:04 | INFO  |   Goal: 31/39 | Coll: 10.3% | Fault: 7.7% | Offroad: 0.0% | Lane: 100.0%
+21:45:04 | INFO  |   Reward: -1.26 +/- 2.83 | GoalDist: 0.0m | Plan: 1ms | Map: 37.4s | 1.6 maps/min
+21:45:04 | INFO  |   [+ ] Map 38 (ID=71)  r=+1.00  gd=0.0m  t=124.9s
+21:45:04 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:45:04 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:45:04 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+141.0000
+21:45:04 | INFO  |                    l_align=-8.6413  l_center=+3.9558  timestep=+5.7000  reverse=+0.0000  speed_limit=+0.0000
+21:45:12 | INFO  | MultiAgentPDMPlanner: 46 traffic agents × 15 proposals each
+21:45:18 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:46:59 | INFO  | --- 40/1000 maps | 26m14s  ETA: 629m 56s ---
+21:46:59 | INFO  |   Goal: 32/40 | Coll: 10.0% | Fault: 7.5% | Offroad: 0.0% | Lane: 100.0%
+21:46:59 | INFO  |   Reward: -1.30 +/- 2.81 | GoalDist: 0.0m | Plan: 1ms | Map: 39.3s | 1.5 maps/min
+21:46:59 | INFO  |   [+ ] Map 39 (ID=73)  r=-2.80  gd=0.0m  t=114.8s
+21:46:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:46:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.8000
+21:46:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+174.0000
+21:46:59 | INFO  |                    l_align=-5.0153  l_center=+4.1866  timestep=+6.6000  reverse=+0.0000  speed_limit=+38.0000
+21:47:09 | INFO  | MultiAgentPDMPlanner: 52 traffic agents × 15 proposals each
+21:47:14 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:47:17 | INFO  | --- 41/1000 maps | 26m32s  ETA: 620m 50s ---
+21:47:17 | INFO  |   Goal: 33/41 | Coll: 9.8% | Fault: 7.3% | Offroad: 0.0% | Lane: 100.0%
+21:47:17 | INFO  |   Reward: -1.24 +/- 2.79 | GoalDist: 0.0m | Plan: 1ms | Map: 38.8s | 1.5 maps/min
+21:47:17 | INFO  |   [+ ] Map 40 (ID=74)  r=+1.00  gd=infm  t=17.7s
+21:47:17 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:47:17 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:47:17 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:47:17 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:47:18 | INFO  | MultiAgentPDMPlanner: 14 traffic agents × 15 proposals each
+21:47:23 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:47:38 | INFO  | --- 42/1000 maps | 26m53s  ETA: 613m 20s ---
+21:47:38 | INFO  |   Goal: 34/42 | Coll: 9.5% | Fault: 7.1% | Offroad: 0.0% | Lane: 100.0%
+21:47:38 | INFO  |   Reward: -1.28 +/- 2.77 | GoalDist: 0.0m | Plan: 1ms | Map: 38.4s | 1.6 maps/min
+21:47:38 | INFO  |   [+ ] Map 41 (ID=75)  r=-3.00  gd=0.0m  t=20.8s
+21:47:38 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:47:38 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.0000
+21:47:38 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+142.0000
+21:47:38 | INFO  |                    l_align=-47.5364  l_center=+2.2700  timestep=+5.6000  reverse=+0.0000  speed_limit=+40.0000
+21:47:42 | INFO  | MultiAgentPDMPlanner: 31 traffic agents × 15 proposals each
+21:47:47 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:48:01 | INFO  | --- 43/1000 maps | 27m16s  ETA: 607m 9s ---
+21:48:01 | INFO  |   Goal: 35/43 | Coll: 9.3% | Fault: 7.0% | Offroad: 0.0% | Lane: 100.0%
+21:48:01 | INFO  |   Reward: -1.29 +/- 2.74 | GoalDist: 0.0m | Plan: 1ms | Map: 38.0s | 1.6 maps/min
+21:48:01 | INFO  |   [+ ] Map 42 (ID=76)  r=-1.60  gd=0.0m  t=23.4s
+21:48:01 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:48:01 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-2.6000
+21:48:01 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+63.0000
+21:48:01 | INFO  |                    l_align=-3.1642  l_center=+1.0982  timestep=+2.6000  reverse=+0.0000  speed_limit=+26.0000
+21:48:04 | INFO  | MultiAgentPDMPlanner: 48 traffic agents × 15 proposals each
+21:48:09 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:48:10 | INFO  | --- 44/1000 maps | 27m25s  ETA: 595m 55s ---
+21:48:10 | INFO  |   Goal: 36/44 | Coll: 9.1% | Fault: 6.8% | Offroad: 0.0% | Lane: 100.0%
+21:48:10 | INFO  |   Reward: -1.24 +/- 2.73 | GoalDist: 0.0m | Plan: 1ms | Map: 37.4s | 1.6 maps/min
+21:48:10 | INFO  |   [+ ] Map 43 (ID=77)  r=+1.00  gd=infm  t=8.8s
+21:48:10 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:48:10 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:48:10 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:48:10 | INFO  |                    l_align=-0.2052  l_center=+0.0000  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:48:21 | INFO  | MultiAgentPDMPlanner: 92 traffic agents × 15 proposals each
+21:48:27 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:48:30 | INFO  | --- 45/1000 maps | 27m45s  ETA: 589m 5s ---
+21:48:30 | INFO  |   Goal: 37/45 | Coll: 8.9% | Fault: 6.7% | Offroad: 0.0% | Lane: 100.0%
+21:48:30 | INFO  |   Reward: -1.19 +/- 2.72 | GoalDist: 0.0m | Plan: 1ms | Map: 37.0s | 1.6 maps/min
+21:48:30 | INFO  |   [+ ] Map 44 (ID=78)  r=+1.00  gd=infm  t=19.9s
+21:48:30 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:48:30 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:48:30 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+1.0000
+21:48:30 | INFO  |                    l_align=-0.1270  l_center=+0.0000  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:48:41 | INFO  | MultiAgentPDMPlanner: 127 traffic agents × 15 proposals each
+21:48:46 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:48:52 | INFO  | --- 46/1000 maps | 28m7s  ETA: 583m 18s ---
+21:48:52 | INFO  |   Goal: 38/46 | Coll: 8.7% | Fault: 6.5% | Offroad: 0.0% | Lane: 100.0%
+21:48:52 | INFO  |   Reward: -1.14 +/- 2.71 | GoalDist: 0.0m | Plan: 1ms | Map: 36.7s | 1.6 maps/min
+21:48:52 | INFO  |   [+ ] Map 45 (ID=79)  r=+1.00  gd=infm  t=22.0s
+21:48:52 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:48:52 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:48:52 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:48:52 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:48:52 | WARNING | Ego entity 78 not in active agents for map 80, skipping
+21:48:52 | WARNING |   Skipped map 80 (ID=80)
+21:48:52 | INFO  | --- 46/1000 maps | 28m7s  ETA: 583m 18s ---
+21:48:52 | INFO  |   Goal: 38/46 | Coll: 8.7% | Fault: 6.5% | Offroad: 0.0% | Lane: 100.0%
+21:48:52 | INFO  |   Reward: -1.14 +/- 2.71 | GoalDist: 0.0m | Plan: 1ms | Map: 36.7s | 1.6 maps/min
+21:48:52 | INFO  |   [+ ] Map 45 (ID=79)  r=+1.00  gd=infm  t=22.0s
+21:48:52 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:48:52 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:48:52 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:48:52 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:48:52 | WARNING | Ego entity 59 not in active agents for map 81, skipping
+21:48:52 | WARNING |   Skipped map 81 (ID=81)
+21:48:52 | INFO  | --- 46/1000 maps | 28m7s  ETA: 583m 18s ---
+21:48:52 | INFO  |   Goal: 38/46 | Coll: 8.7% | Fault: 6.5% | Offroad: 0.0% | Lane: 100.0%
+21:48:52 | INFO  |   Reward: -1.14 +/- 2.71 | GoalDist: 0.0m | Plan: 1ms | Map: 36.7s | 1.6 maps/min
+21:48:52 | INFO  |   [+ ] Map 45 (ID=79)  r=+1.00  gd=infm  t=22.0s
+21:48:52 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:48:52 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:48:52 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:48:52 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:49:06 | INFO  | MultiAgentPDMPlanner: 74 traffic agents × 15 proposals each
+21:49:12 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:51:50 | INFO  | --- 47/1000 maps | 31m6s  ETA: 630m 40s ---
+21:51:50 | INFO  |   Goal: 39/47 | Coll: 8.5% | Fault: 6.4% | Offroad: 0.0% | Lane: 100.0%
+21:51:50 | INFO  |   Reward: -1.16 +/- 2.69 | GoalDist: 0.0m | Plan: 1ms | Map: 39.7s | 1.5 maps/min
+21:51:50 | INFO  |   [+ ] Map 46 (ID=82)  r=-2.20  gd=0.0m  t=178.6s
+21:51:50 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:51:50 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.2000
+21:51:50 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+131.0000
+21:51:50 | INFO  |                    l_align=-29.0998  l_center=+1.7681  timestep=+4.8000  reverse=+0.0000  speed_limit=+32.0000
+21:51:50 | WARNING | Ego entity 24 not in active agents for map 83, skipping
+21:51:50 | WARNING |   Skipped map 83 (ID=83)
+21:51:50 | INFO  | --- 47/1000 maps | 31m6s  ETA: 630m 41s ---
+21:51:50 | INFO  |   Goal: 39/47 | Coll: 8.5% | Fault: 6.4% | Offroad: 0.0% | Lane: 100.0%
+21:51:50 | INFO  |   Reward: -1.16 +/- 2.69 | GoalDist: 0.0m | Plan: 1ms | Map: 39.7s | 1.5 maps/min
+21:51:50 | INFO  |   [+ ] Map 46 (ID=82)  r=-2.20  gd=0.0m  t=178.6s
+21:51:50 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:51:50 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.2000
+21:51:50 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+131.0000
+21:51:50 | INFO  |                    l_align=-29.0998  l_center=+1.7681  timestep=+4.8000  reverse=+0.0000  speed_limit=+32.0000
+21:51:50 | WARNING | Ego entity 11 not in active agents for map 84, skipping
+21:51:50 | WARNING |   Skipped map 84 (ID=84)
+21:51:50 | INFO  | --- 47/1000 maps | 31m6s  ETA: 630m 41s ---
+21:51:50 | INFO  |   Goal: 39/47 | Coll: 8.5% | Fault: 6.4% | Offroad: 0.0% | Lane: 100.0%
+21:51:50 | INFO  |   Reward: -1.16 +/- 2.69 | GoalDist: 0.0m | Plan: 1ms | Map: 39.7s | 1.5 maps/min
+21:51:50 | INFO  |   [+ ] Map 46 (ID=82)  r=-2.20  gd=0.0m  t=178.6s
+21:51:50 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:51:50 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-3.2000
+21:51:50 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+131.0000
+21:51:50 | INFO  |                    l_align=-29.0998  l_center=+1.7681  timestep=+4.8000  reverse=+0.0000  speed_limit=+32.0000
+21:51:54 | INFO  | MultiAgentPDMPlanner: 22 traffic agents × 15 proposals each
+21:51:59 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:51:59 | INFO  | --- 48/1000 maps | 31m14s  ETA: 619m 45s ---
+21:51:59 | INFO  |   Goal: 39/48 | Coll: 8.3% | Fault: 6.2% | Offroad: 0.0% | Lane: 100.0%
+21:51:59 | INFO  |   Reward: -1.14 +/- 2.66 | GoalDist: 0.0m | Plan: 1ms | Map: 39.0s | 1.5 maps/min
+21:51:59 | INFO  |   [- ] Map 47 (ID=85)  r=+0.00  gd=infm  t=8.6s
+21:51:59 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:51:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:51:59 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:51:59 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:03 | INFO  | MultiAgentPDMPlanner: 66 traffic agents × 15 proposals each
+21:52:08 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:52:09 | INFO  | --- 49/1000 maps | 31m25s  ETA: 609m 46s ---
+21:52:09 | INFO  |   Goal: 40/49 | Coll: 8.2% | Fault: 6.1% | Offroad: 0.0% | Lane: 100.0%
+21:52:09 | INFO  |   Reward: -1.09 +/- 2.65 | GoalDist: 0.0m | Plan: 1ms | Map: 38.4s | 1.6 maps/min
+21:52:09 | INFO  |   [+ ] Map 48 (ID=86)  r=+1.00  gd=infm  t=10.2s
+21:52:09 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:09 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:09 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:09 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:52:09 | WARNING | Ego entity 102 not in active agents for map 87, skipping
+21:52:09 | WARNING |   Skipped map 87 (ID=87)
+21:52:09 | INFO  | --- 49/1000 maps | 31m25s  ETA: 609m 46s ---
+21:52:09 | INFO  |   Goal: 40/49 | Coll: 8.2% | Fault: 6.1% | Offroad: 0.0% | Lane: 100.0%
+21:52:09 | INFO  |   Reward: -1.09 +/- 2.65 | GoalDist: 0.0m | Plan: 1ms | Map: 38.4s | 1.6 maps/min
+21:52:09 | INFO  |   [+ ] Map 48 (ID=86)  r=+1.00  gd=infm  t=10.2s
+21:52:09 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:09 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:09 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:09 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:52:19 | INFO  | MultiAgentPDMPlanner: 73 traffic agents × 15 proposals each
+21:52:24 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:52:26 | INFO  | --- 50/1000 maps | 31m42s  ETA: 602m 21s ---
+21:52:26 | INFO  |   Goal: 40/50 | Coll: 8.0% | Fault: 6.0% | Offroad: 0.0% | Lane: 100.0%
+21:52:26 | INFO  |   Reward: -1.07 +/- 2.63 | GoalDist: 0.0m | Plan: 1ms | Map: 38.0s | 1.6 maps/min
+21:52:26 | INFO  |   [- ] Map 49 (ID=88)  r=+0.00  gd=infm  t=17.1s
+21:52:26 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:26 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:26 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:26 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:29 | INFO  | MultiAgentPDMPlanner: 12 traffic agents × 15 proposals each
+21:52:34 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:52:34 | INFO  | --- 51/1000 maps | 31m49s  ETA: 592m 15s ---
+21:52:34 | INFO  |   Goal: 41/51 | Coll: 7.8% | Fault: 5.9% | Offroad: 0.0% | Lane: 100.0%
+21:52:34 | INFO  |   Reward: -1.03 +/- 2.62 | GoalDist: 0.0m | Plan: 1ms | Map: 37.4s | 1.6 maps/min
+21:52:34 | INFO  |   [+ ] Map 50 (ID=89)  r=+1.00  gd=infm  t=7.5s
+21:52:34 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:34 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:34 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:34 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:52:35 | INFO  | MultiAgentPDMPlanner: 8 traffic agents × 15 proposals each
+21:52:40 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:52:40 | INFO  | --- 52/1000 maps | 31m55s  ETA: 582m 4s ---
+21:52:40 | INFO  |   Goal: 42/52 | Coll: 7.7% | Fault: 5.8% | Offroad: 0.0% | Lane: 100.0%
+21:52:40 | INFO  |   Reward: -0.99 +/- 2.61 | GoalDist: 0.0m | Plan: 1ms | Map: 36.8s | 1.6 maps/min
+21:52:40 | INFO  |   [+ ] Map 51 (ID=90)  r=+1.00  gd=infm  t=5.9s
+21:52:40 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:40 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:40 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:40 | INFO  |                    l_align=+2.4e-04  l_center=+0.0339  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:52:40 | WARNING | Ego entity 11 not in active agents for map 91, skipping
+21:52:40 | WARNING |   Skipped map 91 (ID=91)
+21:52:40 | INFO  | --- 52/1000 maps | 31m55s  ETA: 582m 4s ---
+21:52:40 | INFO  |   Goal: 42/52 | Coll: 7.7% | Fault: 5.8% | Offroad: 0.0% | Lane: 100.0%
+21:52:40 | INFO  |   Reward: -0.99 +/- 2.61 | GoalDist: 0.0m | Plan: 1ms | Map: 36.8s | 1.6 maps/min
+21:52:40 | INFO  |   [+ ] Map 51 (ID=90)  r=+1.00  gd=infm  t=5.9s
+21:52:40 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:40 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:40 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:40 | INFO  |                    l_align=+2.4e-04  l_center=+0.0339  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:52:40 | WARNING | Ego entity 26 not in active agents for map 92, skipping
+21:52:40 | WARNING |   Skipped map 92 (ID=92)
+21:52:40 | INFO  | --- 52/1000 maps | 31m55s  ETA: 582m 4s ---
+21:52:40 | INFO  |   Goal: 42/52 | Coll: 7.7% | Fault: 5.8% | Offroad: 0.0% | Lane: 100.0%
+21:52:40 | INFO  |   Reward: -0.99 +/- 2.61 | GoalDist: 0.0m | Plan: 1ms | Map: 36.8s | 1.6 maps/min
+21:52:40 | INFO  |   [+ ] Map 51 (ID=90)  r=+1.00  gd=infm  t=5.9s
+21:52:40 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:40 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:40 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:40 | INFO  |                    l_align=+2.4e-04  l_center=+0.0339  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:52:47 | INFO  | MultiAgentPDMPlanner: 31 traffic agents × 15 proposals each
+21:52:53 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:52:54 | INFO  | --- 53/1000 maps | 32m9s  ETA: 574m 34s ---
+21:52:54 | INFO  |   Goal: 43/53 | Coll: 7.5% | Fault: 5.7% | Offroad: 0.0% | Lane: 100.0%
+21:52:54 | INFO  |   Reward: -0.96 +/- 2.60 | GoalDist: 0.0m | Plan: 1ms | Map: 36.4s | 1.6 maps/min
+21:52:54 | INFO  |   [+ ] Map 52 (ID=93)  r=+1.00  gd=infm  t=13.7s
+21:52:54 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:54 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:54 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:54 | INFO  |                    l_align=+2.4e-04  l_center=+0.0283  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:52:54 | WARNING | Ego entity 41 not in active agents for map 94, skipping
+21:52:54 | WARNING |   Skipped map 94 (ID=94)
+21:52:54 | INFO  | --- 53/1000 maps | 32m9s  ETA: 574m 34s ---
+21:52:54 | INFO  |   Goal: 43/53 | Coll: 7.5% | Fault: 5.7% | Offroad: 0.0% | Lane: 100.0%
+21:52:54 | INFO  |   Reward: -0.96 +/- 2.60 | GoalDist: 0.0m | Plan: 1ms | Map: 36.4s | 1.6 maps/min
+21:52:54 | INFO  |   [+ ] Map 52 (ID=93)  r=+1.00  gd=infm  t=13.7s
+21:52:54 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:54 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:54 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:54 | INFO  |                    l_align=+2.4e-04  l_center=+0.0283  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:52:54 | WARNING | Ego entity 26 not in active agents for map 95, skipping
+21:52:54 | WARNING |   Skipped map 95 (ID=95)
+21:52:54 | INFO  | --- 53/1000 maps | 32m9s  ETA: 574m 35s ---
+21:52:54 | INFO  |   Goal: 43/53 | Coll: 7.5% | Fault: 5.7% | Offroad: 0.0% | Lane: 100.0%
+21:52:54 | INFO  |   Reward: -0.96 +/- 2.60 | GoalDist: 0.0m | Plan: 1ms | Map: 36.4s | 1.6 maps/min
+21:52:54 | INFO  |   [+ ] Map 52 (ID=93)  r=+1.00  gd=infm  t=13.7s
+21:52:54 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:52:54 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:52:54 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:52:54 | INFO  |                    l_align=+2.4e-04  l_center=+0.0283  timestep=+0.1000  reverse=+0.0000  speed_limit=+0.0000
+21:53:14 | INFO  | MultiAgentPDMPlanner: 68 traffic agents × 15 proposals each
+21:53:20 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:53:22 | INFO  | --- 54/1000 maps | 32m38s  ETA: 571m 46s ---
+21:53:22 | INFO  |   Goal: 44/54 | Coll: 7.4% | Fault: 5.6% | Offroad: 0.0% | Lane: 100.0%
+21:53:22 | INFO  |   Reward: -0.92 +/- 2.59 | GoalDist: 0.0m | Plan: 1ms | Map: 36.2s | 1.7 maps/min
+21:53:22 | INFO  |   [+ ] Map 53 (ID=96)  r=+1.00  gd=infm  t=28.8s
+21:53:22 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:53:22 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:53:22 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:53:22 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:53:29 | INFO  | MultiAgentPDMPlanner: 76 traffic agents × 15 proposals each
+21:53:34 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:54:44 | INFO  | --- 55/1000 maps | 33m59s  ETA: 584m 7s ---
+21:54:44 | INFO  |   Goal: 44/55 | Coll: 9.1% | Fault: 7.3% | Offroad: 0.0% | Lane: 100.0%
+21:54:44 | INFO  |   Reward: -0.94 +/- 2.57 | GoalDist: 0.0m | Plan: 1ms | Map: 37.1s | 1.6 maps/min
+21:54:44 | INFO  |   [-!] Map 54 (ID=97)  r=-1.88  gd=0.3m  t=81.5s
+21:54:44 | INFO  |           rewards: collision=-1.8780  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:54:44 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:54:44 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+60.0000
+21:54:44 | INFO  |                    l_align=-10.9867  l_center=+1.1223  timestep=+2.4000  reverse=+0.0000  speed_limit=+0.0000
+21:54:47 | INFO  | MultiAgentPDMPlanner: 79 traffic agents × 15 proposals each
+21:54:52 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:54:54 | INFO  | --- 56/1000 maps | 34m9s  ETA: 575m 56s ---
+21:54:54 | INFO  |   Goal: 45/56 | Coll: 8.9% | Fault: 7.1% | Offroad: 0.0% | Lane: 100.0%
+21:54:54 | INFO  |   Reward: -0.90 +/- 2.56 | GoalDist: 0.0m | Plan: 1ms | Map: 36.6s | 1.6 maps/min
+21:54:54 | INFO  |   [+ ] Map 55 (ID=98)  r=+1.00  gd=infm  t=10.1s
+21:54:54 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:54:54 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:54:54 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:54:54 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:54:54 | WARNING | Ego entity 49 not in active agents for map 99, skipping
+21:54:54 | WARNING |   Skipped map 99 (ID=99)
+21:54:54 | INFO  | --- 56/1000 maps | 34m9s  ETA: 575m 56s ---
+21:54:54 | INFO  |   Goal: 45/56 | Coll: 8.9% | Fault: 7.1% | Offroad: 0.0% | Lane: 100.0%
+21:54:54 | INFO  |   Reward: -0.90 +/- 2.56 | GoalDist: 0.0m | Plan: 1ms | Map: 36.6s | 1.6 maps/min
+21:54:54 | INFO  |   [+ ] Map 55 (ID=98)  r=+1.00  gd=infm  t=10.1s
+21:54:54 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:54:54 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:54:54 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+2.0000
+21:54:54 | INFO  |                    l_align=-0.1403  l_center=+0.0000  timestep=+0.1000  reverse=+0.1000  speed_limit=+0.0000
+21:54:57 | INFO  | MultiAgentPDMPlanner: 20 traffic agents × 15 proposals each
+21:55:01 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:55:13 | INFO  | --- 57/1000 maps | 34m28s  ETA: 570m 28s ---
+21:55:13 | INFO  |   Goal: 46/57 | Coll: 8.8% | Fault: 7.0% | Offroad: 0.0% | Lane: 100.0%
+21:55:13 | INFO  |   Reward: -0.97 +/- 2.58 | GoalDist: 0.0m | Plan: 1ms | Map: 36.3s | 1.7 maps/min
+21:55:13 | INFO  |   [+ ] Map 56 (ID=100)  r=-4.60  gd=0.0m  t=19.0s
+21:55:13 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:55:13 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-5.6000
+21:55:13 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+141.0000
+21:55:13 | INFO  |                    l_align=+0.0133  l_center=+2.5594  timestep=+5.7000  reverse=+0.0000  speed_limit=+56.0000
+21:55:15 | INFO  | MultiAgentPDMPlanner: 20 traffic agents × 15 proposals each
+21:55:19 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:55:25 | INFO  | --- 58/1000 maps | 34m40s  ETA: 563m 11s ---
+21:55:25 | INFO  |   Goal: 47/58 | Coll: 8.6% | Fault: 6.9% | Offroad: 0.0% | Lane: 100.0%
+21:55:25 | INFO  |   Reward: -0.98 +/- 2.56 | GoalDist: 0.0m | Plan: 1ms | Map: 35.9s | 1.7 maps/min
+21:55:25 | INFO  |   [+ ] Map 57 (ID=101)  r=-1.60  gd=0.0m  t=11.7s
+21:55:25 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:55:25 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-2.6000
+21:55:25 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+70.0000
+21:55:25 | INFO  |                    l_align=+6.2e-03  l_center=+3.0721  timestep=+2.6000  reverse=+0.0000  speed_limit=+26.0000
+21:55:25 | WARNING | Ego entity 69 not in active agents for map 102, skipping
+21:55:25 | WARNING |   Skipped map 102 (ID=102)
+21:55:25 | INFO  | --- 58/1000 maps | 34m40s  ETA: 563m 12s ---
+21:55:25 | INFO  |   Goal: 47/58 | Coll: 8.6% | Fault: 6.9% | Offroad: 0.0% | Lane: 100.0%
+21:55:25 | INFO  |   Reward: -0.98 +/- 2.56 | GoalDist: 0.0m | Plan: 1ms | Map: 35.9s | 1.7 maps/min
+21:55:25 | INFO  |   [+ ] Map 57 (ID=101)  r=-1.60  gd=0.0m  t=11.7s
+21:55:25 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:55:25 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-2.6000
+21:55:25 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+70.0000
+21:55:25 | INFO  |                    l_align=+6.2e-03  l_center=+3.0721  timestep=+2.6000  reverse=+0.0000  speed_limit=+26.0000
+21:55:25 | WARNING | Ego entity 44 not in active agents for map 103, skipping
+21:55:25 | WARNING |   Skipped map 103 (ID=103)
+21:55:25 | INFO  | --- 58/1000 maps | 34m40s  ETA: 563m 12s ---
+21:55:25 | INFO  |   Goal: 47/58 | Coll: 8.6% | Fault: 6.9% | Offroad: 0.0% | Lane: 100.0%
+21:55:25 | INFO  |   Reward: -0.98 +/- 2.56 | GoalDist: 0.0m | Plan: 1ms | Map: 35.9s | 1.7 maps/min
+21:55:25 | INFO  |   [+ ] Map 57 (ID=101)  r=-1.60  gd=0.0m  t=11.7s
+21:55:25 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:55:25 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-2.6000
+21:55:25 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+70.0000
+21:55:25 | INFO  |                    l_align=+6.2e-03  l_center=+3.0721  timestep=+2.6000  reverse=+0.0000  speed_limit=+26.0000
+21:55:25 | WARNING | Ego entity 95 not in active agents for map 104, skipping
+21:55:25 | WARNING |   Skipped map 104 (ID=104)
+21:55:25 | INFO  | --- 58/1000 maps | 34m40s  ETA: 563m 12s ---
+21:55:25 | INFO  |   Goal: 47/58 | Coll: 8.6% | Fault: 6.9% | Offroad: 0.0% | Lane: 100.0%
+21:55:25 | INFO  |   Reward: -0.98 +/- 2.56 | GoalDist: 0.0m | Plan: 1ms | Map: 35.9s | 1.7 maps/min
+21:55:25 | INFO  |   [+ ] Map 57 (ID=101)  r=-1.60  gd=0.0m  t=11.7s
+21:55:25 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:55:25 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-2.6000
+21:55:25 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+70.0000
+21:55:25 | INFO  |                    l_align=+6.2e-03  l_center=+3.0721  timestep=+2.6000  reverse=+0.0000  speed_limit=+26.0000
+21:55:31 | INFO  | MultiAgentPDMPlanner: 37 traffic agents × 15 proposals each
+21:55:36 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:56:46 | INFO  | --- 59/1000 maps | 36m2s  ETA: 574m 44s ---
+21:56:46 | INFO  |   Goal: 47/59 | Coll: 8.5% | Fault: 6.8% | Offroad: 0.0% | Lane: 100.0%
+21:56:46 | INFO  |   Reward: -1.04 +/- 2.58 | GoalDist: 0.0m | Plan: 1ms | Map: 36.6s | 1.6 maps/min
+21:56:46 | INFO  |   [- ] Map 58 (ID=105)  r=-4.50  gd=0.0m  t=81.5s
+21:56:46 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:56:46 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.5000
+21:56:46 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+235.0000
+21:56:46 | INFO  |                    l_align=-0.2621  l_center=+6.6709  timestep=+9.0000  reverse=+0.0000  speed_limit=+45.0000
+21:56:46 | WARNING | Ego entity 2 not in active agents for map 106, skipping
+21:56:46 | WARNING |   Skipped map 106 (ID=106)
+21:56:46 | INFO  | --- 59/1000 maps | 36m2s  ETA: 574m 45s ---
+21:56:46 | INFO  |   Goal: 47/59 | Coll: 8.5% | Fault: 6.8% | Offroad: 0.0% | Lane: 100.0%
+21:56:46 | INFO  |   Reward: -1.04 +/- 2.58 | GoalDist: 0.0m | Plan: 1ms | Map: 36.6s | 1.6 maps/min
+21:56:46 | INFO  |   [- ] Map 58 (ID=105)  r=-4.50  gd=0.0m  t=81.5s
+21:56:46 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:56:46 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-4.5000
+21:56:46 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+235.0000
+21:56:46 | INFO  |                    l_align=-0.2621  l_center=+6.6709  timestep=+9.0000  reverse=+0.0000  speed_limit=+45.0000
+21:56:58 | INFO  | MultiAgentPDMPlanner: 44 traffic agents × 15 proposals each
+21:57:04 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:58:04 | INFO  | --- 60/1000 maps | 37m19s  ETA: 584m 50s ---
+21:58:04 | INFO  |   Goal: 48/60 | Coll: 8.3% | Fault: 6.7% | Offroad: 0.0% | Lane: 100.0%
+21:58:04 | INFO  |   Reward: -1.12 +/- 2.63 | GoalDist: 0.0m | Plan: 1ms | Map: 37.3s | 1.6 maps/min
+21:58:04 | INFO  |   [+ ] Map 59 (ID=107)  r=-5.70  gd=0.0m  t=77.6s
+21:58:04 | INFO  |           rewards: collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:58:04 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=-6.7000
+21:58:04 | INFO  |           raw:     collision=+0.0000  offroad=+0.0000  goal=+1.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+192.0000
+21:58:04 | INFO  |                    l_align=-39.0626  l_center=+4.2809  timestep=+6.7000  reverse=+0.0000  speed_limit=+67.0000
+21:58:09 | INFO  | MultiAgentPDMPlanner: 37 traffic agents × 15 proposals each
+21:58:15 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt
+21:58:37 | INFO  | --- 61/1000 maps | 37m52s  ETA: 583m 6s ---
+21:58:37 | INFO  |   Goal: 48/61 | Coll: 9.8% | Fault: 8.2% | Offroad: 0.0% | Lane: 100.0%
+21:58:37 | INFO  |   Reward: -1.11 +/- 2.61 | GoalDist: 0.0m | Plan: 1ms | Map: 37.2s | 1.6 maps/min
+21:58:37 | INFO  |   [-!] Map 60 (ID=108)  r=-0.67  gd=0.3m  t=33.0s
+21:58:37 | INFO  |           rewards: collision=-0.6652  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:58:37 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:58:37 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+49.0000
+21:58:37 | INFO  |                    l_align=-2.6055  l_center=+0.3131  timestep=+2.5000  reverse=+0.0000  speed_limit=+0.0000
+21:58:37 | WARNING | Ego entity 44 not in active agents for map 109, skipping
+21:58:37 | WARNING |   Skipped map 109 (ID=109)
+21:58:37 | INFO  | --- 61/1000 maps | 37m52s  ETA: 583m 6s ---
+21:58:37 | INFO  |   Goal: 48/61 | Coll: 9.8% | Fault: 8.2% | Offroad: 0.0% | Lane: 100.0%
+21:58:37 | INFO  |   Reward: -1.11 +/- 2.61 | GoalDist: 0.0m | Plan: 1ms | Map: 37.2s | 1.6 maps/min
+21:58:37 | INFO  |   [-!] Map 60 (ID=108)  r=-0.67  gd=0.3m  t=33.0s
+21:58:37 | INFO  |           rewards: collision=-0.6652  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+0.0000
+21:58:37 | INFO  |                    l_align=+0.0000  l_center=+0.0000  timestep=+0.0000  reverse=+0.0000  speed_limit=+0.0000
+21:58:37 | INFO  |           raw:     collision=+1.0000  offroad=+0.0000  goal=+0.0000  jerk_legacy=+0.0000  velocity=+0.0000  comfort=+49.0000
+21:58:37 | INFO  |                    l_align=-2.6055  l_center=+0.3131  timestep=+2.5000  reverse=+0.0000  speed_limit=+0.0000
+21:58:41 | INFO  | MultiAgentPDMPlanner: 27 traffic agents × 15 proposals each
+21:58:47 | INFO  | Loaded policy weights from /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000954.pt

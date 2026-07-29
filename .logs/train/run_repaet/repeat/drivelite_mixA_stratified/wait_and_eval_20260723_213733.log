@@ -1,0 +1,186 @@
+[2026-07-23 21:37:33] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixA_stratified/wait_and_eval_20260723_213733.log
+[2026-07-23 21:37:33] Train session=repeat-dlA-strat-gpu0 run_name=drivelite_mixA_stratified_1500m_run_repaet_repeat gpu=0
+[2026-07-23 21:37:33] LOG_DIR=/home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixA_stratified prefix=drivelite_mixA_stratified_1500m_run_repaet_repeat
+[2026-07-23 21:37:33] RESULT_ROOT=/home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixA_stratified traffics=[idm expert smart] policy_idx=0
+[2026-07-23 21:37:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:38:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:39:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:40:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:41:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:42:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:43:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:44:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:45:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:46:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:47:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:48:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:49:33] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:50:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:51:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:52:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:53:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:54:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:55:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:56:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:57:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:58:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 21:59:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:00:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:01:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:02:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:03:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:04:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:05:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:06:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:07:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:08:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:09:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:10:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:11:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:12:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:13:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:14:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:15:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:16:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:17:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:18:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:19:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:20:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:21:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:22:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:23:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:24:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:25:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:26:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:27:34] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:28:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:29:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:30:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:31:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:32:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:33:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:34:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:35:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:36:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:37:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:38:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:39:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:40:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:41:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:42:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:43:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:44:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:45:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:46:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:47:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:48:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:49:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:50:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:51:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:52:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:53:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:54:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:55:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:56:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:57:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:58:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 22:59:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:00:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:01:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:02:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:03:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:04:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:05:35] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:06:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:07:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:08:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:09:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:10:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:11:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:12:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:13:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:14:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:15:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:16:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:17:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:18:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:19:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:20:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:21:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:22:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:23:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:24:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:25:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:26:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:27:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:28:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:29:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:30:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:31:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:32:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:33:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:34:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:35:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:36:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:37:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:38:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:39:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:40:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:41:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:42:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:43:36] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:44:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:45:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:46:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:47:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:48:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:49:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:50:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:51:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:52:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:53:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:54:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:55:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:56:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:57:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:58:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-23 23:59:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:00:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:01:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:02:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:03:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:04:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:05:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:06:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:07:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:08:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:09:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:10:37] Waiting for training: tmux=1 proc=1 session=repeat-dlA-strat-gpu0
+[2026-07-24 00:11:37] Training finished.
+[2026-07-24 00:11:37] Train log: /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixA_stratified/drivelite_mixA_stratified_1500m_run_repaet_repeat_20260723_213730.log
+[2026-07-24 00:11:37] Discovered W&B run: bly4mcn2
+[2026-07-24 00:11:42] Checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_bly4mcn2/model_policy_0_puffer_drive_000954.pt
+[2026-07-24 00:11:43] Launched eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011 (traffic=idm) → /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixA_stratified/test_IDM
+[2026-07-24 00:11:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:13:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:15:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:17:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:19:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:21:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:23:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:25:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:27:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:29:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:31:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:33:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:35:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:37:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:39:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:41:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:43:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:45:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:47:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:49:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:51:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:53:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011
+[2026-07-24 00:55:43] Eval still running: eval-drivelite_mixA_stratified_1500m_run_repaet_repeat-vs-idm-gpu0-20260724_0011

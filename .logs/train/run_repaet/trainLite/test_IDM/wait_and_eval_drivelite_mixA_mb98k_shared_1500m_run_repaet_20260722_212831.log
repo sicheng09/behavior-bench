@@ -1,0 +1,124 @@
+[2026-07-22 21:28:31] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/trainLite/test_IDM/wait_and_eval_drivelite_mixA_mb98k_shared_1500m_run_repaet_20260722_212831.log
+[2026-07-22 21:28:31] Train session: drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:28:31] WANDB_RUN_ID: uhnxy2lw
+[2026-07-22 21:28:31] TRAIN_RUN_NAME: drivelite_mixA_mb98k_shared_1500m_run_repaet
+[2026-07-22 21:28:31] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_uhnxy2lw
+[2026-07-22 21:28:31] Policy slot: 0 (Drive+Recurrent)
+[2026-07-22 21:28:31] Results: /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/trainLite/test_IDM/drivelite_mixA_mb98k_shared_1500m_run_repaet/Drive_Recurrent/
+[2026-07-22 21:28:31] Eval GPU (reuse train GPU): 3 MIN_EPOCH=953
+[2026-07-22 21:28:31] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:29:31] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:30:31] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:31:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:32:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:33:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:34:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:35:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:36:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:37:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:38:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:39:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:40:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:41:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:42:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:43:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:44:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:45:32] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:46:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:47:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:48:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:49:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:50:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:51:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:52:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:53:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:54:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:55:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:56:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:57:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:58:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 21:59:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:00:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:01:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:02:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:03:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:04:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:05:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:06:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:07:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:08:33] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:09:34] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:10:34] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:11:34] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:12:34] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:13:34] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:14:34] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:15:34] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:16:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:17:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:18:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:19:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:20:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:21:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:22:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:23:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:24:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:25:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:26:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:27:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:28:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:29:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:30:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:31:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:32:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:33:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:34:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:35:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:36:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:37:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:38:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:39:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:40:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:41:35] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:42:36] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:43:36] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:44:36] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:45:36] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:46:36] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:47:36] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:48:36] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:49:36] Waiting for training: tmux=1 proc=1 session=drivelite-mixA_mb98k_shared_1500m-gpu3
+[2026-07-22 22:50:36] Training finished (tmux gone + no train PID).
+[2026-07-22 22:50:36] Resolving final policy_0 checkpoint (min_epoch=953)...
+[2026-07-22 22:50:56] Using checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_uhnxy2lw/model_policy_0_puffer_drive_000954.pt
+[2026-07-22 22:50:57] Launched eval: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056 on GPU 3 (traffic=idm)
+[2026-07-22 22:50:57] Waiting for IDM eval session to finish...
+[2026-07-22 22:50:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 22:52:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 22:54:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 22:56:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 22:58:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:00:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:02:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:04:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:06:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:08:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:10:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:12:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:14:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:16:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:18:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:20:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:22:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:24:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:26:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:28:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:30:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:32:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:34:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:36:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:38:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:40:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:42:57] Eval still running: eval-drivelite_mixA_mb98k_shared_1500m_run_repaet-vs-idm-gpu3-20260722_225056
+[2026-07-22 23:44:57] IDM eval finished for drivelite_mixA_mb98k_shared_1500m_run_repaet
+[2026-07-22 23:44:57] Results under: /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/trainLite/test_IDM/drivelite_mixA_mb98k_shared_1500m_run_repaet/Drive_Recurrent/

@@ -1,0 +1,10 @@
+run,family,sampling,wandb,eval_policy_slot,goal_pct,collision_pct,at_fault_pct,offroad_pct,reward,collision_maps,lateral,front,rear,stopped,vs_h0_coll_rel,vs_h0_fault_rel
+H0 run4_r2,Homogeneous,—,u9ymfcqr,—,71.31,16.81,15.28,0.68,-0.8165,99,33,27,9,30,+0.0%,+0.0%
+MIXMOE shared,MIXMOE,shared,ncn8qxko,0,72.67,16.13,14.43,0.68,-0.7888,95,31,25,5,34,-4.0%,-5.6%
+MIXMOE strat,MIXMOE,stratified,o4trtoxc,0,71.99,16.81,14.77,1.36,-0.8985,99,30,29,6,34,+0.0%,-3.3%
+DriveLite A shared,DriveLite A,shared,uhnxy2lw,0,72.50,15.79,14.43,0.85,-0.7827,93,25,26,5,37,-6.1%,-5.6%
+DriveLite A strat,DriveLite A,stratified,r0jht7bf,0,73.85,14.43,13.41,1.02,-0.7010,85,19,23,4,39,-14.2%,-12.2%
+DriveLite B shared,DriveLite B,shared,d9fq08yq,0,72.67,14.94,14.26,0.34,-0.8855,88,22,32,2,32,-11.1%,-6.7%
+DriveLite B strat,DriveLite B,stratified,qgytyxt4,0,72.50,14.09,12.22,1.87,-0.7937,83,19,28,6,30,-16.2%,-20.0%
+Perception shared,Perception,shared,yj5u9i7h,2,71.14,16.13,14.77,0.85,-0.7814,95,29,28,5,33,-4.0%,-3.3%
+Perception strat,Perception,stratified,yov2516v,2,71.65,15.62,13.58,0.68,-0.7071,92,18,28,11,35,-7.1%,-11.1%

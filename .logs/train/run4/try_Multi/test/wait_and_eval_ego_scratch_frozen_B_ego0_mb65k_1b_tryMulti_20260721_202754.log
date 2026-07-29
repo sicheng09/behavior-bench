@@ -1,0 +1,168 @@
+[2026-07-21 20:27:54] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/train/run4/try_Multi/test/wait_and_eval_ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti_20260721_202754.log
+[2026-07-21 20:27:54] Train session: try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:27:54] Eval GPUs: IDM=2 PPO=4 MIN_EPOCH=953
+[2026-07-21 20:27:54] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:28:54] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:29:54] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:30:54] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:31:54] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:32:54] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:33:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:34:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:35:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:36:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:37:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:38:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:39:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:40:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:41:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:42:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:43:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:44:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:45:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:46:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:47:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:48:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:49:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:50:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:51:55] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:52:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:53:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:54:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:55:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:56:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:57:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:58:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 20:59:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:00:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:01:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:02:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:03:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:04:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:05:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:06:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:07:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:08:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:09:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:10:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:11:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:12:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:13:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:14:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:15:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:16:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:17:56] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:18:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:19:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:20:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:21:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:22:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:23:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:24:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:25:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:26:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:27:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:28:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:29:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:30:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:31:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:32:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:33:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:34:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:35:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:36:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:37:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:38:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:39:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:40:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:41:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:42:57] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:43:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:44:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:45:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:46:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:47:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:48:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:49:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:50:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:51:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:52:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:53:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:54:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:55:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:56:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:57:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 21:58:58] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:01:52] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:02:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:03:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:04:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:05:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:06:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:07:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:08:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:09:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:10:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:11:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:12:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:13:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:14:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:15:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:16:53] Waiting for training: tmux=1 proc=1 session=try-multi-ego-scratch-frozenB0-gpu1
+[2026-07-21 22:17:53] Training finished (tmux gone + no train PID).
+[2026-07-21 22:17:53] Experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_conservative_mix_amrs7cuc
+[2026-07-21 22:18:13] Using checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_conservative_mix_amrs7cuc/model_policy_0_puffer_drive_conservative_mix_000954.pt
+[2026-07-21 22:18:13] Launched eval: eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 on GPU 2 (traffic=idm)
+[2026-07-21 22:18:13] Launched eval: eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813 on GPU 4 (traffic=ppo)
+[2026-07-21 22:18:13] Waiting for eval sessions...
+[2026-07-21 22:18:13] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 22:20:13] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 22:22:13] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 22:24:13] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 22:26:13] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 22:56:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 22:58:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:00:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:02:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:04:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:06:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:08:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:10:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:12:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:14:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:16:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:18:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:20:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:22:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:24:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:26:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:28:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:30:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:32:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:34:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:36:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:38:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:40:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:42:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:44:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:46:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:48:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:50:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:52:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:54:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:56:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-21 23:58:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:00:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:02:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:04:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:06:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:08:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:10:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:12:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:14:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 00:16:56] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 01:08:01] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 01:10:01] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 01:12:01] Eval still running: idm=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-idm-gpu2-20260721_221813 ppo=eval-ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti-vs-ppo-gpu4-20260721_221813
+[2026-07-22 01:14:02] All evals finished for ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti
+[2026-07-22 01:14:02] Results under: /home/fanyuqi/wsc/behavior-bench/.logs/train/run4/try_Multi/test/ego_scratch_frozen_B_ego0_mb65k_1b_tryMulti/Drive_Recurrent/

@@ -181,6 +181,9 @@ def make_multiagent(buf=None, **kwargs):
 
 MAKE_FUNCTIONS = {
     "drive": "Drive",
+    # Opt-in alias used by drive_hybrid.ini. It shares the original Drive
+    # environment; the policy-side Hybrid* classes add perception only.
+    "drive_hybrid": lazy_import("pufferlib.ocean.drive.drive", "Drive"),
     "drive_adversarial": lazy_import(
         "pufferlib.adversarial.env", "AdversarialMixDrive"
     ),

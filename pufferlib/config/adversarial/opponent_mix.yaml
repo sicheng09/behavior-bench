@@ -19,6 +19,7 @@ reward:
     fault: 1.00
     kinematics: 0.20
     normality: 0.02
+    goal: 0.00
   limits:
     positive_reward_cap: 0.25
     kinematics_penalty_cap: 0.50

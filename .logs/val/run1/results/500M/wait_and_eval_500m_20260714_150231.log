@@ -1,0 +1,7 @@
+[2026-07-14 15:02:31] Waiting for run1 500M homogeneous trainings to finish.
+[2026-07-14 15:02:31] Homogeneous 500M checkpoints are ready.
+[2026-07-14 15:02:34] Launched eval: eval500m-drive-lstm-gpu0-20260714_150234 -> homogeneous_drive_lstm_500m_batch1x_run1/Drive_Recurrent on GPU 0
+[2026-07-14 15:02:34] Launched eval: eval500m-drive-nolstm-gpu1-20260714_150234 -> homogeneous_drive_nolstm_500m_batch1x_run1/Drive_NoLSTM on GPU 1
+[2026-07-14 15:02:34] Launched eval: eval500m-drivelite-nolstm-gpu2-20260714_150234 -> homogeneous_drivelite_nolstm_500m_batch1x_run1/DriveLite_NoLSTM on GPU 2
+[2026-07-14 15:02:34] Launched eval: eval500m-drivelite-lstm224-gpu3-20260714_150234 -> homogeneous_drivelite_lstm224_500m_batch1x_run1/DriveLite_Recurrent224 on GPU 3
+[2026-07-14 15:02:34] Waiting for eval sessions matching: eval500m-

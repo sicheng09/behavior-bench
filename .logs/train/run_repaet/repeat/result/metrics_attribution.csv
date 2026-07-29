@@ -1,0 +1,28 @@
+experiment,traffic,phase,wandb,collision_maps,lateral,front,rear,stopped
+H0 run4_r2,IDM,H0,u9ymfcqr,34,25,7,1,1
+DriveLite A strat,IDM,1st,r0jht7bf,16,4,7,3,2
+DriveLite A strat,IDM,2nd,bly4mcn2,17,10,4,1,2
+DriveLite B strat,IDM,1st,qgytyxt4,30,10,17,0,3
+DriveLite B strat,IDM,2nd,jy3p9j4h,26,10,12,1,3
+Perception strat,IDM,1st,yov2516v,16,8,5,0,3
+Perception strat,IDM,2nd,q2lm8afu,19,12,4,1,2
+MIXMOE strat,IDM,1st,o4trtoxc,35,22,11,0,2
+MIXMOE strat,IDM,2nd,0eyyzzwx,29,17,10,0,2
+H0 run4_r2,Expert,H0,u9ymfcqr,99,33,27,9,30
+DriveLite A strat,Expert,1st,r0jht7bf,85,19,23,4,39
+DriveLite A strat,Expert,2nd,bly4mcn2,79,11,33,5,30
+DriveLite B strat,Expert,1st,qgytyxt4,83,19,28,6,30
+DriveLite B strat,Expert,2nd,jy3p9j4h,81,23,26,3,29
+Perception strat,Expert,1st,yov2516v,92,18,28,11,35
+Perception strat,Expert,2nd,q2lm8afu,96,27,23,9,37
+MIXMOE strat,Expert,1st,o4trtoxc,99,30,29,6,34
+MIXMOE strat,Expert,2nd,0eyyzzwx,89,26,28,6,29
+H0 run4_r2,Smart,H0,u9ymfcqr,40,23,9,7,1
+DriveLite A strat,Smart,1st,r0jht7bf,17,11,2,2,2
+DriveLite A strat,Smart,2nd,bly4mcn2,20,6,9,4,1
+DriveLite B strat,Smart,1st,qgytyxt4,30,10,13,3,4
+DriveLite B strat,Smart,2nd,jy3p9j4h,20,7,9,4,0
+Perception strat,Smart,1st,yov2516v,24,11,5,7,1
+Perception strat,Smart,2nd,q2lm8afu,26,17,2,6,1
+MIXMOE strat,Smart,1st,o4trtoxc,25,17,6,1,1
+MIXMOE strat,Smart,2nd,0eyyzzwx,32,17,10,4,1

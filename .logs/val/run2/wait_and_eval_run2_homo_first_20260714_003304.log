@@ -1,0 +1,155 @@
+[2026-07-14 00:33:04] Starting run2 final eval watcher, homogeneous first.
+[2026-07-14 00:33:04] Waiting for training session: perception-low-homogeneous-run2-gpu0-20260713_204738
+[2026-07-14 00:38:04] Waiting for training session: perception-low-homogeneous-run2-gpu0-20260713_204738
+[2026-07-14 00:43:04] Waiting for training session: perception-low-homogeneous-run2-gpu0-20260713_204738
+[2026-07-14 00:48:04] Waiting for training session: perception-mid-homogeneous-run2-gpu1-20260713_204750
+[2026-07-14 00:53:04] Homogeneous final checkpoints are ready.
+[2026-07-14 00:53:06] Launched eval: eval-run2-homo-low-gpu4-20260714_005306 -> homogeneous_perception_low_2b_batch1x_run2/DrivePerceptionLow_Recurrent on GPU 4
+[2026-07-14 00:53:06] Launched eval: eval-run2-homo-mid-gpu5-20260714_005306 -> homogeneous_perception_mid_2b_batch1x_run2/DrivePerceptionMid_Recurrent on GPU 5
+[2026-07-14 00:53:06] Launched eval: eval-run2-homo-high-gpu6-20260714_005306 -> homogeneous_perception_high_drive_2b_batch1x_run2/Drive_Recurrent on GPU 6
+[2026-07-14 00:53:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 00:58:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:03:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:08:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:13:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:18:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:23:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:28:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:33:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:38:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:43:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:48:06] Waiting for eval sessions matching: eval-run2-homo
+[2026-07-14 01:53:06] Homogeneous final evals finished.
+[2026-07-14 01:53:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 01:58:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:03:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:08:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:13:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:18:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:23:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:28:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:33:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:38:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:43:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:48:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:53:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 02:58:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:03:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:08:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:13:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:18:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:23:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:28:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:33:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:38:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:43:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:48:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:53:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 03:58:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:03:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:08:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:13:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:18:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:23:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:28:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:33:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:38:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:43:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:48:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:53:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 04:58:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:03:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:08:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:13:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:18:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:23:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:28:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:33:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:38:06] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:43:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:48:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:53:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 05:58:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:03:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:08:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:13:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:18:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:23:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:28:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:33:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:38:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:43:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:48:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:53:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 06:58:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:03:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:08:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:13:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:18:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:23:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:28:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:33:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:38:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:43:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:48:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:53:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 07:58:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:03:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:08:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:13:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:18:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:23:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:28:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:33:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:38:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:43:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:48:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:53:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 08:58:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:03:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:08:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:13:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:18:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:23:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:28:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:33:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:38:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:43:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:48:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:53:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 09:58:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:03:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:08:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:13:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:18:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:23:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:28:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:33:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:38:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:43:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:48:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:53:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 10:58:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:03:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:08:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:13:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:18:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:23:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:28:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:33:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:38:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:43:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:48:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:53:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 11:58:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 12:03:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 12:08:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 12:13:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 12:18:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 12:23:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 12:28:07] Waiting for training session: perception-mixed-low-mid-high-run2-gpu3-20260713_204818
+[2026-07-14 12:33:07] Mixed final checkpoints are ready.
+[2026-07-14 12:33:09] Launched eval: eval-run2-mix-p0-low-gpu4-20260714_123309 -> perception_mixed_low_mid_high_6b_batch3x_run2/p0_DrivePerceptionLow_Recurrent on GPU 4
+[2026-07-14 12:33:09] Launched eval: eval-run2-mix-p1-mid-gpu5-20260714_123309 -> perception_mixed_low_mid_high_6b_batch3x_run2/p1_DrivePerceptionMid_Recurrent on GPU 5
+[2026-07-14 12:33:09] Launched eval: eval-run2-mix-p2-high-gpu6-20260714_123309 -> perception_mixed_low_mid_high_6b_batch3x_run2/p2_Drive_Recurrent on GPU 6
+[2026-07-14 12:33:09] Mixed final eval sessions launched.

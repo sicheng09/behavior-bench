@@ -15,11 +15,15 @@ from pufferlib.conservative.reward import compute_lead_gap_and_speed
 from pufferlib.ocean.drive.drive import Drive
 
 
-def test_normalize_role_ids_tiles_and_rejects_unknown():
+def test_normalize_role_ids_tiles_and_maps_all_nonzero_policies_to_partner():
     ids = normalize_role_ids([0, 1], 5)
     assert list(ids) == [0, 1, 0, 1, 0]
+    ids = normalize_role_ids([0, 1, 2, 0], 6, policy_log_count=3)
+    assert list(ids) == [0, 1, 1, 0, 0, 1]
     with pytest.raises(ValueError):
-        normalize_role_ids([0, 2], 4)
+        normalize_role_ids([0, -1], 4)
+    with pytest.raises(ValueError):
+        normalize_role_ids([0, 3], 4, policy_log_count=3)
 
 
 def test_audit_scene_roles_mixed_rate():
@@ -96,7 +100,7 @@ def test_init_pops_conservative_kwargs_sets_attrs_and_registers():
     assert getattr(drive_torch, "DriveSteerConstrained") is DriveSteerConstrained
 
 
-def test_init_rejects_wrong_policy_count():
+def test_init_rejects_too_few_policies():
     def _bad_count(self, **kwargs):
         self.num_agents = 4
         self.policy_log_ids = [0, 0, 0, 0]
@@ -107,8 +111,30 @@ def test_init_rejects_wrong_policy_count():
         "pufferlib.conservative.env.Drive.__init__",
         _bad_count,
     ):
-        with pytest.raises(ValueError, match="exactly 2"):
+        with pytest.raises(ValueError, match="at least 2"):
             ConservativeMixDrive(partner_mode="action_constraint")
+
+
+def test_init_accepts_multiple_partner_policies_and_maps_roles():
+    def _multi_policy(self, **kwargs):
+        self.num_agents = 7
+        self.policy_log_ids = [0, 0, 0, 0, 1, 1, 2]
+        self.policy_log_count = 3
+        self.agent_offsets = np.asarray([0, 7], dtype=np.int32)
+        self.tick = 0
+        self.resample_frequency = 0
+        self.report_interval = 1000
+        self.rewards = np.zeros(7, dtype=np.float32)
+        self.reward_components_raw = np.zeros((7, 8), dtype=np.float32)
+        self.observations = np.zeros((7, 10), dtype=np.float32)
+        self.terminals = np.zeros(7, dtype=np.float32)
+        self.truncations = np.zeros(7, dtype=np.float32)
+
+    with patch("pufferlib.conservative.env.Drive.__init__", _multi_policy):
+        env = ConservativeMixDrive(partner_mode="off")
+
+    assert list(env._role_ids) == [0, 0, 0, 0, 1, 1, 1]
+    assert env._assignment_metrics["assignment/mixed_scene_rate"] == 1.0
 
 
 def test_init_rejects_unknown_partner_mode():

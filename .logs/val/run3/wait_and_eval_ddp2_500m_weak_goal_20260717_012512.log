@@ -1,0 +1,13 @@
+[2026-07-17 01:25:12] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_and_eval_ddp2_500m_weak_goal_20260717_012512.log
+[2026-07-17 01:25:12] Tag: ddp2_500m_weak_goal
+[2026-07-17 01:25:12] Train session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:25:12] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_jbx6brjj
+[2026-07-17 01:25:12] Eval: ego policy0 vs IDM on pufferinter -> /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_weak_goal_run3/p0_ego_Drive_Recurrent
+[2026-07-17 01:25:12] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:26:12] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:27:12] Training session ended.
+[2026-07-17 01:27:12] Waiting for experiment dir and ego checkpoint.
+[2026-07-17 01:27:12] Using checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_jbx6brjj/model_policy_0_puffer_drive_adversarial_000954.pt
+[2026-07-17 01:27:12] Launched eval: eval-run3-adv500m-weak-goal-p0-ego-vs-idm-gpu5-20260717_012712 on GPU 5
+[2026-07-17 01:27:12] Wrapper/results: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_weak_goal_run3/p0_ego_Drive_Recurrent/
+[2026-07-17 01:27:12] Done launching. Attach with: tmux attach -t eval-run3-adv500m-weak-goal-p0-ego-vs-idm-gpu5-20260717_012712

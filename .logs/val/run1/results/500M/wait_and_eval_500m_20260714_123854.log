@@ -1,0 +1,30 @@
+[2026-07-14 12:38:54] Waiting for run1 500M homogeneous trainings to finish.
+[2026-07-14 12:38:54] Waiting for training session: run1-500m-drive-lstm-gpu6-20260714_120854
+[2026-07-14 12:43:54] Waiting for training session: run1-500m-drive-lstm-gpu6-20260714_120854
+[2026-07-14 12:48:54] Waiting for training session: run1-500m-drive-lstm-gpu6-20260714_120854
+[2026-07-14 12:53:54] Waiting for training session: run1-500m-drive-lstm-gpu6-20260714_120854
+[2026-07-14 12:58:54] Waiting for training session: run1-500m-drive-lstm-gpu6-20260714_120854
+[2026-07-14 13:03:54] Waiting for training session: run1-500m-drive-lstm-gpu6-20260714_120854
+[2026-07-14 13:08:54] Waiting for training session: run1-500m-drive-lstm-gpu6-20260714_120854
+[2026-07-14 13:13:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:18:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:23:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:28:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:33:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:38:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:43:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:48:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:53:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 13:58:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:03:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:08:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:13:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:18:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:23:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:28:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:33:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:38:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:43:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:48:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:53:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt
+[2026-07-14 14:58:54] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_fdfw3v5e/model_puffer_drive_000953.pt

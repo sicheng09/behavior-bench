@@ -1,0 +1,6 @@
+WAIT_LOG=/home/fanyuqi/wsc/behavior-bench/.logs/train/runs/behavior_aware_default_2b_wait_20260712_102143.log
+Waiting for an idle GPU (<1000 MiB, <10% util)...
+2026-07-12_10:21:43 all GPUs busy; retrying in 300s
+2026-07-12_10:26:43 all GPUs busy; retrying in 300s
+Selected GPU_ID=0
+TRAIN_LOG=/home/fanyuqi/wsc/behavior-bench/.logs/train/runs/behavior_aware_default_2b_gpu0_20260712_103143.log

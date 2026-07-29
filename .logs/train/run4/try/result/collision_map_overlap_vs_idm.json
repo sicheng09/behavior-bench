@@ -1,0 +1,1376 @@
+{
+  "runs": {
+    "A_r1": {
+      "n": 30,
+      "map_ids": [
+        9,
+        97,
+        108,
+        115,
+        142,
+        179,
+        201,
+        297,
+        315,
+        346,
+        358,
+        359,
+        385,
+        418,
+        426,
+        438,
+        474,
+        482,
+        510,
+        554,
+        557,
+        585,
+        618,
+        625,
+        707,
+        734,
+        762,
+        787,
+        790,
+        989
+      ],
+      "by_type": {
+        "Front": 14,
+        "Lateral": 14,
+        "Stopped": 2
+      }
+    },
+    "A_r2": {
+      "n": 27,
+      "map_ids": [
+        9,
+        97,
+        115,
+        142,
+        212,
+        223,
+        294,
+        315,
+        346,
+        358,
+        430,
+        453,
+        474,
+        490,
+        522,
+        566,
+        625,
+        665,
+        707,
+        717,
+        734,
+        762,
+        772,
+        787,
+        790,
+        816,
+        868
+      ],
+      "by_type": {
+        "Front": 10,
+        "Lateral": 14,
+        "Stopped": 2,
+        "Rear": 1
+      }
+    },
+    "B_r1": {
+      "n": 25,
+      "map_ids": [
+        7,
+        97,
+        115,
+        187,
+        202,
+        223,
+        259,
+        315,
+        358,
+        380,
+        418,
+        438,
+        522,
+        618,
+        625,
+        688,
+        707,
+        714,
+        734,
+        772,
+        816,
+        908,
+        918,
+        940,
+        986
+      ],
+      "by_type": {
+        "Lateral": 18,
+        "Front": 5,
+        "Rear": 1,
+        "Stopped": 1
+      }
+    },
+    "B_r2": {
+      "n": 26,
+      "map_ids": [
+        97,
+        115,
+        142,
+        149,
+        223,
+        315,
+        351,
+        358,
+        380,
+        385,
+        438,
+        453,
+        504,
+        522,
+        618,
+        625,
+        707,
+        712,
+        772,
+        790,
+        816,
+        825,
+        834,
+        986,
+        990,
+        999
+      ],
+      "by_type": {
+        "Lateral": 16,
+        "Stopped": 3,
+        "Front": 5,
+        "Rear": 2
+      }
+    },
+    "H0_r1": {
+      "n": 32,
+      "map_ids": [
+        46,
+        97,
+        115,
+        142,
+        180,
+        200,
+        223,
+        259,
+        287,
+        315,
+        330,
+        346,
+        358,
+        359,
+        380,
+        426,
+        453,
+        490,
+        522,
+        561,
+        609,
+        611,
+        618,
+        625,
+        707,
+        736,
+        758,
+        772,
+        816,
+        908,
+        940,
+        999
+      ],
+      "by_type": {
+        "Lateral": 20,
+        "Front": 7,
+        "Stopped": 3,
+        "Rear": 2
+      }
+    },
+    "H0_r2": {
+      "n": 34,
+      "map_ids": [
+        9,
+        97,
+        115,
+        223,
+        267,
+        315,
+        346,
+        351,
+        358,
+        380,
+        385,
+        426,
+        429,
+        438,
+        453,
+        473,
+        482,
+        490,
+        611,
+        618,
+        620,
+        625,
+        688,
+        707,
+        730,
+        734,
+        736,
+        751,
+        762,
+        790,
+        816,
+        825,
+        868,
+        990
+      ],
+      "by_type": {
+        "Front": 7,
+        "Lateral": 25,
+        "Stopped": 1,
+        "Rear": 1
+      }
+    }
+  },
+  "pairs": {
+    "A_r1_vs_A_r2": {
+      "nx": 30,
+      "ny": 27,
+      "n_inter": 14,
+      "only_x": 16,
+      "only_y": 13,
+      "jaccard": 0.32558139534883723,
+      "type_same_on_inter": 9,
+      "inter_maps": [
+        9,
+        97,
+        115,
+        142,
+        315,
+        346,
+        358,
+        474,
+        625,
+        707,
+        734,
+        762,
+        787,
+        790
+      ],
+      "inter_types_x": {
+        "Front": 7,
+        "Lateral": 5,
+        "Stopped": 2
+      },
+      "only_x_types": {
+        "Lateral": 9,
+        "Front": 7
+      },
+      "only_y_types": {
+        "Rear": 1,
+        "Lateral": 8,
+        "Front": 4
+      },
+      "inter_detail": [
+        {
+          "map_id": 9,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 97,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 115,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 142,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 315,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 346,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 358,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 474,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 625,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 707,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 734,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 762,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 787,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 790,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        }
+      ]
+    },
+    "B_r1_vs_B_r2": {
+      "nx": 25,
+      "ny": 26,
+      "n_inter": 14,
+      "only_x": 11,
+      "only_y": 12,
+      "jaccard": 0.3783783783783784,
+      "type_same_on_inter": 13,
+      "inter_maps": [
+        97,
+        115,
+        223,
+        315,
+        358,
+        380,
+        438,
+        522,
+        618,
+        625,
+        707,
+        772,
+        816,
+        986
+      ],
+      "inter_types_x": {
+        "Front": 3,
+        "Lateral": 10,
+        "Stopped": 1
+      },
+      "only_x_types": {
+        "Lateral": 8,
+        "Rear": 1,
+        "Front": 2
+      },
+      "only_y_types": {
+        "Stopped": 2,
+        "Front": 3,
+        "Lateral": 5,
+        "Rear": 2
+      },
+      "inter_detail": [
+        {
+          "map_id": 97,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 115,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 223,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 315,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 358,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 380,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 438,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 522,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 618,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 625,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 707,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 772,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 816,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 986,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        }
+      ]
+    },
+    "A_r1_vs_B_r1": {
+      "nx": 30,
+      "ny": 25,
+      "n_inter": 10,
+      "only_x": 20,
+      "only_y": 15,
+      "jaccard": 0.2222222222222222,
+      "type_same_on_inter": 9,
+      "inter_maps": [
+        97,
+        115,
+        315,
+        358,
+        418,
+        438,
+        618,
+        625,
+        707,
+        734
+      ],
+      "inter_types_x": {
+        "Front": 3,
+        "Lateral": 6,
+        "Stopped": 1
+      },
+      "only_x_types": {
+        "Front": 11,
+        "Lateral": 8,
+        "Stopped": 1
+      },
+      "only_y_types": {
+        "Lateral": 11,
+        "Rear": 1,
+        "Front": 3
+      },
+      "inter_detail": [
+        {
+          "map_id": 97,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 115,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 315,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 358,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 418,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 438,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 618,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 625,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 707,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 734,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        }
+      ]
+    },
+    "A_r2_vs_B_r2": {
+      "nx": 27,
+      "ny": 26,
+      "n_inter": 13,
+      "only_x": 14,
+      "only_y": 13,
+      "jaccard": 0.325,
+      "type_same_on_inter": 8,
+      "inter_maps": [
+        97,
+        115,
+        142,
+        223,
+        315,
+        358,
+        453,
+        522,
+        625,
+        707,
+        772,
+        790,
+        816
+      ],
+      "inter_types_x": {
+        "Lateral": 7,
+        "Front": 4,
+        "Stopped": 2
+      },
+      "only_x_types": {
+        "Front": 6,
+        "Rear": 1,
+        "Lateral": 7
+      },
+      "only_y_types": {
+        "Front": 3,
+        "Lateral": 8,
+        "Stopped": 1,
+        "Rear": 1
+      },
+      "inter_detail": [
+        {
+          "map_id": 97,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 115,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 142,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 223,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 315,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 358,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 453,
+          "type_x": "Lateral",
+          "type_y": "Rear",
+          "fault_x": true,
+          "fault_y": false
+        },
+        {
+          "map_id": 522,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 625,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 707,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 772,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 790,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 816,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        }
+      ]
+    },
+    "H0_r2_vs_A_r1": {
+      "nx": 34,
+      "ny": 30,
+      "n_inter": 16,
+      "only_x": 18,
+      "only_y": 14,
+      "jaccard": 0.3333333333333333,
+      "type_same_on_inter": 10,
+      "inter_maps": [
+        9,
+        97,
+        115,
+        315,
+        346,
+        358,
+        385,
+        426,
+        438,
+        482,
+        618,
+        625,
+        707,
+        734,
+        762,
+        790
+      ],
+      "inter_types_x": {
+        "Front": 4,
+        "Lateral": 10,
+        "Stopped": 1,
+        "Rear": 1
+      },
+      "only_x_types": {
+        "Lateral": 15,
+        "Front": 3
+      },
+      "only_y_types": {
+        "Lateral": 6,
+        "Stopped": 1,
+        "Front": 7
+      },
+      "inter_detail": [
+        {
+          "map_id": 9,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 97,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 115,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 315,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": false
+        },
+        {
+          "map_id": 346,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": false,
+          "fault_y": true
+        },
+        {
+          "map_id": 358,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 385,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": false,
+          "fault_y": true
+        },
+        {
+          "map_id": 426,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 438,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 482,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 618,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 625,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 707,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 734,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 762,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 790,
+          "type_x": "Rear",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": true
+        }
+      ]
+    },
+    "H0_r2_vs_A_r2": {
+      "nx": 34,
+      "ny": 27,
+      "n_inter": 16,
+      "only_x": 18,
+      "only_y": 11,
+      "jaccard": 0.35555555555555557,
+      "type_same_on_inter": 10,
+      "inter_maps": [
+        9,
+        97,
+        115,
+        223,
+        315,
+        346,
+        358,
+        453,
+        490,
+        625,
+        707,
+        734,
+        762,
+        790,
+        816,
+        868
+      ],
+      "inter_types_x": {
+        "Front": 5,
+        "Lateral": 9,
+        "Stopped": 1,
+        "Rear": 1
+      },
+      "only_x_types": {
+        "Lateral": 16,
+        "Front": 2
+      },
+      "only_y_types": {
+        "Stopped": 1,
+        "Rear": 1,
+        "Lateral": 6,
+        "Front": 3
+      },
+      "inter_detail": [
+        {
+          "map_id": 9,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 97,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 115,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 223,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 315,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": false
+        },
+        {
+          "map_id": 346,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": false,
+          "fault_y": true
+        },
+        {
+          "map_id": 358,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 453,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 490,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 625,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 707,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 734,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 762,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 790,
+          "type_x": "Rear",
+          "type_y": "Front",
+          "fault_x": false,
+          "fault_y": true
+        },
+        {
+          "map_id": 816,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 868,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        }
+      ]
+    },
+    "H0_r2_vs_B_r1": {
+      "nx": 34,
+      "ny": 25,
+      "n_inter": 13,
+      "only_x": 21,
+      "only_y": 12,
+      "jaccard": 0.2826086956521739,
+      "type_same_on_inter": 10,
+      "inter_maps": [
+        97,
+        115,
+        223,
+        315,
+        358,
+        380,
+        438,
+        618,
+        625,
+        688,
+        707,
+        734,
+        816
+      ],
+      "inter_types_x": {
+        "Front": 5,
+        "Lateral": 7,
+        "Stopped": 1
+      },
+      "only_x_types": {
+        "Front": 2,
+        "Lateral": 18,
+        "Rear": 1
+      },
+      "only_y_types": {
+        "Lateral": 8,
+        "Rear": 1,
+        "Front": 3
+      },
+      "inter_detail": [
+        {
+          "map_id": 97,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 115,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 223,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 315,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": false
+        },
+        {
+          "map_id": 358,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 380,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 438,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 618,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 625,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 688,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 707,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 734,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 816,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        }
+      ]
+    },
+    "H0_r2_vs_B_r2": {
+      "nx": 34,
+      "ny": 26,
+      "n_inter": 17,
+      "only_x": 17,
+      "only_y": 9,
+      "jaccard": 0.3953488372093023,
+      "type_same_on_inter": 10,
+      "inter_maps": [
+        97,
+        115,
+        223,
+        315,
+        351,
+        358,
+        380,
+        385,
+        438,
+        453,
+        618,
+        625,
+        707,
+        790,
+        816,
+        825,
+        990
+      ],
+      "inter_types_x": {
+        "Front": 4,
+        "Lateral": 11,
+        "Stopped": 1,
+        "Rear": 1
+      },
+      "only_x_types": {
+        "Front": 3,
+        "Lateral": 14
+      },
+      "only_y_types": {
+        "Stopped": 2,
+        "Front": 2,
+        "Lateral": 4,
+        "Rear": 1
+      },
+      "inter_detail": [
+        {
+          "map_id": 97,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 115,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 223,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 315,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": false
+        },
+        {
+          "map_id": 351,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 358,
+          "type_x": "Stopped",
+          "type_y": "Stopped",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 380,
+          "type_x": "Front",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 385,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 438,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 453,
+          "type_x": "Lateral",
+          "type_y": "Rear",
+          "fault_x": true,
+          "fault_y": false
+        },
+        {
+          "map_id": 618,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 625,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        },
+        {
+          "map_id": 707,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 790,
+          "type_x": "Rear",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": true
+        },
+        {
+          "map_id": 816,
+          "type_x": "Front",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 825,
+          "type_x": "Lateral",
+          "type_y": "Front",
+          "fault_x": true,
+          "fault_y": true
+        },
+        {
+          "map_id": 990,
+          "type_x": "Lateral",
+          "type_y": "Lateral",
+          "fault_x": false,
+          "fault_y": false
+        }
+      ]
+    }
+  }
+}

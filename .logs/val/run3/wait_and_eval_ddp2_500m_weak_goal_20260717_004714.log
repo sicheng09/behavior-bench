@@ -1,0 +1,43 @@
+[2026-07-17 00:47:14] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_and_eval_ddp2_500m_weak_goal_20260717_004714.log
+[2026-07-17 00:47:14] Tag: ddp2_500m_weak_goal
+[2026-07-17 00:47:14] Train session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:47:14] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_adversarial_jbx6brjj
+[2026-07-17 00:47:14] Eval: ego(policy0) vs IDM on pufferinter -> /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/adv_mix_ego_opponent_drive_lstm_ddp2_500m_weak_goal_run3/p0_ego_Drive_Recurrent
+[2026-07-17 00:47:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:48:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:49:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:50:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:51:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:52:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:53:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:54:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:55:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:56:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:57:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:58:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 00:59:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:00:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:01:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:02:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:03:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:04:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:05:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:06:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:07:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:08:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:09:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:10:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:11:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:12:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:13:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:14:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:15:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:16:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:17:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:18:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:19:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:20:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:21:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:22:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:23:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56
+[2026-07-17 01:24:14] Waiting for training session: adv-mix-drive-lstm-ddp2-500m-weak-goal-gpu56

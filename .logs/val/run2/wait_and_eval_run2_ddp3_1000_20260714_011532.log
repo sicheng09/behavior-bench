@@ -1,0 +1,23 @@
+[2026-07-14 01:15:32] Waiting for DDP3 run2 001000 checkpoints.
+[2026-07-14 01:15:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:20:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:25:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:30:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:35:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:40:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:45:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:50:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 01:55:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:00:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:05:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:10:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:15:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:20:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:25:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:30:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:35:32] Waiting for checkpoint: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_gob17caq/model_policy_0_puffer_drive_001000.pt
+[2026-07-14 02:40:32] DDP3 001000 checkpoints are ready.
+[2026-07-14 02:40:35] Launched eval: eval1000-run2-ddp3-p0-low-gpu4-20260714_024035 -> perception_mixed_low_mid_high_ddp3_global6b_run2/p0_DrivePerceptionLow_Recurrent on GPU 4
+[2026-07-14 02:40:35] Launched eval: eval1000-run2-ddp3-p1-mid-gpu5-20260714_024035 -> perception_mixed_low_mid_high_ddp3_global6b_run2/p1_DrivePerceptionMid_Recurrent on GPU 5
+[2026-07-14 02:40:35] Launched eval: eval1000-run2-ddp3-p2-high-gpu6-20260714_024035 -> perception_mixed_low_mid_high_ddp3_global6b_run2/p2_Drive_Recurrent on GPU 6
+[2026-07-14 02:40:35] DDP3 001000 eval sessions launched.

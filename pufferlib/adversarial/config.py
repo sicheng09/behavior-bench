@@ -14,6 +14,7 @@ class RewardWeights:
     fault: float
     kinematics: float
     normality: float
+    goal: float = 0.0
 
 
 @dataclass(frozen=True)
@@ -90,8 +91,10 @@ def load_adversarial_config(path: str | Path) -> AdversarialConfig:
 
     assignment = RoleAssignmentConfig(**raw["role_assignment"])
     reward_raw = raw["reward"]
+    weights_raw = dict(reward_raw["weights"])
+    weights_raw.setdefault("goal", 0.0)
     reward = RewardConfig(
-        weights=RewardWeights(**reward_raw["weights"]),
+        weights=RewardWeights(**weights_raw),
         limits=RewardLimits(**reward_raw["limits"]),
         thresholds=RewardThresholds(**reward_raw["thresholds"]),
     )

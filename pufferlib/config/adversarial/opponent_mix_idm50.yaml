@@ -1,0 +1,42 @@
+# Same default opponent reward as opponent_mix.yaml, but lower the
+# mixed-scene warning threshold for mix_traffic + 50% IDM runs.
+# With half the agents as IDM, ego+opponent co-presence rate naturally
+# drops below the default 0.8 warn line; pufferl treats RuntimeWarning
+# as error, so we use 0.5 here. fail threshold stays unset.
+version: 1
+
+roles:
+  ego:
+    policy_index: 0
+    strategy: ego_drive_recurrent
+  primary_opponent:
+    policy_index: 1
+    strategy: primary_opponent_drive_recurrent
+
+role_assignment:
+  mode: global_deficit
+  warn_mixed_scene_rate_below: 0.5
+  fail_mixed_scene_rate_below: null
+
+reward:
+  weights:
+    ego_cost: 0.20
+    fault: 1.00
+    kinematics: 0.20
+    normality: 0.02
+    goal: 0.00
+  limits:
+    positive_reward_cap: 0.25
+    kinematics_penalty_cap: 0.50
+    max_invalid_reward_events: 10
+  thresholds:
+    hard_brake_mps2: 3.0
+    hard_steer_rad: 0.5
+    ttc_seconds: 2.0
+    safe_distance_m: 2.0
+    max_accel_mps2: 4.0
+    max_lateral_accel_mps2: 4.0
+    max_jerk_mps3: 8.0
+    max_steer_rate_radps: 1.0
+    normal_speed_mps: 10.0
+    fault_lookback_steps: 5

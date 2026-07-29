@@ -1,0 +1,13 @@
+==== parallel traffic evals ====
+date=2026-07-24T04:12:40+08:00
+TRAIN_RUN_NAME=drivelite_mixB_stratified_1500m_run_repaet_repeat
+WEIGHTS=/home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_jy3p9j4h/model_policy_0_puffer_drive_000954.pt
+TRAFFIC_GPU_MAP=idm:2 expert:4 smart:6
+RESULT_ROOT=/home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixB_stratified
+LAUNCHED eval-drivelite_mixB_stratified_1500m_run_repaet_repeat-vs-idm-gpu2-20260724_0412 → /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixB_stratified/test_IDM
+LAUNCHED eval-drivelite_mixB_stratified_1500m_run_repaet_repeat-vs-expert-gpu4-20260724_0 → /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixB_stratified/test_Expert
+LAUNCHED eval-drivelite_mixB_stratified_1500m_run_repaet_repeat-vs-smart-gpu6-20260724_04 → /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/drivelite_mixB_stratified/test_Smart
+done. tmux sessions:
+eval-drivelite_mixB_stratified_1500m_run_repaet_repeat-vs-expert-gpu4-20260724_0: 1 windows (created Fri Jul 24 04:12:46 2026) [80x24]
+eval-drivelite_mixB_stratified_1500m_run_repaet_repeat-vs-idm-gpu2-20260724_0412: 1 windows (created Fri Jul 24 04:12:41 2026) [80x24]
+eval-drivelite_mixB_stratified_1500m_run_repaet_repeat-vs-smart-gpu6-20260724_04: 1 windows (created Fri Jul 24 04:12:52 2026) [80x24]

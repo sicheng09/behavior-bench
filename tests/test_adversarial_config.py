@@ -63,6 +63,16 @@ def test_load_adversarial_config_accepts_safe_defaults(tmp_path):
     assert cfg.opponent_policy_index == 1
     assert cfg.role_assignment.mode == "global_deficit"
     assert cfg.reward.weights.fault == 1.0
+    assert cfg.reward.weights.goal == 0.0
+
+
+def test_load_adversarial_config_accepts_weak_goal_weight(tmp_path):
+    path = _write_config(
+        tmp_path,
+        lambda data: data["reward"]["weights"].update({"goal": 0.15}),
+    )
+    cfg = load_adversarial_config(path)
+    assert cfg.reward.weights.goal == 0.15
 
 
 def test_config_rejects_fault_weight_below_safety_ratio(tmp_path):

@@ -1,0 +1,323 @@
+{
+  "env": {
+    "action_type": "continuous",
+    "episode_length": 91,
+    "goal_behavior": 3,
+    "termination_mode": 1,
+    "collision_behavior": 2,
+    "offroad_behavior": 2,
+    "dt": 0.1,
+    "collision_shrink": 1.0,
+    "reward_vehicle_collision": -0.5,
+    "reward_offroad_collision": -0.5,
+    "reward_goal": 1.0,
+    "reward_goal_post_respawn": 0.25
+  },
+  "eval": {
+    "split": "pufferinter",
+    "episode_length": 91,
+    "action_type": "continuous",
+    "dynamics_model": "classic",
+    "reward_conditioning": 0,
+    "viz": false,
+    "planner_viz": false,
+    "goal_behavior": 3,
+    "goal_lane_change_prob": 0.0,
+    "goal_target_distance": 20.0,
+    "termination_mode": 1,
+    "collision_behavior": 2,
+    "offroad_behavior": 2,
+    "compute_uncertainty": false,
+    "ensemble_weight_paths": ""
+  },
+  "planner": {
+    "type": "ppo",
+    "pdm": {
+      "horizon": 40,
+      "proposal_other": "constant_velocity",
+      "velocity_fractions": [
+        0.2,
+        0.4,
+        0.6,
+        0.8,
+        1.0
+      ],
+      "lateral_offsets": [
+        -1.0,
+        0.0,
+        1.0
+      ],
+      "max_velocity": 25.0,
+      "min_gap": 1.0,
+      "headway_time": 1.5,
+      "accel_max": 1.5,
+      "decel_max": 3.0
+    },
+    "ppo": {
+      "weights_path": "/home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_u9ymfcqr/model_puffer_drive_000954.pt",
+      "device": "cuda",
+      "ensemble_weights": "",
+      "input_size": 64,
+      "hidden_size": 256,
+      "policy_action_type": "discrete",
+      "stochastic": "false",
+      "temperature": 1.0,
+      "policy_class_name": "Drive",
+      "rnn_name": "Recurrent",
+      "rnn_input_size": 256,
+      "rnn_hidden_size": 256,
+      "reward_conditioning": false
+    },
+    "behavior_aware": {
+      "weights_path": "",
+      "device": "cuda",
+      "input_size": 64,
+      "hidden_size": 256,
+      "behavior_latent_dim": 64,
+      "prediction_loss_coef": 0.1,
+      "fuse_behavior_latent": "true",
+      "policy_action_type": "discrete",
+      "stochastic": "false",
+      "temperature": 1.0
+    },
+    "idm": {
+      "target_velocity": 15.0,
+      "min_gap": 1.0,
+      "headway_time": 1.5,
+      "accel_max": 1.0,
+      "decel_max": 3.0
+    },
+    "smart": {
+      "weights_path": "",
+      "device": "cuda",
+      "temperature": 1.0,
+      "greedy": true,
+      "repredict_interval": 5
+    },
+    "hybrid": {
+      "ppo_weights_path": "",
+      "ensemble_weights": "",
+      "epistemic_threshold": 0.8,
+      "pdm_min_steps": 1,
+      "force_ppo": "false",
+      "force_pdm": "false",
+      "switch_mode": "pdm_score",
+      "value_variance_threshold": 0.1,
+      "lookahead_steps": 0,
+      "ppo_mode": "single_step",
+      "ppo_rollout_strategy": "beam_search",
+      "ppo_rollout_top_k": 8,
+      "ppo_rollout_beam_width": 4,
+      "ppo_rollout_branch_factor": 4,
+      "ppo_rollout_horizon": 10,
+      "ppo_rollout_w_cmf": 0.333,
+      "ppo_rollout_w_align": 0.333,
+      "ppo_rollout_w_ctr": 0.333,
+      "ppo_rollout_lane_dist_scale": 2.0,
+      "device": "cuda"
+    },
+    "conditioned_mix": {
+      "weights_path": "",
+      "device": "cuda",
+      "creward": {
+        "delta_goal": 0.0,
+        "alpha_collision": 3.0,
+        "alpha_boundary": 3.0,
+        "alpha_comfort": 0.05,
+        "alpha_l_align": 0.015,
+        "alpha_vel_align": 0.5,
+        "alpha_l_center": 0.0038,
+        "alpha_center_bias": 0.0,
+        "alpha_reverse": 0.0038,
+        "goal_speed": 20.0
+      }
+    },
+    "conditioned_aggr": {
+      "weights_path": "",
+      "device": "cuda",
+      "creward": {
+        "delta_goal": 0.0,
+        "alpha_collision": 0.2,
+        "alpha_boundary": 0.2,
+        "alpha_comfort": 0.0,
+        "alpha_l_align": 0.001,
+        "alpha_vel_align": 0.1,
+        "alpha_l_center": 0.00025,
+        "alpha_center_bias": 0.0,
+        "alpha_reverse": 0.0005,
+        "goal_speed": 30.0
+      }
+    },
+    "conditioned_normal": {
+      "weights_path": "",
+      "device": "cuda",
+      "creward": {
+        "delta_goal": 0.0,
+        "alpha_collision": 3.0,
+        "alpha_boundary": 3.0,
+        "alpha_comfort": 0.05,
+        "alpha_l_align": 0.015,
+        "alpha_vel_align": 0.5,
+        "alpha_l_center": 0.0038,
+        "alpha_center_bias": 0.0,
+        "alpha_reverse": 0.0038,
+        "goal_speed": 20.0
+      }
+    },
+    "conditioned_caut": {
+      "weights_path": "",
+      "device": "cuda",
+      "creward": {
+        "delta_goal": 0.0,
+        "alpha_collision": 3.0,
+        "alpha_boundary": 3.0,
+        "alpha_comfort": 0.1,
+        "alpha_l_align": 0.025,
+        "alpha_vel_align": 1.0,
+        "alpha_l_center": 0.0075,
+        "alpha_center_bias": 0.5,
+        "alpha_reverse": 0.0075,
+        "goal_speed": 5.0
+      }
+    }
+  },
+  "traffic": {
+    "type": "pdm",
+    "pdm": {
+      "horizon": 40,
+      "proposal_other": "constant_velocity"
+    },
+    "ppo": {
+      "weights_path": "",
+      "device": "cuda",
+      "input_size": 64,
+      "hidden_size": 256,
+      "policy_action_type": "discrete",
+      "stochastic": "false",
+      "temperature": 1.0,
+      "policy_class_name": "Drive",
+      "rnn_name": "Recurrent",
+      "rnn_input_size": 256,
+      "rnn_hidden_size": 256,
+      "reward_conditioning": "false"
+    },
+    "behavior_aware": {
+      "weights_path": "",
+      "device": "cuda",
+      "input_size": 64,
+      "hidden_size": 256,
+      "behavior_latent_dim": 64,
+      "prediction_loss_coef": 0.1,
+      "fuse_behavior_latent": "true",
+      "policy_action_type": "discrete",
+      "stochastic": "false",
+      "temperature": 1.0
+    },
+    "idm": {
+      "target_velocity": 15.0,
+      "min_gap": 1.0,
+      "headway_time": 1.5,
+      "accel_max": 1.0,
+      "decel_max": 3.0
+    },
+    "smart": {
+      "weights_path": "",
+      "device": "cuda",
+      "temperature": 1.0,
+      "greedy": true,
+      "repredict_interval": 5
+    },
+    "conditioned_mix": {
+      "weights_path": "",
+      "device": "cuda",
+      "creward_profiles": [
+        [
+          0.2,
+          0.2,
+          0.0,
+          0.001,
+          0.1,
+          0.00025,
+          0.0,
+          0.0005,
+          30.0
+        ],
+        [
+          3.0,
+          3.0,
+          0.05,
+          0.015,
+          0.5,
+          0.0038,
+          0.0,
+          0.0038,
+          20.0
+        ],
+        [
+          3.0,
+          3.0,
+          0.1,
+          0.025,
+          1.0,
+          0.0075,
+          0.5,
+          0.0075,
+          5.0
+        ]
+      ]
+    },
+    "conditioned_aggr": {
+      "weights_path": "",
+      "device": "cuda",
+      "creward_profiles": [
+        [
+          0.2,
+          0.2,
+          0.0,
+          0.001,
+          0.1,
+          0.00025,
+          0.0,
+          0.0005,
+          30.0
+        ]
+      ]
+    },
+    "conditioned_normal": {
+      "weights_path": "",
+      "device": "cuda",
+      "creward_profiles": [
+        [
+          3.0,
+          3.0,
+          0.05,
+          0.015,
+          0.5,
+          0.0038,
+          0.0,
+          0.0038,
+          20.0
+        ]
+      ]
+    },
+    "conditioned_caut": {
+      "weights_path": "",
+      "device": "cuda",
+      "creward_profiles": [
+        [
+          3.0,
+          3.0,
+          0.1,
+          0.025,
+          1.0,
+          0.0075,
+          0.5,
+          0.0075,
+          5.0
+        ]
+      ]
+    }
+  },
+  "map_ids": "all",
+  "output_dir": "/home/fanyuqi/wsc/behavior-bench/.logs/train/run4/problem/test_PDM/homogeneous_drive_lstm_500m_batch1x_run4_r2/Drive_Recurrent"
+}

@@ -1,0 +1,12 @@
+==== parallel traffic evals ====
+date=2026-07-24T00:56:34+08:00
+TRAIN_RUN_NAME=perception_mix_low_mid_high_stratified_1500m_run_repaet_repeat
+WEIGHTS=/home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_q2lm8afu/model_policy_2_puffer_drive_000954.pt
+TRAFFIC_GPU_MAP=expert:5 smart:6
+RESULT_ROOT=/home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/perception_stratified
+LAUNCHED eval-perception_mix_low_mid_high_stratified_1500m_run_repaet_repeat-vs-expert-gp → /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/perception_stratified/test_Expert
+LAUNCHED eval-perception_mix_low_mid_high_stratified_1500m_run_repaet_repeat-vs-smart-gpu → /home/fanyuqi/wsc/behavior-bench/.logs/train/run_repaet/repeat/perception_stratified/test_Smart
+done. tmux sessions:
+eval-perception_mix_low_mid_high_stratified_1500m_run_repaet_repeat-vs-expert-gp: 1 windows (created Fri Jul 24 00:56:35 2026) [80x24]
+eval-perception_mix_low_mid_high_stratified_1500m_run_repaet_repeat-vs-idm-gpu1-: 1 windows (created Fri Jul 24 00:40:44 2026) [80x24]
+eval-perception_mix_low_mid_high_stratified_1500m_run_repaet_repeat-vs-smart-gpu: 1 windows (created Fri Jul 24 00:56:41 2026) [80x24]

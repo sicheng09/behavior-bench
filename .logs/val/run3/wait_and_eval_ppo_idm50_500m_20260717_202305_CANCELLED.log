@@ -1,0 +1,18 @@
+[2026-07-17 20:23:05] Watch log: /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/wait_and_eval_ppo_idm50_500m_20260717_202305.log
+[2026-07-17 20:23:05] Tag: ppo_idm50_500m
+[2026-07-17 20:23:05] Train session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:23:05] Expected experiment dir: /home/fanyuqi/wsc/behavior-bench/experiments/puffer_drive_7ximjuty
+[2026-07-17 20:23:05] Min checkpoint epoch: 954 (model_puffer_drive_*.pt)
+[2026-07-17 20:23:05] Eval: Drive/Recurrent vs IDM on pufferinter -> /home/fanyuqi/wsc/behavior-bench/.logs/val/run3/results/ppo_idm50_drive_lstm_ddp2_500m_run3/Drive_Recurrent
+[2026-07-17 20:23:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:24:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:25:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:26:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:27:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:28:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:29:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:30:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+[2026-07-17 20:31:05] Waiting for training session: ppo-idm50-drive-lstm-ddp2-500m-gpu23
+
+==== CANCELLED 2026-07-17T20:32:07+08:00 ====
+Superseded by single-GPU ppo-idm50 wait/eval.
